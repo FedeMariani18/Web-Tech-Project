@@ -1,0 +1,33 @@
+h1, body{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    position: sticky;
+    top: 0;
+    background-color: #ffd966;
+}
+
+main{
+    margin: 20px, 5%, 0;
+    vertical-align: center;
+}
+
+article{
+    background-color: #fff;
+    border: 1px solid #cacaca;
+    margin-bottom: 20px;
+    min-height: 300px;
+    max-width: 90%;
+}
+
+h1{
+    font-size: 100px;
+    color: black;
+}
+
+body{
+    background-color: grey;
+}
+
