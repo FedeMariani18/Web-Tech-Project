@@ -1,33 +1,51 @@
+:root{
+    --first-color: #ffd966;
+    --second-color: #A8CCC9;
+    --third-color: #DA627D;
+    --background-color: white;
+}
+
 h1, body{
     margin: 0;
     padding: 0;
 }
 
 header{
-    position: sticky;
-    top: 0;
-    background-color: #ffd966;
+    /* position: sticky;
+    top: 0; */
+    background-color: var(--first-color);
 }
 
-main{
-    margin: 20px, 5%, 0;
-    vertical-align: center;
+header h1{
+    font-size: 40px;
 }
 
-article{
-    background-color: #fff;
-    border: 1px solid #cacaca;
-    margin-bottom: 20px;
-    min-height: 300px;
-    max-width: 90%;
-}
-
-h1{
-    font-size: 100px;
+form button{
+    background-color: var(--second-color);
+    border-color: black;
     color: black;
 }
 
-body{
-    background-color: grey;
+form button:hover{
+    /* TODO: dare l'impressione di essere schiacciato */
+}
+
+header nav img{
+    width: 50px;
+    height: 50px;
+}
+
+body main{
+    background-color: var(--background-color);
+}
+
+article{
+    background-color: var(--first-color);
+    margin-bottom: 20px;
+    min-height: 220px;
+}
+
+article div img{
+    height: 100%;
 }
 
