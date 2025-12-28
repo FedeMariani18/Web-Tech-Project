@@ -13,3 +13,7 @@ funzionalità:
 opzionali:
 - possibilità di visualizzare le proposte sulla mappa
 - messaggistica e scambio di amicize / follow
+
+todo:
+- aggiungere un'azione responsive per il bottone search
+- mettere una dimensione massima per la descrizione iniziale degli annunci

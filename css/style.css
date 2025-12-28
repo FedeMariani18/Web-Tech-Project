@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap');
+
 :root{
     --first-color: #ffd966;
     --second-color: #A8CCC9;
@@ -11,41 +13,101 @@ h1, body{
 }
 
 header{
-    /* position: sticky;
-    top: 0; */
+    position: sticky;
+    top: 0;
     background-color: var(--first-color);
 }
 
 header h1{
-    font-size: 40px;
+    font-size: clamp(1rem, 5vw, 2rem);
+    font-family: "BBH Bartle", sans-serif;
+    color: var(--third-color);
 }
 
-form button{
+header form button{
     background-color: var(--second-color);
     border-color: black;
     color: black;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-form button:hover{
-    /* TODO: dare l'impressione di essere schiacciato */
+header form button img{
+    width: 15px;
+    height: 15px;
+}
+
+header form button:hover {
+    transform: scale(1.1);
+    box-shadow: 3px 3px rgb(0 0 0 / 40%);
 }
 
 header nav img{
     width: 50px;
     height: 50px;
+
+    transition: transform 0.2s ease;
+}
+
+header nav img:hover{
+    transform: scale(1.1);
+}
+
+body{
+    background-color: var(--second-color) !important;
 }
 
 body main{
-    background-color: var(--background-color);
+    background-color: var(--second-color);
 }
 
-article{
+body main>div>p{
+    text-align: center;
+    font-family: "BBH Bartle", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 20px;
+    color: var(--third-color);
+    
+} 
+
+body main article{
     background-color: var(--first-color);
-    margin-bottom: 20px;
     min-height: 220px;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body main article:hover{
+    transform: scale(1.05);
+    box-shadow: 3px 3px rgb(0 0 0 / 40%);
 }
 
 article div img{
     height: 100%;
 }
 
+body+nav{
+    background-color: var(--second-color) !important;
+}
+
+body nav button{
+    width: 80px;
+    height: 80px;
+    font-size: 100%;
+
+    background-color: var(--third-color);
+    
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transform: translateX(-50%);
+}
+
+body nav button:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 3px 3px rgb(0 0 0 / 40%);
+}
+
+body nav button img{
+    width: 60%;
+    height: 60%;
+}
