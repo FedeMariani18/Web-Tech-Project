@@ -37,7 +37,7 @@ header form button img{
     height: 15px;
 }
 
-header form button:hover {
+header form button:hover, body footer div button:hover, body main article:hover {
     transform: scale(1.1);
     box-shadow: 3px 3px rgb(0 0 0 / 40%);
 }
@@ -69,18 +69,17 @@ body main>div>p{
     font-size: 20px;
     color: var(--third-color);
     
-} 
+}
+
+body main form ul{
+    list-style-type: none;
+}
 
 body main article{
     background-color: var(--first-color);
     min-height: 220px;
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-body main article:hover{
-    transform: scale(1.05);
-    box-shadow: 3px 3px rgb(0 0 0 / 40%);
 }
 
 article div img{
@@ -94,7 +93,6 @@ body+nav{
 body nav button{
     width: 80px;
     height: 80px;
-    font-size: 100%;
 
     background-color: var(--third-color);
     
@@ -110,4 +108,16 @@ body nav button:hover {
 body nav button img{
     width: 60%;
     height: 60%;
+}
+
+body footer{
+    background-color: var(--first-color);
+}
+
+body footer div button{
+    height: 60px;
+    font-size: 30px;
+    background-color: var(--third-color);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
