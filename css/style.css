@@ -24,6 +24,35 @@ header h1{
     color: var(--third-color);
 }
 
+header nav img{
+    width: 50px;
+    height: 50px;
+
+    transition: transform 0.2s ease;
+}
+
+header nav img:hover{
+    transform: scale(1.1);
+}
+
+nav.profile-icon-nav img{
+    width: 100px;
+    height: 100px;
+
+    transition: transform 0.2s ease;
+}
+
+nav.profile-icon-nav img:hover{
+    transform: scale(1.7);
+}
+
+nav.profile-icon-nav img[src="resources/user_icon.png"]{
+    width: 150px;
+    height: 150px;
+
+    transition: transform 0.2s ease;
+}
+
 header form button{
     background-color: var(--second-color);
     border-color: black;
@@ -40,17 +69,6 @@ header form button img{
 header form button:hover, body footer div button:hover, body main article:hover {
     transform: scale(1.1);
     box-shadow: 3px 3px rgb(0 0 0 / 40%);
-}
-
-header nav img{
-    width: 50px;
-    height: 50px;
-
-    transition: transform 0.2s ease;
-}
-
-header nav img:hover{
-    transform: scale(1.1);
 }
 
 body{
@@ -73,6 +91,10 @@ body main>div>p{
 
 body main form ul{
     list-style-type: none;
+}
+
+button.important-button{
+    background-color: var(--first-color);
 }
 
 body main article{
