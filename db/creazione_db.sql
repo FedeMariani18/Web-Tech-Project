@@ -22,8 +22,10 @@ CREATE TABLE UTENTE (
 CREATE TABLE POST (
     id INT AUTO_INCREMENT PRIMARY KEY,
     foto VARCHAR(255),
+    titolo VARCHAR(100) NOT NULL,
+    descrizione TEXT,
     data_ora DATETIME NOT NULL,
-    posti_disponibili INT NOT NULL CHECK (posti_disponibili >= 0),
+    posti_disponibili INT NOT NULL,
     provincia VARCHAR(50) NOT NULL,
     comune VARCHAR(50) NOT NULL,
     indirizzo VARCHAR(255) NOT NULL,
@@ -32,6 +34,7 @@ CREATE TABLE POST (
     FOREIGN KEY (id_categoria) REFERENCES CATEGORIA(id),
     FOREIGN KEY (id_creatore) REFERENCES UTENTE(id)
 );
+
 
 -- TABELLA COMMENTO
 CREATE TABLE COMMENTO (
