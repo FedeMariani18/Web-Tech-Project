@@ -4,7 +4,7 @@ function createPost(posts){
     for(let i=0; i < posts.length; i++){
         let postHTML = `
         <div class="col-10 col-lg-4 p-3 p-md-4">
-                <a class="link-underline link-underline-opacity-0 text-reset" href="post.html">
+                <a class="link-underline link-underline-opacity-0 text-reset" href="post.php?id=${posts[i]["id"]}">
                     <article class="row rounded-5 border border-black border-1">
                         <img class="col-5 img-fluid rounded-start-5 p-0" src="${posts[i]["foto"]}" alt="immagine del annuncio">
                         <div class="col-7">

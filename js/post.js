@@ -1,72 +1,30 @@
-<!DOCTYPE html>
-<html lang="it" class="m-0">
-    <head>
-        <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="./css/style.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-        <!-- for special font -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <body>
-        <header class="container-fluid">
-            <div class="row align-items-center">
-                <h1 class="col-2 col-md-6">UNINET</h1>
-                <div class="col-10 col-md-6">
-                    <nav class="d-flex justify-content-end gap-2">
-                        <img src="resources/heart.png" alt="icon del cuore"/>
-                        <img src="resources/notification.png" alt="icona delle notifiche"/>
-                        <img src="resources/user_icon.png" alt="icona dell'utente"/>
-                    </nav>
-                </div>
-            </div>
-        </header>
-
-        <main class="container my-4">
-
-    <!-- Titolo annuncio -->
+function createPost(post){
+    const result = `
     <div class="row mb-3">
         <div class="col-12">
-            <h2 class="fw-bold">Titolo dell'annuncio</h2>
+            <h2 class="fw-bold">${post['titolo']}</h2>
         </div>
     </div>
-
-    <!-- Immagine + descrizione -->
     <div class="row mb-4">
-        <!-- Immagine -->
         <div class="col-12 col-md-4 mb-3 mb-md-0">
             <div class="border bg-light d-flex align-items-center justify-content-center"
                 style="height: 200px;">
-            <img src="resources/img_prova.jpeg" alt="Immagine del post" class="img-fluid h-100" style="object-fit: cover;">
+            <img src="${post['foto']}" alt="Immagine del post" class="img-fluid h-100" style="object-fit: cover;">
             </div>
         </div>
-
-
-        <!-- Descrizione -->
         <div class="col-12 col-md-8">
             <h5>Descrizione</h5>
-            <p class="text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pellentesque habitant morbi tristique senectus et netus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            </p>
+            <p class="text-muted">${post['descrizione']}</p>
         </div>
     </div>
-
-    <!-- Info partecipanti -->
     <div class="row mb-3">
         <div class="col-12">
             <p class="mb-1">
                 <strong>Numero partecipanti iscritti:</strong> 4/10
             </p>
             <p class="mb-0">
-                <strong>Mostra partecipanti:</strong>
-                <span class="badge bg-secondary">Organizzatore</span>
+                <strong>Partecipanti:</strong>
+                //come aggiungo i partecipanti
             </p>
         </div>
     </div>
@@ -123,8 +81,26 @@
             </button>
         </div>
     </div>
+    `;
+    return result;
+}
 
-</main>
+async function getPostData() {
+    const url = `api-post.php?id=${postId}`;
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const json = await response.json();
+        console.log(json);
+        const posts = createPost(json);
 
-    </body>
-</html>
+        const container = document.getElementById("posts-container");
+        container.innerHTML += posts;
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+getPostData();

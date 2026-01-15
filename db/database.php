@@ -34,5 +34,25 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getPost($id) {
+            $stmt = $this->db->prepare("SELECT * FROM POST WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
+
+        public function getMembersFromPost($id) {
+            $stmt = $this->db->prepare("SELECT u.nome, u.cognome
+                FROM ISCRIZIONE_POST ip JOIN UTENTE u ON ip.id_iscritto = u.id
+                WHERE ip.id_post = ?
+                ");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+
     }
 ?>
