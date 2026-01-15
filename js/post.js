@@ -24,6 +24,7 @@ function createPost(post){
             </p>
             <p class="mb-0">
                 <strong>Partecipanti:</strong>
+                <br>ORGANIZZATORE: <a href="profile.php?id=${post['creatore']['id']}">${post['creatore']['nome']} ${post['creatore']['cognome']}</a>
                 ${getMembers(post)}
             </p>
         </div>
@@ -60,10 +61,10 @@ function createPost(post){
 }
 
 function getMembers(post) {
-    let result = "";
+    let result = ``;
     for (let i=0; i < post['partecipanti'].length; i++) {
         let partecipant = `
-            <a href="profile.php?id=${post['partecipanti'][i]['id']}">${post['partecipanti'][i]['nome']} ${post['partecipanti'][i]['cognome']}</a>
+            <br><a href="profile.php?id=${post['partecipanti'][i]['id']}">${post['partecipanti'][i]['nome']} ${post['partecipanti'][i]['cognome']}</a>
         `
         result += partecipant;
     }

@@ -10,8 +10,9 @@ if (isset($_GET['id'])) {
     }
     $post['foto'] = UPLOAD_DIR . $post['foto'];
     $post['partecipanti'] = $dbh->getMembersFromPost($id);
-    $post['numero_partecipanti'] = $dbh->getNumberOfMembersFromPost($id);
+    $post['numero_partecipanti'] = $dbh->getNumberOfMembersFromPost($id) + 1;
     $post['commenti'] = $dbh->getCommentsFromPost($id);
+    $post['creatore'] = $dbh->getCreatorFromPost($id);
     for($i = 0; $i < count($post['commenti']); $i++){
         $user = $dbh->getUserFromComment($post["commenti"][$i]['id']);
         $post["commenti"][$i]['username'] = $user['username'];

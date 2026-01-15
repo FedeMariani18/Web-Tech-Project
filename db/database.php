@@ -35,7 +35,7 @@
         }
 
         public function getPost($id) {
-            $stmt = $this->db->prepare("SELECT * FROM POST WHERE id = ?");
+            $stmt = $this->db->prepare("SELECT p.*,c.nome_categoria FROM POST p JOIN CATEGORIA c ON c.id = p.id_categoria WHERE p.id = ?");
             $stmt->bind_param("i", $id);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -97,6 +97,19 @@
                 AND password_hash = ?"
             );
             $stmt->bind_param("ss", $username, $password);
+            
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
+                
+        public function getCreatorFromPost($id) {
+            $stmt = $this->db->prepare(
+                "SELECT u.nome, u.cognome, u.id
+                FROM UTENTE u JOIN POST p ON u.id = p.id_creatore
+                WHERE p.id = ?"
+            );
+            $stmt->bind_param("i", $id);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_assoc();
