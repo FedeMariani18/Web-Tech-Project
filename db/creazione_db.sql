@@ -14,7 +14,7 @@ CREATE TABLE UTENTE (
     password_hash VARCHAR(255) NOT NULL,
     nome VARCHAR(50),
     cognome VARCHAR(50),
-    numero_telefono VARCHAR(20)
+    numero_telefono VARCHAR(20),
     ruolo ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER'
 );
 
@@ -70,8 +70,7 @@ CREATE TABLE FOLLOW (
     id_followed INT NOT NULL,
     PRIMARY KEY (id_follower, id_followed),
     FOREIGN KEY (id_follower) REFERENCES UTENTE(id),
-    FOREIGN KEY (id_followed) REFERENCES UTENTE(id),
-    CHECK (id_follower <> id_followed)
+    FOREIGN KEY (id_followed) REFERENCES UTENTE(id)
 );
 
 -- TABELLA TIPO_NOTIFICA
