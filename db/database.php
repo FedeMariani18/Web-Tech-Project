@@ -89,5 +89,17 @@
             return $result->fetch_assoc();
         }
 
+        public function getCreatorFromPost($id) {
+            $stmt = $this->db->prepare(
+                "SELECT u.nome, u.cognome, u.id
+                FROM UTENTE u JOIN POST p ON u.id = p.id_creatore
+                WHERE p.id = ?"
+            );
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
+
     }
 ?>
