@@ -20,60 +20,34 @@ function createPost(post){
     <div class="row mb-3">
         <div class="col-12">
             <p class="mb-1">
-                <strong>Numero partecipanti iscritti:</strong> 4/10
+                <strong>Numero partecipanti iscritti:</strong> ${post['numero_partecipanti']}
             </p>
             <p class="mb-0">
                 <strong>Partecipanti:</strong>
-                //come aggiungo i partecipanti
+                ${getMembers(post)}
             </p>
         </div>
     </div>
+    <div class="row mb-4">
+        <div class="col-12">
+            <h5>Commenti</h5>
 
-    <!-- Commenti -->
-<div class="row mb-4">
-    <div class="col-12">
-        <h5>Commenti</h5>
-
-        <!-- Riquadro commenti -->
-        <div class="card">
-            <div class="card-body p-2"
-                 style="max-height: 200px; overflow-y: auto;">
-
-                <div class="border-bottom pb-2 mb-2">
-                    <strong>username</strong>
-                    <p class="mb-0 text-muted">commento</p>
+            <div class="card">
+                <div class="card-body p-2"
+                    style="max-height: 200px; overflow-y: auto;">
+                    ${getComments(post)}
                 </div>
+            </div>
 
-                <div class="border-bottom pb-2 mb-2">
-                    <strong>username</strong>
-                    <p class="mb-0 text-muted">commento</p>
-                </div>
-
-                <div class="border-bottom pb-2 mb-2">
-                    <strong>username</strong>
-                    <p class="mb-0 text-muted">commento</p>
-                </div>
-
-                <div class="border-bottom pb-2 mb-2">
-                    <strong>username</strong>
-                    <p class="mb-0 text-muted">commento</p>
-                </div>
-
+            <div class="input-group mt-2">
+                <input type="text"
+                    class="form-control"
+                    placeholder="Scrivi qui il tuo commento">
+                <button class="btn btn-outline-secondary">Invia</button>
             </div>
         </div>
-
-        <!-- Scrivi commento -->
-        <div class="input-group mt-2">
-            <input type="text"
-                   class="form-control"
-                   placeholder="Scrivi qui il tuo commento">
-            <button class="btn btn-outline-secondary">Invia</button>
-        </div>
     </div>
-</div>
 
-
-    <!-- Pulsante partecipa -->
     <div class="row">
         <div class="col-12 d-grid">
             <button class="btn btn-warning btn-lg fw-bold">
@@ -82,6 +56,31 @@ function createPost(post){
         </div>
     </div>
     `;
+    return result;
+}
+
+function getMembers(post) {
+    let result = "";
+    for (let i=0; i < post['partecipanti'].length; i++) {
+        let partecipant = `
+            <a href="profile.php?id=${post['partecipanti'][i]['id']}">${post['partecipanti'][i]['nome']} ${post['partecipanti'][i]['cognome']}</a>
+        `
+        result += partecipant;
+    }
+    return result;
+}
+
+function getComments(post) {
+    let result = "";
+    for (let i=0; i < post['commenti'].length; i++) {
+        let comment = `
+            <div class="border-bottom pb-2 mb-2">
+                <strong><a href="profile.php?id=${post['commenti'][i]['id_utente']}">${post['commenti'][i]['username']}</a></strong>
+                <p class="mb-0 text-muted">${post['commenti'][i]['testo']}</p>
+            </div>
+        `
+        result += comment;
+    }
     return result;
 }
 
@@ -94,10 +93,9 @@ async function getPostData() {
         }
         const json = await response.json();
         console.log(json);
-        const posts = createPost(json);
-
-        const container = document.getElementById("posts-container");
-        container.innerHTML += posts;
+        const post = createPost(json);
+        const main = document.querySelector("main");
+        main.innerHTML += post;
     } catch (error) {
         console.log(error.message);
     }

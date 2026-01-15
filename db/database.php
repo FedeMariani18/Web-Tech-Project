@@ -43,7 +43,7 @@
         }
 
         public function getMembersFromPost($id) {
-            $stmt = $this->db->prepare("SELECT u.nome, u.cognome
+            $stmt = $this->db->prepare("SELECT u.nome, u.cognome, u.id
                 FROM ISCRIZIONE_POST ip JOIN UTENTE u ON ip.id_iscritto = u.id
                 WHERE ip.id_post = ?
                 ");
@@ -53,6 +53,41 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getNumberOfMembersFromPost($id) {
+            $stmt = $this->db->prepare(
+                "SELECT COUNT(*) AS numero_iscritti
+                FROM ISCRIZIONE_POST
+                WHERE id_post = ?"
+            );
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result()->fetch_assoc();
+            return (int) $result['numero_iscritti'];
+        }
+
+        public function getCommentsFromPost($id) {
+            $stmt = $this->db->prepare(
+                "SELECT *
+                FROM COMMENTO
+                WHERE id_post = ?"
+            );
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function getUserFromComment($id) {
+            $stmt = $this->db->prepare(
+                "SELECT u.username, u.id
+                FROM UTENTE u JOIN COMMENTO c ON u.id = c.id_utente
+                WHERE c.id = ?"
+            );
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
 
     }
 ?>
