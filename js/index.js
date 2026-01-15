@@ -11,7 +11,7 @@ function createPost(posts){
                             <div class="">
                                 <h5 class="card-title">${posts[i]["titolo"]}</h5>
                                 <p class="card-text">${posts[i]["descrizione"]}</p>
-                                <p class="card-text"><small class="text-body-secondary">${posts[i]["categoria"]}</small></p>
+                                <p class="card-text"><small class="text-body-secondary">#${posts[i]["nome_categoria"]}</small></p>
                             </div>
                         </div>
                     </article>

@@ -35,7 +35,7 @@
         }
 
         public function getPost($id) {
-            $stmt = $this->db->prepare("SELECT * FROM POST WHERE id = ?");
+            $stmt = $this->db->prepare("SELECT p.*,c.nome_categoria FROM POST p JOIN CATEGORIA c ON c.id = p.id_categoria WHERE p.id = ?");
             $stmt->bind_param("i", $id);
             $stmt->execute();
             $result = $stmt->get_result();
