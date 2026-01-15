@@ -89,5 +89,18 @@
             return $result->fetch_assoc();
         }
 
+        public function checkLogin($username, $password){
+            $stmt = $this->db->prepare(
+                "SELECT *
+                FROM UTENTE
+                WHERE username = ? 
+                AND password_hash = ?"
+            );
+            $stmt->bind_param("ss", $username, $password);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
+
     }
 ?>

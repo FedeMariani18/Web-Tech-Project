@@ -8,7 +8,7 @@ async function getLoginData() {
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-
+        
         const json = await response.json();
         console.log(json);
         if(json["logineseguito"]){
@@ -52,6 +52,7 @@ async function login(username, password) {
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
+
         const json = await response.json();
         if(json["logineseguito"]){
             goToUserProfile();
@@ -61,7 +62,6 @@ async function login(username, password) {
             document.querySelector("form > p").innerText = json["errorelogin"];
         }
 
-
     } catch (error) {
         console.log(error.message);
     }
@@ -70,14 +70,15 @@ async function login(username, password) {
 function generaLoginForm(loginerror = null) {
     let form = `
     <form class="p-3" action="#" method="POST" enctype="">
+        <p></p>
         <ul class="list-group">
             <li class="mb-3">
                 <label class="form-label" for="mail">Mail:</label>
-                <input class="form-control" type="text" id="username" name="username" value="username" placeholder="Username"/>
+                <input class="form-control" type="text" id="username" name="username" placeholder="Username"/>
             </li>
             <li class="mb-3">
                 <label class="form-label" for="password">Password:</label>
-                <input class="form-control" type="password" id="password" name="password" value="password" placeholder="Password"/>
+                <input class="form-control" type="password" id="password" name="password" placeholder="Password"/>
             </li>
             <li class="mb-3 mt-3">
                 <div class="row justify-content-center">
@@ -96,5 +97,5 @@ function generaLoginForm(loginerror = null) {
 
 
 function goToUserProfile(){
-    //TODO: go to user Profile
+    console.log("andare in profilo dell'utente");
 }

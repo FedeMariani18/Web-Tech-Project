@@ -2,16 +2,15 @@
 require_once 'bootstrap.php';
 
 $result["logineseguito"] = false;
-
 if(isset($_POST["username"]) && isset($_POST["password"])){
     $login_result = $dbh->checkLogin($_POST["username"], $_POST["password"]);
-    if(count($login_result)==0){
+    if($login_result === null){
         //Login fallito
         $result["errorelogin"] = "Username e/o password errati";
     }
     else{
         //Login riuscito
-        registerLoggedUser($login_result[0]);
+        registerLoggedUser($login_result);
     }
 }
 
