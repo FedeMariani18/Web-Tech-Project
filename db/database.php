@@ -115,5 +115,22 @@
             return $result->fetch_assoc();
         }
 
+        public function createPost($titolo, $descrizione, $data_ora, $posti_disponibili, $provincia, $comune, $indirizzo, $id_categoria, $id_creatore, $foto) {
+            $stmt = $this->db->prepare(
+                "INSERT INTO POST (titolo, descrizione, data_ora, posti_disponibili, provincia, comune, indirizzo, id_categoria, id_creatore, foto)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            );
+            $stmt->bind_param("sssisssiis", $titolo, $descrizione, $data_ora, $posti_disponibili, $provincia, $comune, $indirizzo, $id_categoria, $id_creatore, $foto);
+            return $stmt->execute();
+        }
+
+        public function createUser($nome, $cognome, $username, $email, $password_hash) {
+            $stmt = $this->db->prepare(
+                "INSERT INTO UTENTE (nome, cognome, username, email, password_hash)
+                VALUES (?, ?, ?, ?, ?)"
+            );
+            $stmt->bind_param("sssss", $nome, $cognome, $username, $email, $password_hash);
+            return $stmt->execute();
+        }
     }
 ?>
