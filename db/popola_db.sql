@@ -26,3 +26,6 @@ INSERT INTO COMMENTO (id, testo, id_utente, id_post) VALUES
 
 INSERT INTO LIKE_POST (id_post, id_utente) VALUES
 (2, 1)
+
+INSERT INTO NOTIFICA (id, id_tipo_notifica, id_destinatario, data_ora, id_mittente, id_post, letto) 
+VALUES (1, 2, 2, '2026-01-20 21:00:00', 1, 2, 0);

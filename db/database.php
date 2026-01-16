@@ -132,5 +132,29 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
+
+        public function getNotificationFromUser($id) {
+            $stmt = $this->db->prepare("
+                SELECT 
+                    u.username AS mittente_username,
+                    n.data_ora,
+                    tn.tipologia AS nomeTipologia,
+                    n.id_post,
+                    p.titolo AS titoloPost
+                FROM NOTIFICA n
+                JOIN TIPO_NOTIFICA tn 
+                    ON n.id_tipo_notifica = tn.id
+                LEFT JOIN UTENTE u 
+                    ON n.id_mittente = u.id
+                LEFT JOIN POST p 
+                    ON n.id_post = p.id
+                WHERE n.id_destinatario = ?
+                ORDER BY n.data_ora DESC;
+            ");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
     }
 ?>

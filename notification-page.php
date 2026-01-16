@@ -1,6 +1,6 @@
 <?php
 require_once 'bootstrap.php';
-$templateParams["js"] = array("js/like.js");
+$templateParams["js"] = array("js/notification.js");
 ?>
 
 <!DOCTYPE html>
@@ -39,9 +39,8 @@ $templateParams["js"] = array("js/like.js");
         </header>
 
         <main class="container-fluid secondary-subtle py-3">
-            <h5 class="mb-3">Annunci preferiti</h5>
-            
         </main>
+
         <?php
         if(isset($templateParams["js"])):
             foreach($templateParams["js"] as $script): ?>
