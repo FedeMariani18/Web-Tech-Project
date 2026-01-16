@@ -97,5 +97,5 @@ function generaLoginForm(loginerror = null) {
 
 
 function goToUserProfile(){
-    window.location.replace("index.php");
+    window.location.replace("index.php");   //TODO: rimpiazzarlo con la pagina del profilo
 }

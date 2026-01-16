@@ -115,6 +115,15 @@
             return $result->fetch_assoc();
         }
 
+        public function createUtente($username, $password_hash, $nome, $cognome, $numero_telefono) {
+            $stmt = $this->db->prepare(
+                "INSERT INTO UTENTE (username, password_hash, nome, cognome, numero_telefono) 
+                VALUES (?, ?, ?, ?, ?)"
+            );
+            $stmt->bind_param("sssss", $username, $password_hash, $nome, $cognome, $numero_telefono);
+            return $stmt->execute();
+        }
+
         public function getLikedPostFromUser($id) {
             $stmt = $this->db->prepare("
                 SELECT 
