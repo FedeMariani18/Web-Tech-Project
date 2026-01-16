@@ -115,5 +115,22 @@
             return $result->fetch_assoc();
         }
 
+        public function getLikedPostFromUser($id) {
+            $stmt = $this->db->prepare("
+                SELECT 
+                    p.id,
+                    p.foto,
+                    p.titolo,
+                    p.descrizione
+                FROM POST p
+                JOIN LIKE_POST lp 
+                    ON p.id = lp.id_post
+                WHERE lp.id_utente = ?;
+            ");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
     }
 ?>

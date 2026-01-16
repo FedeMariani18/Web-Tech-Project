@@ -25,3 +25,6 @@ INSERT INTO ISCRIZIONE_POST (id_post, id_iscritto) VALUES
 
 INSERT INTO COMMENTO (id, testo, id_utente, id_post) VALUES
 (1, "Bellissimo evento, evvai!!!", 1, 2)
+
+INSERT INTO LIKE_POST (id_post, id_utente) VALUES
+(2, 1)

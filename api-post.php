@@ -1,8 +1,8 @@
 <?php
 require_once 'bootstrap.php';
 if (isset($_GET['id'])) {
-        $id = intval($_GET['id']);
-        $post = $dbh->getPost($id);
+    $id = intval($_GET['id']);
+    $post = $dbh->getPost($id);
     if (!$post) {
         http_response_code(404);
         echo json_encode(['error' => 'Post non trovato']);
