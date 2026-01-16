@@ -4,11 +4,9 @@ INSERT INTO UTENTE (username, password_hash, nome, cognome, numero_telefono, ruo
 ('admin.webtech', 3, 'Admin', 'WebTech', '3330001111', 'ADMIN');
 
 INSERT INTO TIPO_NOTIFICA (id, tipologia) VALUES
-(1, 'FOLLOW'),
-(2, 'LIKE'),
-(3, 'POST_IN_SCADENZA'),
-(4, 'NUOVA_ISCRIZIONE_A_POST'),
-(5, 'NUOVO_MESSAGGIO');
+(1, 'NUOVO_LIKE_A_POST'),
+(2, 'NUOVA_ISCRIZIONE_A_POST'),
+(3, 'NUOVO_COMMENTO_A_POST');
 
 INSERT INTO CATEGORIA (id, nome_categoria) VALUES
 (1, 'festa'),
@@ -25,3 +23,9 @@ INSERT INTO ISCRIZIONE_POST (id_post, id_iscritto) VALUES
 
 INSERT INTO COMMENTO (id, testo, id_utente, id_post) VALUES
 (1, "Bellissimo evento, evvai!!!", 1, 2)
+
+INSERT INTO LIKE_POST (id_post, id_utente) VALUES
+(2, 1)
+
+INSERT INTO NOTIFICA (id, id_tipo_notifica, id_destinatario, data_ora, id_mittente, id_post, letto) 
+VALUES (1, 2, 2, '2026-01-20 21:00:00', 1, 2, 0);

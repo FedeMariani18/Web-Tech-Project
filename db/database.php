@@ -115,6 +115,47 @@
             return $result->fetch_assoc();
         }
 
+        public function getLikedPostFromUser($id) {
+            $stmt = $this->db->prepare("
+                SELECT 
+                    p.id,
+                    p.foto,
+                    p.titolo,
+                    p.descrizione
+                FROM POST p
+                JOIN LIKE_POST lp 
+                    ON p.id = lp.id_post
+                WHERE lp.id_utente = ?;
+            ");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function getNotificationFromUser($id) {
+            $stmt = $this->db->prepare("
+                SELECT 
+                    u.username AS mittente_username,
+                    n.data_ora,
+                    tn.tipologia AS nomeTipologia,
+                    n.id_post,
+                    p.titolo AS titoloPost
+                FROM NOTIFICA n
+                JOIN TIPO_NOTIFICA tn 
+                    ON n.id_tipo_notifica = tn.id
+                LEFT JOIN UTENTE u 
+                    ON n.id_mittente = u.id
+                LEFT JOIN POST p 
+                    ON n.id_post = p.id
+                WHERE n.id_destinatario = ?
+                ORDER BY n.data_ora DESC;
+            ");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
         public function createPost($titolo, $descrizione, $data_ora, $posti_disponibili, $provincia, $comune, $indirizzo, $id_categoria, $id_creatore, $foto) {
             $stmt = $this->db->prepare(
                 "INSERT INTO POST (titolo, descrizione, data_ora, posti_disponibili, provincia, comune, indirizzo, id_categoria, id_creatore, foto)
