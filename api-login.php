@@ -16,7 +16,6 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
 
 if(isUserLoggedIn()){
     $result["logineseguito"] = true;
-    //TODO: go to userProfile
 }
 
 header('Content-Type: application/json');
