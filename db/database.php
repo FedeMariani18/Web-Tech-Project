@@ -233,5 +233,29 @@
         }
 
 
+        public function isUserAPartecipant($id_user, $id_post) {
+            $stmt = $this->db->prepare("
+                SELECT EXISTS(
+                    SELECT 1
+                    FROM ISCRIZIONE_POST
+                    WHERE id_post = ? AND id_iscritto = ?
+                ) AS is_iscritto;
+            ");
+            $stmt->bind_param("ii", $id_post, $id_user);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            return (bool)$row['is_iscritto'];
+        }
+
+        public function insertNewPartecipation($id_utente, $id_post) {
+            $stmt = $this->db->prepare(
+                "INSERT INTO ISCRIZIONE_POST (id_post, id_iscritto)
+                VALUES (?, ?)"
+            );
+            $stmt->bind_param("ii", $id_post, $id_utente);
+            
+            return $stmt->execute();
+        }
     }
 ?>
