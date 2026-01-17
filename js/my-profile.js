@@ -2,6 +2,8 @@ function createProfile(user){
     const result = `
     <div class="row justify-content-center m-0">
 
+    ${getAdminButton(user)}
+
         <div class="container-fluid mt-4 mb-5">
         
             <h2 class="fs-2 fw-bold">Info</h2>
@@ -56,6 +58,19 @@ function createProfile(user){
     </div>
     `;
     return result;
+}
+
+function getAdminButton(user) {
+    if (user['ruolo'] == "ADMIN") {
+        return `
+            <div class="col-12 col-md-6 mb-4 mt-3">
+                <button class="w-100 btn btn-light border rounded-4 shadow-sm">
+                    OPERAZIONI ADMIN
+                </button>
+            </div>
+        `;
+    }
+    return "";
 }
 
 function getActivePost(user) {
