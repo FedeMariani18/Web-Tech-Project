@@ -8,7 +8,7 @@
     if (isset($_FILES['foto'])) {
         $fotoName = saveImg($_FILES['foto'], false);
         if (!$fotoName) {
-            $result["errorecreazione"] = "Errore durante il salvataggio della foto";
+            $result["errorcreation"] = "Errore durante il salvataggio della foto";
             header('Content-Type: application/json');
             echo json_encode($result);
             exit;

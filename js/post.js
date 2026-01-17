@@ -1,4 +1,4 @@
-function createPost(post){
+function createPost(post, utentePartecipa){
     const result = `
     <div class="row mb-3">
         <div class="col-12">
@@ -49,15 +49,32 @@ function createPost(post){
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12 d-grid">
-            <button class="btn btn-warning btn-lg fw-bold">
-                PARTECIPA
-            </button>
-        </div>
-    </div>
+    ${getButtonToPartecipate(utentePartecipa)}
     `;
     return result;
+}
+
+function getButtonToPartecipate(utentePartecipa) {
+    if (utentePartecipa) {
+        return `
+            <div class="row">
+                <div class="col-12 d-grid">
+                    <button class="btn btn-warning btn-lg fw-bold">
+                        DISISCRIVITI
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+    return `
+        <div class="row">
+            <div class="col-12 d-grid">
+                <button class="btn btn-warning btn-lg fw-bold" id="partecipa">
+                    PARTECIPA
+                </button>
+            </div>
+        </div>
+    `;
 }
 
 function getMembers(post) {
@@ -85,6 +102,7 @@ function getComments(post) {
     return result;
 }
 
+
 async function getPostData() {
     const url = `api-post.php?id=${postId}`;
     try {
@@ -106,12 +124,47 @@ async function getPostData() {
             profile.href = "login.php";
         }
         console.log(json);
-        const post = createPost(json['post']);
+        userId = json['id_utente'];
+        const post = createPost(json['post'], json['utentePartecipa']);
         const main = document.querySelector("main");
         main.innerHTML += post;
+        const btn = document.getElementById("partecipa");
+            btn.addEventListener("click", () => {
+                insertNewPartecipation();
+        });
     } catch (error) {
         console.log(error.message);
     }
 }
 
 getPostData();
+let userId;
+
+async function insertNewPartecipation() {
+    const url = 'api-post.php';
+    const formData = new FormData();
+    formData.append('id_utente', userId);
+    formData.append('id_post', postId);
+    try {
+        const response = await fetch(url, {
+            method: "POST",                   
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+
+        if(!json["iscrizioneRiuscita"]){
+            document.querySelector("p").innerText = json["errore"];
+        }
+        if (json["iscrizioneRiuscita"]) {
+            window.location.reload();
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}

@@ -1,18 +1,43 @@
 <?php
 require_once 'bootstrap.php';
+
+if (isset($_POST['id_utente']) && isset($_POST['id_post'])) {
+    $response = [
+        'iscrizioneRiuscita' => false,
+        'errore' => null
+    ];
+    $response['iscrizioneRiuscita'] = false;
+    $result = $dbh->insertNewPartecipation($_POST['id_utente'], $_POST['id_post']);
+    if($result){
+        $response["iscrizioneRiuscita"] = true;
+        $_SESSION["flash_message"] = "Iscrizione avvenuta con successo.";
+    } else{
+        $response["errore"] = "Errore nell'iscrizione.";
+    }
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
+}
+
 $response = [
     'utenteLoggato' => isUserLoggedIn(),
     'post' => null,
-    'fotoProfilo' => null
+    'fotoProfilo' => null,
+    'utentePartecipa' => null,
+    'id_utente' => null
 ];
 
 if (isUserLoggedIn()) {
     $response['fotoProfilo'] = $dbh->getUserFromId($_SESSION['id'])['foto'];
     $response['fotoProfilo'] = UPLOAD_DIR_PROFILE.$response['fotoProfilo'];
+    $response['id_utente'] = $_SESSION['id'];
 }
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
+    if (isUserLoggedIn()) {
+        $response['utentePartecipa'] = $dbh->isUserAPartecipant($_SESSION['id'], $id);
+    }
     $post = $dbh->getPost($id);
     if (!$post) {
         http_response_code(404);

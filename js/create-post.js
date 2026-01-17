@@ -42,9 +42,7 @@ function goToPost(id) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOMContentLoaded triggered");
     const form = document.querySelector("#postForm");
-    console.log("Form trovato:", form);
     if(form) {
         form.addEventListener("submit", function (event) {
             event.preventDefault();

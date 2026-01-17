@@ -2,7 +2,7 @@ function createProfile(user){
     const result = `
     <div class="row justify-content-center m-0">
 
-    ${getAdminButton(user)}
+        ${getAdminButton(user)}
 
         <div class="container-fluid mt-4 mb-5">
         

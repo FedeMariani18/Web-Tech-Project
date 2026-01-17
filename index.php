@@ -33,7 +33,7 @@ $templateParams["js"] = array("js/index.js");
                 </div>
             </div>
             
-            <form class="container-fluid" role="search">
+            <form class="container-fluid" role="search" id="searchForm">
                 <div class="row justify-content-center p-2">
                     <input class="col-6 rounded-5" id="search" type="search" placeholder="Search" aria-label="Search"/>
                     <button class="col-2 rounded-5 m-1" type="submit"><img src="resources/magnifying_glass_icon.png" alt="icona della lente d'ingrandimento"></button>
@@ -55,14 +55,17 @@ $templateParams["js"] = array("js/index.js");
                 <a href="create_post.html"><img class=""  src="resources/sum_icon.webp" alt="icon del più"/></a>
             </button>
         </nav>
+        
+        <!-- TOAST DI ERRORE -->
+        <div id="toast-error" class="toast-error hidden"></div>
 
-    <?php
-        if(isset($templateParams["js"])):
-            foreach($templateParams["js"] as $script): ?>
-        <script src="<?php echo $script; ?>"></script>
-    <?php
-        endforeach;
-    endif;
-    ?>
+        <?php
+            if(isset($templateParams["js"])):
+                foreach($templateParams["js"] as $script): ?>
+            <script src="<?php echo $script; ?>"></script>
+        <?php
+            endforeach;
+        endif;
+        ?>
     </body>
 </html>
