@@ -93,8 +93,20 @@ async function getPostData() {
             throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
+        const profile = document.getElementById("profile");
+        const profileImg = document.getElementById("profileImg");
+        if (json['utenteLoggato']) {
+            profile.href = "my-profile.php";
+            profileImg.src = json['fotoProfilo'];
+        } else {
+            const like = document.getElementById("like");
+            const notification = document.getElementById("notification");
+            like.style.display = "none";
+            notification.style.display = "none";
+            profile.href = "login.php";
+        }
         console.log(json);
-        const post = createPost(json);
+        const post = createPost(json['post']);
         const main = document.querySelector("main");
         main.innerHTML += post;
     } catch (error) {

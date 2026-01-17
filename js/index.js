@@ -32,7 +32,19 @@ async function getPostData() {
         }
         const json = await response.json();
         console.log(json);
-        const posts = createPost(json);
+        const profile = document.getElementById("profile");
+        const profileImg = document.getElementById("profileImg");
+        if (json['utenteLoggato']) {
+            profile.href = "my-profile.php";
+            profileImg.src = json['fotoProfilo'];
+        } else {
+            const like = document.getElementById("like");
+            const notification = document.getElementById("notification");
+            like.style.display = "none";
+            notification.style.display = "none";
+            profile.href = "login.php";
+        }
+        const posts = createPost(json['post']);
         const container = document.getElementById("posts-container");
         container.innerHTML += posts;
     } catch (error) {

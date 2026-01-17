@@ -41,7 +41,13 @@ async function getPostData() {
         }
         const json = await response.json();
         console.log(json);
-        const posts = createPost(json);
+        const profile = document.getElementById("profile");
+        const profileImg = document.getElementById("profileImg");
+        if (json['utenteLoggato']) {
+            profile.href = "my-profile.php";
+            profileImg.src = json['fotoProfilo'];
+        }
+        const posts = createPost(json['likes']);
         const main = document.querySelector("main");
         main.innerHTML += posts;
     } catch (error) {

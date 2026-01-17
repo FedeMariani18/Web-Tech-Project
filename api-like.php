@@ -3,13 +3,25 @@ require_once 'bootstrap.php';
 
 header('Content-Type: application/json');
 
+$response = [
+    'utenteLoggato' => isUserLoggedIn(),
+    'fotoProfilo' => null,
+    'likes' => null
+];
+
+if (isUserLoggedIn()) {
+    $response['fotoProfilo'] = $dbh->getUserFromId($_SESSION['id'])['foto'];
+    $response['fotoProfilo'] = UPLOAD_DIR_PROFILE.$response['fotoProfilo'];
+}
+
 if (isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
     $post = $dbh->getLikedPostFromUser($id);
     for($i = 0; $i < count($post); $i++){
-        $post[$i]["foto"] = UPLOAD_DIR.$post[$i]["foto"];
+        $post[$i]["foto"] = UPLOAD_DIR_POST.$post[$i]["foto"];
     }
-    echo json_encode($post);
+    $response['likes'] = $post;
+    echo json_encode($response);
 } else {
     http_response_code(401);
     echo json_encode(['error' => 'Non sei loggato']);

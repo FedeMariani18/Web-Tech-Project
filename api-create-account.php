@@ -4,9 +4,9 @@ require_once 'bootstrap.php';
 $result["creazioneeseguita"] = false;
 
 // Gestione upload foto
-$fotoPath = null;
+$fotoName = null;
 if (isset($_FILES['foto'])) {
-    $fotoName = saveImg($_FILES['foto']);
+    $fotoName = saveImg($_FILES['foto'], true);
     if (!$fotoName) {
         $result["errorecreazione"] = "Errore durante il salvataggio della foto";
         header('Content-Type: application/json');

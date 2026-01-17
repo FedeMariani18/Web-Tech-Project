@@ -24,7 +24,7 @@ $templateParams["js"] = array("js/create-account.js");
     
     <body>
         <header class="p-2">
-            <h1 class="m-0" style="text-align: center;">CREA ANNUNCIO</h1>
+            <h1 class="m-0" style="text-align: center;">CREA ACCOUONT</h1>
         </header>
         <main>
             <form class="p-3" method="POST">
@@ -80,7 +80,7 @@ $templateParams["js"] = array("js/create-account.js");
                     </li>
                     <li class="mb-3">
                         <div class="row justify-content-center">
-                            <a class="col-8 btn btn-lg border border-black rounded-3" href="login.html">Hai già un account?</a>
+                            <a class="col-8 btn btn-lg border border-black rounded-3" href="login.php">Hai già un account?</a>
                         </div>
                     </li>
                 </ul>

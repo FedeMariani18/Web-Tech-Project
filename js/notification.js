@@ -54,7 +54,13 @@ async function getPostData() {
         }
         const json = await response.json();
         console.log(json);
-        const notfications = createNotifications(json);
+        const profile = document.getElementById("profile");
+        const profileImg = document.getElementById("profileImg");
+        if (json['utenteLoggato']) {
+            profile.href = "my-profile.php";
+            profileImg.src = json['fotoProfilo'];
+        }
+        const notfications = createNotifications(json['notifications']);
         const main = document.querySelector("main");
         main.innerHTML += notfications;
     } catch (error) {

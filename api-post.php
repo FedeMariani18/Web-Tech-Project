@@ -1,5 +1,16 @@
 <?php
 require_once 'bootstrap.php';
+$response = [
+    'utenteLoggato' => isUserLoggedIn(),
+    'post' => null,
+    'fotoProfilo' => null
+];
+
+if (isUserLoggedIn()) {
+    $response['fotoProfilo'] = $dbh->getUserFromId($_SESSION['id'])['foto'];
+    $response['fotoProfilo'] = UPLOAD_DIR_PROFILE.$response['fotoProfilo'];
+}
+
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
     $post = $dbh->getPost($id);
@@ -8,7 +19,10 @@ if (isset($_GET['id'])) {
         echo json_encode(['error' => 'Post non trovato']);
         exit;
     }
-    $post['foto'] = UPLOAD_DIR . $post['foto'];
+    $post['foto'] = UPLOAD_DIR_POST . $post['foto'];
+    error_log("UPLOAD_DIR_POST = " . UPLOAD_DIR_POST);
+    error_log("foto = " . $post['foto']);
+
     $post['partecipanti'] = $dbh->getMembersFromPost($id);
     $post['numero_partecipanti'] = $dbh->getNumberOfMembersFromPost($id) + 1;
     $post['commenti'] = $dbh->getCommentsFromPost($id);
@@ -18,13 +32,15 @@ if (isset($_GET['id'])) {
         $post["commenti"][$i]['username'] = $user['username'];
         $post["commenti"][$i]['id_utente'] = $user['id'];
     }
+     $response['post'] = $post;
 } else {
     $post = $dbh->getActivePosts();
     for($i = 0; $i < count($post); $i++){
-        $post[$i]["foto"] = UPLOAD_DIR.$post[$i]["foto"];
+        $post[$i]["foto"] = UPLOAD_DIR_POST.$post[$i]["foto"];
     }
+     $response['post'] = $post;
 }
 
 header('Content-Type: application/json');
-echo json_encode($post);
+echo json_encode($response);
 ?>
