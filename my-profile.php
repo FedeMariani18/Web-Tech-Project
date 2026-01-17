@@ -28,19 +28,21 @@ $templateParams["js"] = array("js/my-profile.js");
 <header class="container-fluid">
 
     <div class="row align-items-center">
-        <h1 class="col-2 col-md-6">UNINET</h1>
+        <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
         <div class="col-10 col-md-6">
-            <nav class="d-flex justify-content-end gap-2">
-                <img src="resources/modifying_icon.webp" alt="icon modifica"/>
-            </nav>
+            <a href="" id="editProfile">
+                <nav class="d-flex justify-content-end gap-2">
+                    <img src="resources/modifying_icon.webp" alt="icon modifica"/>
+                </nav>
+            </a>
         </div>
     </div>
 
     <div class="container-fluid">
         <nav class="d-flex justify-content-center gap-2 profile-icon-nav align-items-center">
-            <img src="resources/heart.png" alt="icon del cuore"/>
-            <img src="resources/user_icon.png" alt="icona dell'utente" id="profileImage" />
-            <img src="resources/notification.png" alt="icona delle notifiche"/>
+            <a href="like-page.php" id="like"><img src="resources/heart.png" alt="icon del cuore"/></a>
+            <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg"/></a>
+            <a href="notification-page.php" id="notification"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
         </nav>
     </div>
 

@@ -1,16 +1,54 @@
 function createProfile(user){
     const result = `
     <div class="row justify-content-center m-0">
-        <div>
-            <h2>Info</h2>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Error, animi fugit! Modi, aspernatur eligendi libero quod eum
-                impedit sequi exercitationem possimus ab!
-            </p>
+
+        <div class="container-fluid mt-4 mb-5">
+        
+            <h2 class="fs-2 fw-bold">Info</h2>
+
+            <div class="row g-3 mt-3">
+
+                <div class="col-12 col-md-6">
+                    <div class="p-3 rounded-4 bg-white shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-semibold text-muted">Nome</span>
+                            <span class="fw-bold">${user['nome']}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="p-3 rounded-4 bg-white shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-semibold text-muted">Cognome</span>
+                            <span class="fw-bold">${user['cognome']}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="p-3 rounded-4 bg-white shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-semibold text-muted">Email</span>
+                            <span class="fw-bold">${user['mail']}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="p-3 rounded-4 bg-white shadow-sm">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw-semibold text-muted">Telefono</span>
+                            <span class="fw-bold">${user['numero_telefono']}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
+
         <div>
-            <h2>Post attivi:</h2>
+            <h2 class="fs-2 fw-bold" >Post attivi:</h2>
             ${getActivePost(user)}
             
         </div>
@@ -58,7 +96,7 @@ async function getUserData() {
         }
         const json = await response.json();
         console.log(json);
-        const profileImg = document.getElementById("profileImage");
+        const profileImg = document.getElementById("profileImg");
         profileImg.src = json['foto'];
         const username = document.getElementById("username");
         username.innerText = json['username'];

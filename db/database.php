@@ -201,7 +201,7 @@
                 AND p.data_ora >= NOW()
                 ORDER BY p.data_ora ASC
             ");
-
+            $stmt->bind_param("i", $id);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);

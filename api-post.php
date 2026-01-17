@@ -2,8 +2,14 @@
 require_once 'bootstrap.php';
 $response = [
     'utenteLoggato' => isUserLoggedIn(),
-    'post' => null
+    'post' => null,
+    'fotoProfilo' => null
 ];
+
+if (isUserLoggedIn()) {
+    $response['fotoProfilo'] = $dbh->getUserFromId($_SESSION['id'])['foto'];
+    $response['fotoProfilo'] = UPLOAD_DIR_PROFILE.$response['fotoProfilo'];
+}
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);

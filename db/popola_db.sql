@@ -14,9 +14,9 @@ INSERT INTO CATEGORIA (id, nome_categoria) VALUES
 (3, 'sport');
 
 INSERT INTO POST (id, titolo, descrizione, data_ora, posti_disponibili, indirizzo, citta, comune, provincia, id_categoria, foto, id_creatore) VALUES
-(1, 'Festa universitaria', 'grande festa yuhhuuu', '2026-01-20 21:00:00', 50, 'Via ciccia 546', 'Milano', 'Milano', 'Milano', 1, 'img_prova.jpeg', 1),
-(2, 'Gruppo studio', 'grande studio nooooo', '2026-01-18 14:30:00', 20, 'Via Floppy 123', 'Torino', 'Torino', 'Torino', 2, 'img_prova.jpeg', 2),
-(3, 'Partita di beach volley', 'grande partita yuuhhuuuu', '2026-01-31 10:00:00', 15, 'Via Business 798', 'Roma', 'Roma', 'Roma', 3, 'img_prova.jpeg', 2);
+(1, 'Festa universitaria', 'grande festa yuhhuuu', '2026-01-20 21:00:00', 50, 'Via ciccia 546', 'Milano', 'Milano', 'Milano', 1, 'user_696b6c7242a7f.png', 1),
+(2, 'Gruppo studio', 'grande studio nooooo', '2026-01-18 14:30:00', 20, 'Via Floppy 123', 'Torino', 'Torino', 'Torino', 2, 'user_696b6c7242a7f.png', 2),
+(3, 'Partita di beach volley', 'grande partita yuuhhuuuu', '2026-01-31 10:00:00', 15, 'Via Business 798', 'Roma', 'Roma', 'Roma', 3, 'user_696b6c7242a7f.png', 2);
 
 INSERT INTO ISCRIZIONE_POST (id_post, id_iscritto) VALUES
 (2, 1);

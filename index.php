@@ -23,12 +23,12 @@ $templateParams["js"] = array("js/index.js");
     <body>
         <header class="container-fluid">
             <div class="row align-items-center">
-                <h1 class="col-2 col-md-6">UNINET</h1>
+                <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
                 <div class="col-10 col-md-6">
                     <nav class="d-flex justify-content-end gap-2">
-                        <a href="#"><img src="resources/heart.png" alt="icon del cuore"/></a>
-                        <a href="#"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
-                        <a href="profile.html" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente"/></a>
+                        <a href="like-page.php" id="like"><img src="resources/heart.png" alt="icon del cuore"/></a>
+                        <a href="notification-page.php" id="notification"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
+                        <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg"/></a>
                     </nav>
                 </div>
             </div>

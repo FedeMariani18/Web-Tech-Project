@@ -80,7 +80,7 @@ $templateParams["js"] = array("js/create-account.js");
                     </li>
                     <li class="mb-3">
                         <div class="row justify-content-center">
-                            <a class="col-8 btn btn-lg border border-black rounded-3" href="login.html">Hai già un account?</a>
+                            <a class="col-8 btn btn-lg border border-black rounded-3" href="login.php">Hai già un account?</a>
                         </div>
                     </li>
                 </ul>
