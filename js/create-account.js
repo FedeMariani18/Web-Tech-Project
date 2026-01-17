@@ -3,29 +3,30 @@ document.addEventListener("DOMContentLoaded", function() {
     
     form.addEventListener("submit", function(event) {
         event.preventDefault();
-        
+        const foto = document.querySelector("#foto").files[0];
         const nome = document.querySelector("#nome").value;
         const cognome = document.querySelector("#cognome").value;
         const username = document.querySelector("#username").value;
         const telefono = document.querySelector("#telefono").value;
+        const mail = document.querySelector("#mail").value;
         const password = document.querySelector("#password").value;
         
-        createAccount(nome, cognome, username, telefono, password);
+        createAccount(foto, nome, cognome, username, telefono, mail, password);
     });
 });
 
-async function createAccount(/*foto,*/ nome, cognome, username, telefono, /*mail,*/ password) {
+async function createAccount(foto, nome, cognome, username, telefono, mail, password) {
     const url = 'api-create-account.php';
     
     const formData = new FormData();
-    //formData.append('foto', foto);
+    formData.append('foto', foto);
     formData.append('username', username);
     formData.append('password', password);
     formData.append('nome', nome);
     formData.append('cognome', cognome);
     formData.append('telefono', telefono);
-    //formData.append('mail', mail);
-    
+    formData.append('mail', mail);
+
     try {
         const response = await fetch(url, {
             method: "POST",                   
@@ -37,6 +38,7 @@ async function createAccount(/*foto,*/ nome, cognome, username, telefono, /*mail
         }
 
         const json = await response.json();
+        console.log(json);
         if(json["creazioneeseguita"]){
             goToLogin();
         }
