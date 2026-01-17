@@ -264,5 +264,15 @@
             
             return $stmt->execute();
         }
+
+        public function removeParticipation($id_user, $id_post) {
+            $stmt = $this->db->prepare("
+                DELETE FROM ISCRIZIONE_POST
+                WHERE id_post = ? AND id_iscritto = ?
+            ");
+            $stmt->bind_param("ii", $id_post, $id_user);
+            return $stmt->execute();
+        }
+
     }
 ?>

@@ -2,21 +2,39 @@
 require_once 'bootstrap.php';
 
 if (isset($_POST['id_utente']) && isset($_POST['id_post'])) {
-    $response = [
+    if ($_POST['partecipazione'] == "true") {
+        $response = [
         'iscrizioneRiuscita' => false,
         'errore' => null
-    ];
-    $response['iscrizioneRiuscita'] = false;
-    $result = $dbh->insertNewPartecipation($_POST['id_utente'], $_POST['id_post']);
-    if($result){
-        $response["iscrizioneRiuscita"] = true;
-        $_SESSION["flash_message"] = "Iscrizione avvenuta con successo.";
-    } else{
-        $response["errore"] = "Errore nell'iscrizione.";
+        ];
+        $response['iscrizioneRiuscita'] = false;
+        $result = $dbh->insertNewPartecipation($_POST['id_utente'], $_POST['id_post']);
+        if($result){
+            $response["iscrizioneRiuscita"] = true;
+            $_SESSION["flash_message"] = "Iscrizione avvenuta con successo.";
+        } else{
+            $response["errore"] = "Errore nell'iscrizione.";
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
+    } else {
+        $response = [
+        'disiscrizioneRiuscita' => false,
+        'errore' => null
+        ];
+        $response['disiscrizioneRiuscita'] = false;
+        $result = $dbh->removeParticipation($_POST['id_utente'], $_POST['id_post']);
+        if($result){
+            $response["disiscrizioneRiuscita"] = true;
+            $_SESSION["flash_message"] = "Disiscrizione avvenuta con successo.";
+        } else{
+            $response["errore"] = "Errore nela disiscrizione.";
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
     }
-    header('Content-Type: application/json');
-    echo json_encode($response);
-    exit;
 }
 
 $response = [

@@ -59,7 +59,7 @@ function getButtonToPartecipate(utentePartecipa) {
         return `
             <div class="row">
                 <div class="col-12 d-grid">
-                    <button class="btn btn-warning btn-lg fw-bold">
+                    <button class="btn btn-warning btn-lg fw-bold" id="disiscriviti" >
                         DISISCRIVITI
                     </button>
                 </div>
@@ -128,10 +128,17 @@ async function getPostData() {
         const post = createPost(json['post'], json['utentePartecipa']);
         const main = document.querySelector("main");
         main.innerHTML += post;
-        const btn = document.getElementById("partecipa");
-            btn.addEventListener("click", () => {
+        if (json['utentePartecipa']) {
+            const btn2 = document.getElementById("disiscriviti");
+            btn2.addEventListener("click", () => {
+                removeParticipation();
+        });
+        } else {
+            const btn1 = document.getElementById("partecipa");
+            btn1.addEventListener("click", () => {
                 insertNewPartecipation();
         });
+        }
     } catch (error) {
         console.log(error.message);
     }
@@ -145,6 +152,7 @@ async function insertNewPartecipation() {
     const formData = new FormData();
     formData.append('id_utente', userId);
     formData.append('id_post', postId);
+    formData.append('partecipazione', "true");
     try {
         const response = await fetch(url, {
             method: "POST",                   
@@ -162,6 +170,36 @@ async function insertNewPartecipation() {
             document.querySelector("p").innerText = json["errore"];
         }
         if (json["iscrizioneRiuscita"]) {
+            window.location.reload();
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+async function removeParticipation() {
+    const url = 'api-post.php';
+    const formData = new FormData();
+    formData.append('id_utente', userId);
+    formData.append('id_post', postId);
+    formData.append('partecipazione', "false");
+    try {
+        const response = await fetch(url, {
+            method: "POST",                   
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+
+        if(!json["disiscrizioneRiuscita"]){
+            document.querySelector("p").innerText = json["errore"];
+        }
+        if (json["disiscrizioneRiuscita"]) {
             window.location.reload();
         }
     } catch (error) {
