@@ -27,8 +27,8 @@ $templateParams["js"] = array("js/index.js");
                 <div class="col-10 col-md-6">
                     <nav class="d-flex justify-content-end gap-2">
                         <a href="#"><img src="resources/heart.png" alt="icon del cuore"/></a>
-                        <a href="#"></a><img src="resources/notification.png" alt="icona delle notifiche"/></a>
-                        <a href="profile.html"><img src="resources/user_icon.png" alt="icona dell'utente"/></a>
+                        <a href="#"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
+                        <a href="profile.html" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente"/></a>
                     </nav>
                 </div>
             </div>

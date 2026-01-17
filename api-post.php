@@ -1,5 +1,10 @@
 <?php
 require_once 'bootstrap.php';
+$response = [
+    'utenteLoggato' => isUserLoggedIn(),
+    'post' => null
+];
+
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
     $post = $dbh->getPost($id);
@@ -21,13 +26,15 @@ if (isset($_GET['id'])) {
         $post["commenti"][$i]['username'] = $user['username'];
         $post["commenti"][$i]['id_utente'] = $user['id'];
     }
+     $response['post'] = $post;
 } else {
     $post = $dbh->getActivePosts();
     for($i = 0; $i < count($post); $i++){
         $post[$i]["foto"] = UPLOAD_DIR_POST.$post[$i]["foto"];
     }
+     $response['post'] = $post;
 }
 
 header('Content-Type: application/json');
-echo json_encode($post);
+echo json_encode($response);
 ?>

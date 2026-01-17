@@ -166,7 +166,7 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        public function createPost($titolo, $descrizione, $data_ora, $posti_disponibili, $indirizzo, $citta, $comune, $provincia, $id_categoria, $foto, $id_creatore) {
+        public function createPost($titolo, $descrizione, $data_ora, $posti_disponibili, $provincia, $comune, $indirizzo, $id_categoria, $id_creatore, $foto) {
             $stmt = $this->db->prepare(
                 "INSERT INTO POST (titolo, descrizione, data_ora, posti_disponibili, indirizzo, citta, comune, provincia, id_categoria, foto, id_creatore)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
@@ -177,6 +177,34 @@
                 return false;
             }  
             return $this->db->insert_id;
+        }
+
+        public function getUserFromId($id) {
+            $stmt = $this->db->prepare("
+                SELECT * FROM UTENTE WHERE id = ?
+            ");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
+
+        public function getActivePostsFromUser($id) {
+            $stmt = $this->db->prepare("
+                SELECT p.id, p.foto, p.titolo, p.descrizione, p.data_ora, p.posti_disponibili, 
+                p.provincia, p.comune, p.indirizzo, 
+                c.nome_categoria, u.username
+                FROM POST p, CATEGORIA c, UTENTE u
+                WHERE u.id = ? AND
+                p.id_categoria = c.id
+                AND p.id_creatore = u.id
+                AND p.data_ora >= NOW()
+                ORDER BY p.data_ora ASC
+            ");
+
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
         }
     }
 ?>

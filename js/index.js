@@ -32,7 +32,13 @@ async function getPostData() {
         }
         const json = await response.json();
         console.log(json);
-        const posts = createPost(json);
+        const profile = document.getElementById("profile")
+        if (json['utenteLoggato']) {
+            profile.href = "my-profile.php";
+        } else {
+            profile.href = "login.php";
+        }
+        const posts = createPost(json['post']);
         const container = document.getElementById("posts-container");
         container.innerHTML += posts;
     } catch (error) {
