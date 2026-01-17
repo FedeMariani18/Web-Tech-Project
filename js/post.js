@@ -136,7 +136,11 @@ async function getPostData() {
         } else {
             const btn1 = document.getElementById("partecipa");
             btn1.addEventListener("click", () => {
-                insertNewPartecipation();
+                if (json['utenteLoggato']) {
+                    insertNewPartecipation();
+                } else {
+                    window.location.replace("login.php");
+                }
         });
         }
     } catch (error) {

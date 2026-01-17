@@ -99,5 +99,5 @@ function generaLoginForm(loginerror = null) {
 
 
 function goToUserProfile(){
-    window.location.replace("index.php");   //TODO: rimpiazzarlo con la pagina del profilo
+    window.location.replace("my-profile.php");   //TODO: rimpiazzarlo con la pagina del profilo
 }
