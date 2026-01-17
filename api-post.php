@@ -38,7 +38,7 @@ if (isset($_GET['id'])) {
     for($i = 0; $i < count($post); $i++){
         $post[$i]["foto"] = UPLOAD_DIR_POST.$post[$i]["foto"];
     }
-     $response['post'] = $post;
+    $response['post'] = $post;
 }
 
 header('Content-Type: application/json');

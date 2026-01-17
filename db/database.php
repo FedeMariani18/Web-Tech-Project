@@ -124,6 +124,13 @@
             return $stmt->execute();
         }
 
+        public function getUtenti(){
+            $stmt = $this->db->prepare("SELECT * FROM UTENTE");
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
         public function getLikedPostFromUser($id) {
             $stmt = $this->db->prepare("
                 SELECT 
