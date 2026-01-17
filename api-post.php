@@ -8,7 +8,10 @@ if (isset($_GET['id'])) {
         echo json_encode(['error' => 'Post non trovato']);
         exit;
     }
-    $post['foto'] = $post['foto'];
+    $post['foto'] = UPLOAD_DIR_POST . $post['foto'];
+    error_log("UPLOAD_DIR_POST = " . UPLOAD_DIR_POST);
+    error_log("foto = " . $post['foto']);
+
     $post['partecipanti'] = $dbh->getMembersFromPost($id);
     $post['numero_partecipanti'] = $dbh->getNumberOfMembersFromPost($id) + 1;
     $post['commenti'] = $dbh->getCommentsFromPost($id);
@@ -21,7 +24,7 @@ if (isset($_GET['id'])) {
 } else {
     $post = $dbh->getActivePosts();
     for($i = 0; $i < count($post); $i++){
-        $post[$i]["foto"] = UPLOAD_DIR.$post[$i]["foto"];
+        $post[$i]["foto"] = UPLOAD_DIR_POST.$post[$i]["foto"];
     }
 }
 

@@ -4,10 +4,10 @@
     $result["postcreated"] = false;
 
     // Gestione upload foto
-    $fotoPath = null;
+    $fotoName = null;
     if (isset($_FILES['foto'])) {
-        $fotoPath = saveImg($_FILES['foto'], false);
-        if (!$fotoPath) {
+        $fotoName = saveImg($_FILES['foto'], false);
+        if (!$fotoName) {
             $result["errorecreazione"] = "Errore durante il salvataggio della foto";
             header('Content-Type: application/json');
             echo json_encode($result);
@@ -18,7 +18,7 @@
     $insertId = $dbh->createPost($_POST['titolo'], $_POST['descrizione'], 
         $_POST['dataOra'], $_POST['nPartecipanti'], 
         $_POST['indirizzo'], $_POST['citta'], $_POST['comune'], 
-        $_POST['provincia'], $_POST['categoria'], $fotoPath, $_SESSION['id']);
+        $_POST['provincia'], $_POST['categoria'], $fotoName, $_SESSION['id']);
 
     if(!$insertId){
         //Creazione annuncio fallita

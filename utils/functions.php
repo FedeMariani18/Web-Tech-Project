@@ -44,7 +44,7 @@ function saveImg($foto, $user){
             exit;
         }
 
-        return $fotoPath;
+        return $nomeFile;
     }
 }
 
