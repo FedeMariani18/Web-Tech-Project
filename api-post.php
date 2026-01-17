@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
         echo json_encode(['error' => 'Post non trovato']);
         exit;
     }
-    $post['foto'] = UPLOAD_DIR . $post['foto'];
+    $post['foto'] = $post['foto'];
     $post['partecipanti'] = $dbh->getMembersFromPost($id);
     $post['numero_partecipanti'] = $dbh->getNumberOfMembersFromPost($id) + 1;
     $post['commenti'] = $dbh->getCommentsFromPost($id);

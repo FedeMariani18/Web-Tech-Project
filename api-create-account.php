@@ -6,7 +6,7 @@ $result["creazioneeseguita"] = false;
 // Gestione upload foto
 $fotoPath = null;
 if (isset($_FILES['foto'])) {
-    $fotoPath = saveImg($_FILES['foto']);
+    $fotoPath = saveImg($_FILES['foto'], true);
     if (!$fotoPath) {
         $result["errorecreazione"] = "Errore durante il salvataggio della foto";
         header('Content-Type: application/json');

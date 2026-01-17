@@ -1,6 +1,6 @@
 <?php
     require_once 'bootstrap.php';
-    $templateParams["js"] = array("js/api-create-post.js");
+    $templateParams["js"] = array("js/create-post.js");
 ?>
 
 <!DOCTYPE html>
@@ -78,9 +78,9 @@
                         <label class="form-label" for="categoria">Categoria:</label>
                         <select class="form-select" name="categoria" id="categoria">
                             <option value="">-------</option>
-                            <option value="sport">Sport</option>
-                            <option value="studio">Studio</option>
-                            <option value="festa">Festa</option>
+                            <option value="1">Sport</option>
+                            <option value="2">Studio</option>
+                            <option value="3">Festa</option>
                         </select>
                     </li>
                     <li class="mb-3">
@@ -96,12 +96,11 @@
             </form>
         </main>
         <?php
-        if(isset($templateParams["js"])):
-            foreach($templateParams["js"] as $script): ?>
-        <script src="<?php echo $script; ?>"></script>
-        <?php
-            endforeach;
-        endif;
+            if(isset($templateParams["js"])):
+                foreach($templateParams["js"] as $script): ?>
+                    <script src="<?php echo $script; ?>"></script><?php
+                endforeach;
+            endif;
         ?>
     </body>
 </html>

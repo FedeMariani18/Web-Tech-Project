@@ -24,7 +24,7 @@ $templateParams["js"] = array("js/create-account.js");
     
     <body>
         <header class="p-2">
-            <h1 class="m-0" style="text-align: center;">CREA ANNUNCIO</h1>
+            <h1 class="m-0" style="text-align: center;">CREA ACCOUONT</h1>
         </header>
         <main>
             <form class="p-3" method="POST">
