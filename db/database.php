@@ -274,5 +274,14 @@
             return $stmt->execute();
         }
 
+        public function insertNewComment($testo, $id_user, $id_post) {
+            $stmt = $this->db->prepare("
+                INSERT INTO COMMENTO (testo, id_utente, id_post)
+                VALUES (?, ?, ?)
+            ");
+            $stmt->bind_param("sii", $testo, $id_user, $id_post);
+            return $stmt->execute();
+        }
+
     }
 ?>

@@ -40,18 +40,27 @@ function createPost(post, utentePartecipa){
                 </div>
             </div>
 
-            <div class="input-group mt-2">
-                <input type="text"
-                    class="form-control"
-                    placeholder="Scrivi qui il tuo commento">
-                <button class="btn btn-outline-secondary">Invia</button>
-            </div>
+            
+            ${getButtonForComment()}
         </div>
     </div>
 
     ${getButtonToPartecipate(utentePartecipa)}
     `;
     return result;
+}
+
+function getButtonForComment() {
+    if (userId != null) {
+        return `
+            <div class="input-group mt-2">
+                <input type="text" class="form-control" placeholder="Scrivi qui il tuo commento" id="commento">
+                <button class="btn btn-outline-secondary" id="invia">Invia</button>
+            </div>
+        `;
+    } else {
+        return "";
+    }
 }
 
 function getButtonToPartecipate(utentePartecipa) {
@@ -143,6 +152,11 @@ async function getPostData() {
                 }
         });
         }
+        const btn3 = document.getElementById("invia");
+            btn3.addEventListener("click", () => {
+                const testo = document.querySelector("#commento").value;
+                sendComment(testo);
+        });
     } catch (error) {
         console.log(error.message);
     }
@@ -150,6 +164,35 @@ async function getPostData() {
 
 getPostData();
 let userId;
+
+async function sendComment(testo) {
+    const url = 'api-post.php';
+    const formData = new FormData();
+    formData.append('id_utente', userId);
+    formData.append('id_post', postId);
+    formData.append('testo', testo);
+    try {
+        const response = await fetch(url, {
+            method: "POST",                   
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+
+        if(json == "errore"){
+            document.querySelector("p").innerText = "Il commento non è stato inviato correttamente";
+        } else {
+            window.location.reload();
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 async function insertNewPartecipation() {
     const url = 'api-post.php';

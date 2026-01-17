@@ -1,6 +1,17 @@
 <?php
 require_once 'bootstrap.php';
 
+if (isset($_POST['testo'])) {
+    $response = "";
+    $result = $dbh->insertNewComment($_POST['testo'], $_POST['id_utente'], $_POST['id_post']);
+    if(!$result){
+        $response = "errore";
+    }
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
+}
+
 if (isset($_POST['id_utente']) && isset($_POST['id_post'])) {
     if ($_POST['partecipazione'] == "true") {
         $response = [
