@@ -1,5 +1,7 @@
 const main = document.querySelector("main");
-getLoginData();  
+getLoginData();
+setTimeout(() => document.querySelector('.popup')?.remove(), 4000); //nasconde il pop-up in caso ci sia
+
 
 async function getLoginData() {
     const url = 'api-login.php';
@@ -82,12 +84,12 @@ function generaLoginForm(loginerror = null) {
             </li>
             <li class="mb-3 mt-3">
                 <div class="row justify-content-center">
-                    <input class="col-8 btn btn-lg important-button border border-black rounded-3" type="submit" name="submit" value="Login" />    
+                    <button class="col-8 btn btn-lg important-button border border-black rounded-3" type="submit" id="submit">Login</button>    
                 </div>
             </li>
             <li class="mb-3">
                 <div class="row justify-content-center">
-                    <a class="col-8 btn btn-lg border border-black rounded-3" href="create_an_account.html">Non hai un account?</a>
+                    <a class="col-8 btn btn-lg border border-black rounded-3" href="create_account.php">Non hai un account?</a>
                 </div>
             </li>
         </ul>

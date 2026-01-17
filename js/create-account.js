@@ -35,7 +35,7 @@ async function createAccount(/*foto,*/ nome, cognome, username, telefono, /*mail
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-        
+
         const json = await response.json();
         if(json["creazioneeseguita"]){
             goToLogin();
@@ -51,5 +51,5 @@ async function createAccount(/*foto,*/ nome, cognome, username, telefono, /*mail
 }
 
 function goToLogin(){
-    console.log("Account creato con successo! Verrai reindirizzato alla pagina di login.");
+    window.location.replace("login.php");
 }

@@ -25,6 +25,12 @@ $templateParams["js"] = array("js/login.js");
         <header class="p-2">
             <h1 class="m-0" style="text-align: center;">LOGIN</h1>
         </header>
+        <?php if (isset($_SESSION["flash_message"])): ?>
+            <div class="popup success">
+                <?= $_SESSION["flash_message"] ?>
+            </div>
+        <?php unset($_SESSION["flash_message"]); endif; ?>
+
         <main>
             <!-- login.js riempirà il main con il form per il login -->
         </main>

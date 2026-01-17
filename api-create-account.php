@@ -3,8 +3,6 @@ require_once 'bootstrap.php';
 
 $result["creazioneeseguita"] = false;
 
-var_dump($_POST);
-
 $create_result = $dbh->createUtente($_POST["username"], $_POST["password"], $_POST["nome"], $_POST["cognome"], $_POST["telefono"]);
 if(!$create_result){
     //Creazione account fallita
@@ -12,6 +10,7 @@ if(!$create_result){
 } else{
     //Creazione account riuscita
     $result["creazioneeseguita"] = true;
+    $_SESSION["flash_message"] = "Account creato con successo! Ora puoi effettuare il login.";
 }
 
 
