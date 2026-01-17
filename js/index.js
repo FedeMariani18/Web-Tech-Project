@@ -53,3 +53,54 @@ async function getPostData() {
 }
 
 getPostData();
+
+
+
+// Search functionality
+
+async function search(query) {
+    const url = 'api-search.php?query=' + encodeURIComponent(query);
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+
+        if(json["searchsuccess"]){
+            const postsHTML = createPost(json['results']);
+            const container = document.getElementById("posts-container");
+            container.innerHTML = postsHTML;
+        }
+        else{
+            showErrorToast(json['error']);
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector("#searchForm");
+    if(form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const searchQuery = document.querySelector("#search").value;
+            search(searchQuery);
+        });
+    }
+});
+
+function showErrorToast(message) {
+    const toast = document.querySelector("#toast-error");
+    toast.textContent = message;
+
+    toast.classList.remove("hidden");
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.classList.add("hidden"), 300);
+    }, 2500);
+}

@@ -206,5 +206,32 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
+
+        public function searchUsers($query) {
+            $stmt = $this->db->prepare("SELECT id, username, nome, cognome, foto FROM utente WHERE username LIKE ? OR nome LIKE ? OR cognome LIKE ?");
+            $like = "%".$query."%";
+            $stmt->bind_param("sss", $like, $like, $like);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
+
+        public function searchPosts($query) {
+            $sql = "
+                SELECT p.id, p.titolo, p.descrizione, p.foto, c.nome_categoria
+                FROM post p
+                JOIN categoria c ON p.id_categoria = c.id
+                WHERE p.titolo LIKE ?
+                OR p.descrizione LIKE ?
+                OR c.nome_categoria LIKE ?
+            ";
+
+            $stmt = $this->db->prepare($sql);
+            $like = "%".$query."%";
+            $stmt->bind_param("sss", $like, $like, $like);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        }
+
+
     }
 ?>
