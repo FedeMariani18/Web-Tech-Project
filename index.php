@@ -26,8 +26,8 @@ $templateParams["js"] = array("js/index.js");
                 <h1 class="col-2 col-md-6">UNINET</h1>
                 <div class="col-10 col-md-6">
                     <nav class="d-flex justify-content-end gap-2">
-                        <a href="#"><img src="resources/heart.png" alt="icon del cuore"/></a>
-                        <a href="#"></a><img src="resources/notification.png" alt="icona delle notifiche"/></a>
+                        <a href="like-page.php"><img src="resources/heart.png" alt="icon del cuore"/></a>
+                        <a href="notification-page.php"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
                         <a href="profile.html"><img src="resources/user_icon.png" alt="icona dell'utente"/></a>
                     </nav>
                 </div>
