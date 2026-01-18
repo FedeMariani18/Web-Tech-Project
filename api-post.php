@@ -1,6 +1,26 @@
 <?php
 require_once 'bootstrap.php';
 
+if (isset($_POST['eliminaPost'])) {
+    $response = "ok";
+    if (!isset($_SESSION['id'])) {
+        $response = "errore";
+    } else {
+        $post = $dbh->getPost($_POST['id_post']);
+        if (!$post || $post['id_creatore'] != $_SESSION['id']) {
+            $response = "errore";
+        } else {
+            $result = $dbh->deletePost($_POST['id_post']);
+            if(!$result){
+                $response = "errore";
+            }
+        }
+    }
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
+}
+
 if (isset($_POST['like'])) {
     if ($_POST['like'] == "true") {
         $response = "";

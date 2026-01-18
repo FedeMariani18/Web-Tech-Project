@@ -237,12 +237,18 @@ async function getPostData() {
             } 
         }
         const btn3 = document.getElementById("invia");
-            if (btn3) {
-                btn3.addEventListener("click", () => {
-                    const testo = document.querySelector("#commento").value;
-                    sendComment(testo, json['post']['creatore']['id']);
-                });
-            }
+        if (btn3) {
+            btn3.addEventListener("click", () => {
+                const testo = document.querySelector("#commento").value;
+                sendComment(testo, json['post']['creatore']['id']);
+            });
+        }
+        const btn5 = document.getElementById("elimina");
+        if (btn5) {
+            btn5.addEventListener("click", () => {
+                removePost();
+            });
+        }
     } catch (error) {
         console.log(error.message);
     }
@@ -250,6 +256,34 @@ async function getPostData() {
 
 getPostData();
 let userId;
+
+async function removePost() {
+    const url = 'api-post.php';
+    const formData = new FormData();
+    formData.append('id_post', postId);
+    formData.append('eliminaPost', "true");
+    try {
+        const response = await fetch(url, {
+            method: "POST",                   
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+
+        if(json == "errore"){
+            document.querySelector("p").innerText = "Errore nell'eliminazione del post";
+        } else {
+            window.location.replace("index.php");
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 async function addLike(id_creatore) {
     const url = 'api-post.php';

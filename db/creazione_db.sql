@@ -46,7 +46,7 @@ CREATE TABLE COMMENTO (
     id_utente INT NOT NULL,
     id_post INT NOT NULL,
     FOREIGN KEY (id_utente) REFERENCES UTENTE(id),
-    FOREIGN KEY (id_post) REFERENCES POST(id)
+    FOREIGN KEY (id_post) REFERENCES POST(id) ON DELETE CASCADE
 );
 
 -- TABELLA ISCRIZIONE_POST
@@ -54,7 +54,7 @@ CREATE TABLE ISCRIZIONE_POST (
     id_post INT NOT NULL,
     id_iscritto INT NOT NULL,
     PRIMARY KEY (id_post, id_iscritto),
-    FOREIGN KEY (id_post) REFERENCES POST(id),
+    FOREIGN KEY (id_post) REFERENCES POST(id) ON DELETE CASCADE,
     FOREIGN KEY (id_iscritto) REFERENCES UTENTE(id)
 );
 
@@ -63,7 +63,7 @@ CREATE TABLE LIKE_POST (
     id_post INT NOT NULL,
     id_utente INT NOT NULL,
     PRIMARY KEY (id_post, id_utente),
-    FOREIGN KEY (id_post) REFERENCES POST(id),
+    FOREIGN KEY (id_post) REFERENCES POST(id) ON DELETE CASCADE,
     FOREIGN KEY (id_utente) REFERENCES UTENTE(id)
 );
 
@@ -94,5 +94,5 @@ CREATE TABLE NOTIFICA (
     FOREIGN KEY (id_tipo_notifica) REFERENCES TIPO_NOTIFICA(id),
     FOREIGN KEY (id_destinatario) REFERENCES UTENTE(id),
     FOREIGN KEY (id_mittente) REFERENCES UTENTE(id),
-    FOREIGN KEY (id_post) REFERENCES POST(id)
+    FOREIGN KEY (id_post) REFERENCES POST(id) ON DELETE CASCADE
 );
