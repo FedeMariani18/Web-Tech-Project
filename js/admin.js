@@ -1,4 +1,5 @@
 const radio = document.querySelectorAll("input[type='radio']");
+getAdminData();
 
 //cambia tabella al cambiamento dei radio button
 radio.forEach(radio => {
@@ -55,8 +56,7 @@ document.addEventListener("click", function(event) {
     }
 });
 
-
-// USERS
+//#region USERS
 function handleUserAction(action, userId, row) {
     //inidividua l'azione richiesta
     switch(action) {
@@ -86,6 +86,7 @@ async function getUserData() {
             throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
+        console.log(json);
         const users = createUserRow(json['users']);
         const container = document.querySelector("main");
         container.innerHTML += users;
@@ -198,9 +199,10 @@ async function modifyAdmin(userId) {
     }
 }
 //#endregion
+//#endregion
 
 
-// POSTS
+//#region POSTS
 function handlePostAction(action, postId, row) {
     switch(action) {
         case "elimina":
@@ -214,14 +216,16 @@ function handlePostAction(action, postId, row) {
 }
 
 async function getPostData() {
-    const url = 'api-posts.php';
+    const url = 'api-post.php';
     try {
         const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        const posts = createPostRow(json['posts']);
+        
+        insertUserProfilePhoto(json['fotoProfilo']);
+        const posts = createPostRow(json['post']);
         const container = document.querySelector("main");
         container.innerHTML += posts;
     } catch (error) {
@@ -296,4 +300,28 @@ async function deletePost(postId) {
     } catch (error) {
         console.log(error.message);
     }
+}
+//#endregion
+
+//USER DATA FUNCTIONS
+async function getAdminData(){
+    const url = 'api-user.php';
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const json = await response.json();
+        
+        insertUserProfilePhoto(json['fotoProfilo']);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+function insertUserProfilePhoto(foto){
+    const profile = document.getElementById("profile");
+    const profileImg = document.getElementById("profileImg");
+    profile.href = "my-profile.php";
+    profileImg.src = foto;    
 }
