@@ -60,13 +60,18 @@ document.addEventListener("click", function(event) {
 function handleUserAction(action, userId, row) {
     //inidividua l'azione richiesta
     switch(action) {
-        case "banna":
-            deleteUser(userId);
-            row.remove();
-            break;
         case "visita":
             window.location.href = `profile.php?id=${userId}`;  //TODO: mettere a posto questa chiamata
             break;
+
+        case "UNBAN":
+        case "BAN":
+            modifyBanUser(userId);
+            //modifica il testo del bottone
+            const secondButton = row.querySelector("button:nth-child(2)");
+            secondButton.textContent = (secondButton.textContent == "BAN" ? "UNBAN" : "BAN");
+            break;
+        
         case "rimuovi admin ✘":
         case "rendi admin ✓":
             modifyAdmin(userId);
@@ -114,12 +119,9 @@ function createUserRow(users){
 
     for(let i=0; i < users.length; i++){
         
-        let admin = "null";
-        if(users[i]["ruolo"] == "USER"){
-            admin = "rendi admin ✓";
-        } else {
-            admin = "rimuovi admin ✘";
-        }
+        let role = users[i]["ruolo"] == "USER" ? "rendi admin ✓" : "rimuovi admin ✘";
+        let ban = users[i]["bannato"] ? "UNBAN" : "BAN";
+        console.log(ban);
 
         let postHTML = `
         <tr>
@@ -130,9 +132,9 @@ function createUserRow(users){
             <td>${users[i]["cognome"]}</td>
             <td>
                 <div>
-                    <button class="btn btn-secondary">banna</button>
                     <button class="btn btn-secondary">visita</button>
-                    <button class="btn btn-secondary">${admin}</button>
+                    <button class="btn btn-secondary">${ban}</button>
+                    <button class="btn btn-secondary">${role}</button>
                 </div>
             </td>
         </tr>
@@ -146,10 +148,10 @@ function createUserRow(users){
     return result;
 }
 
-//#region  action for user
-async function deleteUser(userId) {
+    //#region  action for user
+async function modifyBanUser(userId) {
     // Implementa la logica per bannare l'utente
-    const url = 'api-delete-user.php';
+    const url = 'api-ban-user.php';
     const formData = new FormData();
     formData.append('id', userId);
     try {
@@ -163,10 +165,10 @@ async function deleteUser(userId) {
         }
 
         const json = await response.json();
-        if(!json["usereliminato"]) {
+        if(!json["usermodificato"]) {
             console.log(json["errorecancellazione"]);
         } else {
-            console.log(`Utente ${userId} eliminato con successo.`);
+            console.log(`Utente ${userId} modificato con successo.`);
         }
     } catch (error) {
         console.log(error.message);
@@ -200,7 +202,6 @@ async function modifyAdmin(userId) {
 }
 //#endregion
 //#endregion
-
 
 //#region POSTS
 function handlePostAction(action, postId, row) {
@@ -262,8 +263,8 @@ function createPostRow(posts){
             <td>${posts[i]["nome_categoria"]}</td>
             <td>
                 <div>
-                    <button class="btn btn-secondary">elimina</button>
                     <button class="btn btn-secondary">visita</button>
+                    <button class="btn btn-secondary">elimina</button>
                 </div>
             </td>
         </tr>
@@ -303,7 +304,7 @@ async function deletePost(postId) {
 }
 //#endregion
 
-//USER DATA FUNCTIONS
+//#region USER DATA FUNCTIONS
 async function getAdminData(){
     const url = 'api-user.php';
     try {
@@ -325,3 +326,4 @@ function insertUserProfilePhoto(foto){
     profile.href = "my-profile.php";
     profileImg.src = foto;    
 }
+//#endregion

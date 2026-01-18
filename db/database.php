@@ -352,5 +352,19 @@
             $stmt->bind_param("ii", $id_post, $id_utente);
             return $stmt->execute();
         }
+
+        public function modifyBanUserById($id) {
+            $stmt = $this->db->prepare("
+                UPDATE UTENTE
+                SET bannato = CASE 
+                    WHEN bannato = 0 THEN 1
+                    WHEN bannato = 1 THEN 0
+                    ELSE bannato
+                END
+                WHERE id = ?
+            ");
+            $stmt->bind_param("i", $id);
+            return $stmt->execute();
+        }
     }
 ?>
