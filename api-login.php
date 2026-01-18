@@ -7,7 +7,12 @@ if(isset($_POST["username"]) && isset($_POST["password"])){
 
     if ($user && password_verify($_POST["password"], $user["password_hash"])) {
         //Login riuscito
-        registerLoggedUser($user);
+        if($user["bannato"]) {
+            //utente bannato
+            $result["errorelogin"] = "il tuo account è stato bannato da un admin";
+        } else {
+            registerLoggedUser($user);
+        }
     } else {
         //Login fallito
         $result["errorelogin"] = "Username e/o password errati";

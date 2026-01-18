@@ -1,29 +1,6 @@
 const main = document.querySelector("main");
-getLoginData();
+visualizzaLoginForm();
 setTimeout(() => document.querySelector('.popup')?.remove(), 4000); //nasconde il pop-up in caso ci sia
-
-
-async function getLoginData() {
-    const url = 'api-login.php';
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
-        const json = await response.json();
-        console.log(json);
-        if(json["logineseguito"]){
-            goToUserProfile();
-        } else{
-            visualizzaLoginForm();
-        }
-
-
-    } catch (error) {
-        console.log(error.message);
-    }
-}
 
 function visualizzaLoginForm() {
     // Utente NON loggato
@@ -57,8 +34,7 @@ async function login(username, password) {
         const json = await response.json();
         if(json["logineseguito"]){
             goToUserProfile();
-        }
-        else{
+        } else{
             //visualizza errore login
             document.querySelector("form > p").innerText = json["errorelogin"];
         }
@@ -74,7 +50,7 @@ function generaLoginForm(loginerror = null) {
         <p></p>
         <ul class="list-group">
             <li class="mb-3">
-                <label class="form-label" for="mail">Mail:</label>
+                <label class="form-label" for="username">Username:</label>
                 <input class="form-control" type="text" id="username" name="username" placeholder="Username"/>
             </li>
             <li class="mb-3">
