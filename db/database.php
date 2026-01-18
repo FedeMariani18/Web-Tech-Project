@@ -283,5 +283,29 @@
             return $stmt->execute();
         }
 
+        public function deletePost($id_post) {
+            $stmt = $this->db->prepare("
+                DELETE FROM POST
+                WHERE id = ?
+            ");
+            $stmt->bind_param("i", $id_post);
+            return $stmt->execute();
+        }
+
+        public function modifyAdminById($id) {
+            $stmt = $this->db->prepare("
+                UPDATE UTENTE
+                SET ruolo = CASE 
+                    WHEN ruolo = 'USER' THEN 'ADMIN'
+                    WHEN ruolo = 'ADMIN' THEN 'USER'
+                    ELSE ruolo
+                END
+                WHERE id = ?
+            ");
+            $stmt->bind_param("i", $id);
+            return $stmt->execute();
+        }
+        
+
     }
 ?>

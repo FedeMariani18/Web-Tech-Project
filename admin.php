@@ -49,8 +49,9 @@
 
         <!-- MAIN -->
         <main class="container-fluid mt-3">
-            
+        
         </main>
+            
         <?php
             if(isset($templateParams["js"])):
                 foreach($templateParams["js"] as $script): ?>
