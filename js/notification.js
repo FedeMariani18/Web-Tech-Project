@@ -1,6 +1,9 @@
 function createNotifications(notifications){
     let result = "";
 
+    if (notifications.length == 0) {
+        return `Non hai nessuna notifica.`;
+    }
     for(let i=0; i < notifications.length; i++){
         data = getNotificationData(notifications[i]);
         let notificationHTML = `

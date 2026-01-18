@@ -376,5 +376,26 @@
             $stmt->bind_param("i", $id);
             return $stmt->execute();
         }
+        
+        public function getPostWhereUserIsAParticipant($id) {
+            $stmt = $this->db->prepare("
+                SELECT p.id, p.foto, p.titolo, p.descrizione, p.data_ora, p.posti_disponibili, 
+                p.provincia, p.comune, p.indirizzo, 
+                c.nome_categoria, u.username
+                FROM POST p
+                JOIN ISCRIZIONE_POST ip ON ip.id_post = p.id
+                JOIN CATEGORIA c ON p.id_categoria = c.id
+                JOIN UTENTE u ON p.id_creatore = u.id
+                WHERE ip.id_iscritto = ?
+                AND p.data_ora >= NOW()
+                ORDER BY p.data_ora ASC
+            ");
+
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
     }
 ?>

@@ -12,12 +12,16 @@ if (isUserLoggedIn() || isset($_GET['id'])) {
     $user = $dbh->getUserFromId($id);
     $user['foto'] = UPLOAD_DIR_PROFILE.$user['foto'];
     $user['postAttivi'] = $dbh->getActivePostsFromUser($id);
+    $user['postACuiPartecipa'] = $dbh->getPostWhereUserIsAParticipant($id);
     if(isUserLoggedIn()) {
         $user['utenteLoggato'] = true;
         $user['fotoProfilo'] = UPLOAD_DIR_PROFILE.$dbh->getUserFromId($_SESSION['id'])['foto'];
     }
     for ($i = 0; $i < count($user['postAttivi']); $i++) {
         $user['postAttivi'][$i]['foto'] = UPLOAD_DIR_POST.$user['postAttivi'][$i]['foto'];
+    }
+    for ($i = 0; $i < count($user['postACuiPartecipa']); $i++) {
+        $user['postACuiPartecipa'][$i]['foto'] = UPLOAD_DIR_POST.$user['postACuiPartecipa'][$i]['foto'];
     }
     echo json_encode($user);
 } else {

@@ -39,6 +39,7 @@ $templateParams["js"] = array("js/notification.js");
         </header>
 
         <main class="container-fluid secondary-subtle py-3">
+            <h5 class="mb-3">Notifiche:</h5>
         </main>
 
         <?php

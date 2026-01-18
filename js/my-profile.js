@@ -52,7 +52,8 @@ function createProfile(user){
         <div>
             <h2 class="fs-2 fw-bold" >Post attivi:</h2>
             ${getActivePost(user)}
-            
+            <h2 class="fs-2 fw-bold" >Post a cui partecipi:</h2>
+            ${getPost(user)}
         </div>
 
     </div>
@@ -73,9 +74,38 @@ function getAdminButton(user) {
     return "";
 }
 
+function getPost(user) {
+    let result = "";
+    if (user['postACuiPartecipa'].length == 0) {
+        return `Non partecipi a nessun evento.`;
+    }
+    for(let i=0; i < user['postACuiPartecipa'].length; i++){
+        let postHTML = `
+        <div class="col-10 col-lg-4 p-3 p-md-4">
+                <a class="link-underline link-underline-opacity-0 text-reset" href="post.php?id=${user['postACuiPartecipa'][i]["id"]}">
+                    <article class="row rounded-5 border border-black border-1">
+                        <img class="col-5 img-fluid rounded-start-5 p-0" src="${user['postACuiPartecipa'][i]["foto"]}" alt="immagine del annuncio">
+                        <div class="col-7">
+                            <div class="">
+                                <h5 class="card-title">${user['postACuiPartecipa'][i]["titolo"]}</h5>
+                                <p class="card-text">${user['postACuiPartecipa'][i]["descrizione"]}</p>
+                                <p class="card-text"><small class="text-body-secondary">#${user['postACuiPartecipa'][i]["nome_categoria"]}</small></p>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+            </div>
+        `;
+        result += postHTML;
+    }
+    return result;
+}
+
 function getActivePost(user) {
     let result = "";
-
+    if (user['postAttivi'].length == 0) {
+        return `Non hai nessun post attivo`;
+    }
     for(let i=0; i < user['postAttivi'].length; i++){
         let postHTML = `
         <div class="col-10 col-lg-4 p-3 p-md-4">

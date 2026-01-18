@@ -1,6 +1,9 @@
 function createPost(posts){
     let result = "";
 
+    if (posts.length == 0) {
+        return `Non hai nessun annuncio preferito.`;
+    }
     for(let i=0; i < posts.length; i++){
         let postHTML = `
         <a href="post.php?id=${posts[i]['id']}" class="text-decoration-none text-dark">
