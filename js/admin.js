@@ -1,4 +1,6 @@
 const radio = document.querySelectorAll("input[type='radio']");
+
+//cambia tabella al cambiamento dei radio button
 radio.forEach(radio => {
     radio.addEventListener("change", function(event) {
         const container = document.querySelector("main");
@@ -15,7 +17,8 @@ radio.forEach(radio => {
     });
 });
 
-// Al caricamento della pagina, recupera la scelta salvata
+// Al caricamento della pagina, recupera la scelta salvata 
+// (per impostare direttamente la tabella precedente)
 const savedTab = localStorage.getItem('selectedTab') || 'utenti';
 const selectedRadio = document.getElementById(savedTab);
 if(selectedRadio) {
@@ -47,83 +50,102 @@ document.addEventListener("click", function(event) {
         } else if(table.id === "postTable") {
             // Tabella post
             const postId = cells[1].textContent;
-            
             handlePostAction(buttonText, postId, row);
         }
     }
 });
 
-function handleUserAction(action, userId, row) {
-    console.log(`Azione: ${action}, Utente: ${userId}`);
 
+// USERS
+function handleUserAction(action, userId, row) {
+    //inidividua l'azione richiesta
     switch(action) {
         case "banna":
             deleteUser(userId);
             row.remove();
             break;
         case "visita":
-            window.location.href = `profile.php?id=${userId}`;
+            window.location.href = `profile.php?id=${userId}`;  //TODO: mettere a posto questa chiamata
             break;
         case "rimuovi admin ✘":
         case "rendi admin ✓":
             modifyAdmin(userId);
-            refreshRow(row, userId);
+            //modifica il testo del bottone
+            const thirdButton = row.querySelector("button:nth-child(3)");
+            thirdButton.textContent = (thirdButton.textContent == "rimuovi admin ✘" ?
+                 "rendi admin ✓" : "rimuovi admin ✘");
             break;
     }
 }
 
-// async function refreshRow(row, userId) {
-//     const url = `api-users.php?id=${userId}`;
-//     const response = await fetch(url);
-//     const json = await response.json();
-//     const userData = json['users'][0];
-    
-//     // Aggiorna le celle della riga
-//     row.cells[2].textContent = userData['username'];
-//     row.cells[3].textContent = userData['nome'];
-//     row.cells[4].textContent = userData['cognome'];
-// }
-
-function handlePostAction(action, postId, row) {
-    console.log(`Azione: ${action}, Post: ${postId}`);
-    
-    switch(action) {
-        case "elimina":
-            deletePost(postId);
-            row.remove();
-            break;
-        case "visita":
-            console.log(`Visitando post: ${postId}`);
-            window.location.href = `post.php?id=${postId}`;
-            break;
-    }
-}
-
-async function deletePost(postId) {
-    const url = 'api-delete-post.php';
-    const formData = new FormData();
-    formData.append('id', postId);
+async function getUserData() {
+    const url = 'api-user.php';
     try {
-        const response = await fetch(url, {
-            method: "POST",                   
-            body: formData
-        });
-        
+        const response = await fetch(url);
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-
         const json = await response.json();
-        if(!json["posteliminato"]) {
-            console.log(json["errorecancellazione"]);
-        } else {
-            console.log(`Post ${postId} eliminato con successo.`);
-        }
+        const users = createUserRow(json['users']);
+        const container = document.querySelector("main");
+        container.innerHTML += users;
     } catch (error) {
         console.log(error.message);
     }
 }
 
+function createUserRow(users){
+    let result = "";
+
+    result += `
+    <table class="table table-secondary table-hover" id="userTable">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">id</th>
+                    <th scope="col">username</th>
+                    <th scope="col">nome</th>
+                    <th scope="col">cognome</th>
+                    <th scope="col">azioni</th>
+                </tr>
+            </thead>
+            <tbody>`;
+
+    for(let i=0; i < users.length; i++){
+        
+        let admin = "null";
+        if(users[i]["ruolo"] == "USER"){
+            admin = "rendi admin ✓";
+        } else {
+            admin = "rimuovi admin ✘";
+        }
+
+        let postHTML = `
+        <tr>
+            <th scope="row">${i}</th>
+            <td>${users[i]["id"]}</td>
+            <th scope="row">${users[i]["username"]}</th>
+            <td>${users[i]["nome"]}</td>
+            <td>${users[i]["cognome"]}</td>
+            <td>
+                <div>
+                    <button class="btn btn-secondary">banna</button>
+                    <button class="btn btn-secondary">visita</button>
+                    <button class="btn btn-secondary">${admin}</button>
+                </div>
+            </td>
+        </tr>
+        `;
+        result += postHTML;
+    }
+
+    result += `
+        </tbody>
+    </table>`;
+    return result;
+}
+
+//#region  action for user
 async function deleteUser(userId) {
     // Implementa la logica per bannare l'utente
     const url = 'api-delete-user.php';
@@ -175,74 +197,20 @@ async function modifyAdmin(userId) {
         console.log(error.message);
     }
 }
+//#endregion
 
-async function getUserData() {
-    const url = 'api-users.php';
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-        const json = await response.json();
-        console.log(json);
-        const users = createUserRow(json['users']);
-        const container = document.querySelector("main");
-        container.innerHTML += users;
-    } catch (error) {
-        console.log(error.message);
+
+// POSTS
+function handlePostAction(action, postId, row) {
+    switch(action) {
+        case "elimina":
+            deletePost(postId);
+            row.remove();
+            break;
+        case "visita":
+            window.location.href = `post.php?id=${postId}`;
+            break;
     }
-}
-
-function createUserRow(users){
-    let result = "";
-
-    result += `
-    <table class="table table-secondary table-hover" id="userTable">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">id</th>
-                    <th scope="col">username</th>
-                    <th scope="col">nome</th>
-                    <th scope="col">cognome</th>
-                    <th scope="col">azioni</th>
-                </tr>
-            </thead>
-            <tbody>`;
-
-    console.log(users.length);
-    for(let i=0; i < users.length; i++){
-        
-        let admin = "null";
-        if(users[i]["ruolo"] == "USER"){
-            admin = "rendi admin ✓";
-        } else {
-            admin = "rimuovi admin ✘";
-        }
-
-        let postHTML = `
-        <tr>
-            <th scope="row">${i}</th>
-            <td>${users[i]["id"]}</td>
-            <th scope="row">${users[i]["username"]}</th>
-            <td>${users[i]["nome"]}</td>
-            <td>${users[i]["cognome"]}</td>
-            <td>
-                <div>
-                    <button class="btn btn-secondary">banna</button>
-                    <button class="btn btn-secondary">visita</button>
-                    <button class="btn btn-secondary">${admin}</button>
-                </div>
-            </td>
-        </tr>
-        `;
-        result += postHTML;
-    }
-
-    result += `
-        </tbody>
-    </table>`;
-    return result;
 }
 
 async function getPostData() {
@@ -253,7 +221,6 @@ async function getPostData() {
             throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        console.log(json);
         const posts = createPostRow(json['posts']);
         const container = document.querySelector("main");
         container.innerHTML += posts;
@@ -287,8 +254,8 @@ function createPostRow(posts){
             <td>${posts[i]["id"]}</td>
             <th scope="row">${posts[i]["titolo"]}</th>
             <td>${posts[i]["creatore"]}</td>
-            <td>${posts[i]["nome_categoria"]}</td>
             <td>${posts[i]["data_ora"]}</td>
+            <td>${posts[i]["nome_categoria"]}</td>
             <td>
                 <div>
                     <button class="btn btn-secondary">elimina</button>
@@ -304,4 +271,29 @@ function createPostRow(posts){
         </tbody>
     </table>`;
     return result;
+}
+
+async function deletePost(postId) {
+    const url = 'api-delete-post.php';
+    const formData = new FormData();
+    formData.append('id', postId);
+    try {
+        const response = await fetch(url, {
+            method: "POST",                   
+            body: formData
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        if(!json["posteliminato"]) {
+            console.log(json["errorecancellazione"]);
+        } else {
+            console.log(`Post ${postId} eliminato con successo.`);
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
 }

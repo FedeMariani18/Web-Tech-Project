@@ -309,6 +309,14 @@
             return $stmt->execute();
         }
         
-
+        public function insertNewNotification($id_tipo_notifica, $id_destinatario, $data_ora, $id_mittente, $id_post, $letto) {
+            $stmt = $this->db->prepare(
+                "INSERT INTO NOTIFICA (id_tipo_notifica, id_destinatario, data_ora, id_mittente, id_post, letto)
+                VALUES (?, ?, ?, ?, ?, ?)"
+            );
+            $stmt->bind_param("iisiii", $id_tipo_notifica, $id_destinatario, $data_ora, $id_mittente, $id_post, $letto);
+            
+            return $stmt->execute();
+        }
     }
 ?>

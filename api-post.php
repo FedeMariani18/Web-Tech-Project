@@ -6,13 +6,20 @@ if (isset($_POST['testo'])) {
     $result = $dbh->insertNewComment($_POST['testo'], $_POST['id_utente'], $_POST['id_post']);
     if(!$result){
         $response = "errore";
+    } else {
+        if ($_POST['creatore'] != $_POST['id_utente']) {
+            $result = $dbh->insertNewNotification(3, $_POST['creatore'], date("Y-m-d H:i:s"), $_POST['id_utente'], $_POST['id_post'], 0);
+        }
+        if(!$result) {
+            $response = "errore";
+        }
     }
     header('Content-Type: application/json');
     echo json_encode($response);
     exit;
 }
 
-if (isset($_POST['id_utente']) && isset($_POST['id_post'])) {
+if (isset($_POST['id_utente']) && isset($_POST['id_post']) && !isset($_POST['testo'])) {
     if ($_POST['partecipazione'] == "true") {
         $response = [
         'iscrizioneRiuscita' => false,
@@ -23,6 +30,10 @@ if (isset($_POST['id_utente']) && isset($_POST['id_post'])) {
         if($result){
             $response["iscrizioneRiuscita"] = true;
             $_SESSION["flash_message"] = "Iscrizione avvenuta con successo.";
+            $resultNotifica = $dbh->insertNewNotification(2, $_POST['creatore'], date("Y-m-d H:i:s"), $_POST['id_utente'], $_POST['id_post'], 0);
+            if(!$resultNotifica) {
+                $response["errore"] = "Errore nell'invio della notifica.";
+            }
         } else{
             $response["errore"] = "Errore nell'iscrizione.";
         }
@@ -78,7 +89,7 @@ if (isset($_GET['id'])) {
     error_log("foto = " . $post['foto']);
 
     $post['partecipanti'] = $dbh->getMembersFromPost($id);
-    $post['numero_partecipanti'] = $dbh->getNumberOfMembersFromPost($id) + 1;
+    $post['numero_partecipanti'] = $dbh->getNumberOfMembersFromPost($id);
     $post['commenti'] = $dbh->getCommentsFromPost($id);
     $post['creatore'] = $dbh->getCreatorFromPost($id);
     for($i = 0; $i < count($post['commenti']); $i++){

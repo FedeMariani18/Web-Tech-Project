@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="it" class="m-0">
     <head>
-        <title>Home</title>
+        <title>Admin</title>
         <link rel="stylesheet" type="text/css" href="./css/style.css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -24,9 +24,9 @@
                 <h1 class="col-2 col-md-6">UNINET</h1>
                 <div class="col-10 col-md-6">
                     <nav class="d-flex justify-content-end gap-2">
-                        <a href="#"><img src="resources/heart.png" alt="icon del cuore"/></a>
-                        <a href="#"></a><img src="resources/notification.png" alt="icona delle notifiche"/></a>
-                        <a href="profile.html"><img src="resources/user_icon.png" alt="icona dell'utente"/></a>
+                        <a href="like-page.php" id="like"><img src="resources/heart.png" alt="icon del cuore"/></a>
+                        <a href="notification-page.php" id="notification"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
+                        <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg"/></a>
                     </nav>
                 </div>
             </div>
