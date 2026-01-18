@@ -39,7 +39,7 @@ $templateParams["js"] = array("js/like.js");
         </header>
 
         <main class="container-fluid secondary-subtle py-3">
-            <h5 class="mb-3">Annunci preferiti</h5>
+            <h5 class="mb-3">Annunci preferiti:</h5>
             
         </main>
         <?php
