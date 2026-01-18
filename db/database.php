@@ -196,6 +196,16 @@
             return $result->fetch_assoc();
         }
 
+        public function getUserFromUsername($username) {
+            $stmt = $this->db->prepare("
+                SELECT * FROM UTENTE WHERE username = ?
+            ");
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_assoc();
+        }
+
         public function getActivePostsFromUser($id) {
             $stmt = $this->db->prepare("
                 SELECT p.id, p.foto, p.titolo, p.descrizione, p.data_ora, p.posti_disponibili, 

@@ -1,7 +1,8 @@
 INSERT INTO UTENTE (username, mail, password_hash, nome, cognome, numero_telefono, foto, ruolo) VALUES
 ('mario.rossi', 'mario.rossi@email.it', '1', 'Mario', 'Rossi', '3331234567', 'user_696b6c7242a7f.png', 'USER'),
 ('luca.bianchi', 'luca.bianchi@email.it', '2', 'Luca', 'Bianchi', '3339876543', 'user_696b6c7242a7f.png', 'USER'),
-('admin.webtech', 'admin@webtech.it', '3', 'Admin', 'WebTech', '3330001111', 'user_696b6c7242a7f.png', 'ADMIN');
+('admin.webtech', 'admin@webtech.it', '3', 'Admin', 'WebTech', '3330001111', 'user_696b6c7242a7f.png', 'ADMIN'),
+('federiani', 'federico.mariani@gmail.com', '$2y$10$g810aQvWGpjXNb55I0.gi.kXLqll2ofI2UdG4RPlkjs9nkib0o5qa', 'Federico', 'Mariani', '3384308412', 'user_696d2f99e8452.png', 'ADMIN');
 
 INSERT INTO TIPO_NOTIFICA (id, tipologia) VALUES
 (1, 'NUOVO_LIKE_A_POST'),

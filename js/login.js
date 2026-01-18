@@ -10,13 +10,12 @@ async function getLoginData() {
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-        
+
         const json = await response.json();
         console.log(json);
         if(json["logineseguito"]){
             goToUserProfile();
-        }
-        else{
+        } else{
             visualizzaLoginForm();
         }
 

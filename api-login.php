@@ -3,14 +3,14 @@ require_once 'bootstrap.php';
 
 $result["logineseguito"] = false;
 if(isset($_POST["username"]) && isset($_POST["password"])){
-    $login_result = $dbh->checkLogin($_POST["username"], $_POST["password"]);
-    if($login_result === null){
+    $user = $dbh->getUserFromUsername($_POST["username"]);
+
+    if ($user && password_verify($_POST["password"], $user["password_hash"])) {
+        //Login riuscito
+        registerLoggedUser($user);
+    } else {
         //Login fallito
         $result["errorelogin"] = "Username e/o password errati";
-    }
-    else{
-        //Login riuscito
-        registerLoggedUser($login_result);
     }
 }
 

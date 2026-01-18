@@ -16,7 +16,8 @@ if (isset($_FILES['foto'])) {
 }
 
 //crea l'utente nel database
-$create_result = $dbh->createUtente($_POST["username"], $_POST["password"], $_POST["nome"], $_POST["cognome"], $_POST["telefono"], $_POST["mail"], $fotoName);
+$passwordHash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+$create_result = $dbh->createUtente($_POST["username"], $passwordHash, $_POST["nome"], $_POST["cognome"], $_POST["telefono"], $_POST["mail"], $fotoName);
 //controllo risultato della query
 if(!$create_result){
     //Creazione account fallita
