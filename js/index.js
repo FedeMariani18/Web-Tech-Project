@@ -106,6 +106,7 @@ async function search(query) {
                 userTitle.textContent = "Utenti trovati:";
                 userContainer.innerHTML = createUser(json['users']);
             } else {
+                userContainer.innerHTML = "";
                 userTitle.textContent = "Nessun utente trovato";
             }
 
@@ -117,6 +118,7 @@ async function search(query) {
                 postTitle.textContent = "Post trovati:";
                 postContainer.innerHTML = createPost(json['posts']);
             } else {
+                postContainer.innerHTML = "";
                 postTitle.textContent = "Nessun post trovato";
             }
         }
@@ -131,6 +133,7 @@ async function search(query) {
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector("#searchForm");
     if(form) {
+        console.log("Search form found");
         form.addEventListener("submit", function (event) {
             event.preventDefault();
             const searchQuery = document.querySelector("#search").value;

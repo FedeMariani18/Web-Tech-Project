@@ -31,7 +31,7 @@
                 </div>
             </div>
             
-            <form class="container-fluid text-center" role="search">
+            <form class="container-fluid text-center" role="search" id="searchForm2">
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="btnradio" id="utenti" autocomplete="off" checked>
                     <label class="btn btn-outline-secondary" for="utenti">Utenti</label>
@@ -55,7 +55,7 @@
         <?php
             if(isset($templateParams["js"])):
                 foreach($templateParams["js"] as $script): ?>
-                    <script src="<?php echo $script; ?>"></script><?php
+                    <script src="<?php echo $script; ?>" defer></script><?php
                 endforeach;
             endif;
         ?>

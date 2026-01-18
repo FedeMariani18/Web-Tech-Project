@@ -91,7 +91,6 @@ async function getUserData() {
             throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        console.log(json);
         const users = createUserRow(json['users']);
         const container = document.querySelector("main");
         container.innerHTML += users;
@@ -121,7 +120,6 @@ function createUserRow(users){
         
         let role = users[i]["ruolo"] == "USER" ? "rendi admin ✓" : "rimuovi admin ✘";
         let ban = users[i]["bannato"] ? "UNBAN" : "BAN";
-        console.log(ban);
 
         let postHTML = `
         <tr>
@@ -325,5 +323,57 @@ function insertUserProfilePhoto(foto){
     const profileImg = document.getElementById("profileImg");
     profile.href = "my-profile.php";
     profileImg.src = foto;    
+}
+
+//#region SEARCH
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM fully loaded and parsed");
+    const searchForm = document.getElementById("searchForm2");
+    if(searchForm) {
+        console.log("Search form found");
+        searchForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const query = document.getElementById("search").value;
+            search(query);
+        });
+    }
+});
+
+async function search(query) {
+    const url = 'api-search.php?query=' + encodeURIComponent(query);
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+
+        if(json["searchsuccess"]){
+
+            const container = document.querySelector("main");
+
+            if(localStorage.getItem('selectedTab') === 'utenti'){
+                if (json['users'] && json['users'].length > 0) {
+                    const users = createUserRow(json['users']);
+                    container.innerHTML = users;
+                } else {
+                    container.innerHTML = `<p class="no-results">Nessun utente trovato.</p>`;
+                }
+            } else {
+                if (json['posts'] && json['posts'].length > 0) {
+                    const posts = createPostRow(json['posts']);
+                    container.innerHTML = posts;
+                } else {
+                    container.innerHTML = `<p class="no-results">Nessun post trovato.</p>`;
+                }
+            }
+        }
+        else{
+            showErrorToast(json['error']);
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 //#endregion
