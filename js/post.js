@@ -1,8 +1,8 @@
-function createPost(post, utentePartecipa, id_utente){
+function createPost(post, utentePartecipa, id_utente, likeUtente){
     const result = `
     <div class="row mb-3">
         <div class="col-12">
-            <h2 class="fw-bold">${post['titolo']}</h2>
+            <h2 class="fw-bold">${post['titolo']} ${getLikeButton(likeUtente, post, id_utente)}</h2>
         </div>
     </div>
     <div class="row mb-2">
@@ -58,6 +58,21 @@ function createPost(post, utentePartecipa, id_utente){
     ${getButtonToPartecipate(utentePartecipa, id_utente, post['creatore']['id'])}
     `;
     return result;
+}
+
+function getLikeButton(likeUtente, post, id_utente) {
+    if (likeUtente == null || id_utente == post['creatore']['id']) {
+        return "";
+    }
+    if (likeUtente) {
+        return `
+            <button class="btn btn-sm btn-outline-secondary mb-2" type="button" id="togliLike"><strong>Togli like</strong></button>
+        `;
+    } else {
+        return `
+            <button class="btn btn-sm btn-outline-secondary mb-2" type="button" id="mettiLike"><strong>Metti like</strong></button>
+        `;
+    }
 }
 
 function getCreator(post, id_utente) {
@@ -171,6 +186,11 @@ async function getPostData() {
         const json = await response.json();
         const profile = document.getElementById("profile");
         const profileImg = document.getElementById("profileImg");
+        console.log(json);
+        userId = json['id_utente'];
+        const post = createPost(json['post'], json['utentePartecipa'], json['id_utente'], json['likeUtente']);
+        const main = document.querySelector("main");
+        main.innerHTML += post;
         if (json['utenteLoggato']) {
             profile.href = "my-profile.php";
             profileImg.src = json['fotoProfilo'];
@@ -181,11 +201,22 @@ async function getPostData() {
             notification.style.display = "none";
             profile.href = "login.php";
         }
-        console.log(json);
-        userId = json['id_utente'];
-        const post = createPost(json['post'], json['utentePartecipa'], json['id_utente']);
-        const main = document.querySelector("main");
-        main.innerHTML += post;
+        if (!json['likeUtente']) {
+            const btn4 = document.getElementById("mettiLike");
+            if (btn4) {
+                btn4.addEventListener("click", () => {
+                    addLike(json['post']['creatore']['id']);
+                });
+            }
+        }
+        if (json['likeUtente']) {
+            const btn4 = document.getElementById("togliLike");
+            if (btn4) {
+                btn4.addEventListener("click", () => {
+                    removeLike(json['post']['creatore']['id']);
+                });
+            }
+        }
         if (json['utentePartecipa']) {
             const btn2 = document.getElementById("disiscriviti");
             if (btn2) {
@@ -219,6 +250,66 @@ async function getPostData() {
 
 getPostData();
 let userId;
+
+async function addLike(id_creatore) {
+    const url = 'api-post.php';
+    const formData = new FormData();
+    formData.append('id_utente', userId);
+    formData.append('id_post', postId);
+    formData.append('creatore', id_creatore);
+    formData.append('like', "true");
+    try {
+        const response = await fetch(url, {
+            method: "POST",                   
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+
+        if(json == "errore"){
+            document.querySelector("p").innerText = "Il like non è stato inviato correttamente";
+        } else {
+            window.location.reload();
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+async function removeLike(id_creatore) {
+    const url = 'api-post.php';
+    const formData = new FormData();
+    formData.append('id_utente', userId);
+    formData.append('id_post', postId);
+    formData.append('creatore', id_creatore);
+    formData.append('like', "false");
+    try {
+        const response = await fetch(url, {
+            method: "POST",                   
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+
+        if(json == "errore"){
+            document.querySelector("p").innerText = "Il like non è stato rimosso correttamente";
+        } else {
+            window.location.reload();
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 async function sendComment(testo, id_creatore) {
     const url = 'api-post.php';

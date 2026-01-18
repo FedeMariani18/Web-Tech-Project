@@ -318,5 +318,39 @@
             
             return $stmt->execute();
         }
+
+        public function hasUserLikedPost($id_user, $id_post) {
+            $stmt = $this->db->prepare("
+                SELECT EXISTS(
+                    SELECT 1
+                    FROM LIKE_POST
+                    WHERE id_post = ? AND id_utente = ?
+                ) AS haMessoLike;
+            ");
+            $stmt->bind_param("ii", $id_post, $id_user);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_assoc();
+            return (bool)$row['haMessoLike'];
+        }
+
+        public function insertNewLike($id_post, $id_utente) {
+            $stmt = $this->db->prepare(
+                "INSERT INTO LIKE_POST (id_post, id_utente)
+                VALUES (?, ?)"
+            );
+            $stmt->bind_param("ii", $id_post, $id_utente);
+            
+            return $stmt->execute();
+        }
+
+        public function removeLike($id_post, $id_utente) {
+            $stmt = $this->db->prepare("
+                DELETE FROM LIKE_POST
+                WHERE id_post = ? AND id_utente = ?
+            ");
+            $stmt->bind_param("ii", $id_post, $id_utente);
+            return $stmt->execute();
+        }
     }
 ?>

@@ -1,6 +1,33 @@
 <?php
 require_once 'bootstrap.php';
 
+if (isset($_POST['like'])) {
+    if ($_POST['like'] == "true") {
+        $response = "";
+        $result = $dbh->insertNewLike($_POST['id_post'], $_POST['id_utente']);
+        if(!$result){
+            $response = "errore";
+        } else {
+            $result = $dbh->insertNewNotification(1, $_POST['creatore'], date("Y-m-d H:i:s"), $_POST['id_utente'], $_POST['id_post'], 0);
+            if(!$result) {
+                $response = "errore";
+            }
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
+    } else {
+        $response = "";
+        $result = $dbh->removeLike($_POST['id_post'], $_POST['id_utente']);
+        if(!$result){
+            $response = "errore";
+        }
+        header('Content-Type: application/json');
+        echo json_encode($response);
+        exit;
+    }
+}
+
 if (isset($_POST['testo'])) {
     $response = "";
     $result = $dbh->insertNewComment($_POST['testo'], $_POST['id_utente'], $_POST['id_post']);
@@ -64,7 +91,8 @@ $response = [
     'post' => null,
     'fotoProfilo' => null,
     'utentePartecipa' => null,
-    'id_utente' => null
+    'id_utente' => null,
+    'likeUtente' => null
 ];
 
 if (isUserLoggedIn()) {
@@ -77,6 +105,7 @@ if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
     if (isUserLoggedIn()) {
         $response['utentePartecipa'] = $dbh->isUserAPartecipant($_SESSION['id'], $id);
+        $response['likeUtente'] = $dbh->hasUserLikedPost($_SESSION['id'], $id);
     }
     $post = $dbh->getPost($id);
     if (!$post) {
