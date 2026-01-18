@@ -173,7 +173,7 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
-        public function createPost($titolo, $descrizione, $data_ora, $posti_disponibili, $provincia, $comune, $indirizzo, $id_categoria, $id_creatore, $foto) {
+        public function createPost($titolo, $descrizione, $data_ora, $posti_disponibili, $indirizzo, $citta, $comune, $provincia, $id_categoria, $foto, $id_creatore) {
             $stmt = $this->db->prepare(
                 "INSERT INTO POST (titolo, descrizione, data_ora, posti_disponibili, indirizzo, citta, comune, provincia, id_categoria, foto, id_creatore)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
