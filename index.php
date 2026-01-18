@@ -52,7 +52,7 @@ $templateParams["js"] = array("js/index.js");
 
         <nav>
             <button class="position-fixed bottom-0 start-50 mb-4 rounded-circle" type="button">
-                <a href="create_post.html"><img class=""  src="resources/sum_icon.webp" alt="icon del più"/></a>
+                <a href="create-post.php"><img class=""  src="resources/sum_icon.webp" alt="icon del più"/></a>
             </button>
         </nav>
         

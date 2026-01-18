@@ -1,4 +1,4 @@
-function createPost(post, utentePartecipa){
+function createPost(post, utentePartecipa, id_utente){
     const result = `
     <div class="row mb-3">
         <div class="col-12">
@@ -21,12 +21,27 @@ function createPost(post, utentePartecipa){
         <div class="col-12">
             <p class="mb-1">
                 <strong>Numero partecipanti iscritti:</strong> ${post['numero_partecipanti']}
+            </p>  
+            <p class="mb-1">
+                <strong>ORGANIZZATORE:</strong>
+                <a href="profile.php?id=${post['creatore']['id']}">
+                    ${post['creatore']['nome']} ${post['creatore']['cognome']}
+                </a>
             </p>
-            <p class="mb-0">
+            
+            <button class="btn btn-sm btn-outline-secondary mb-2"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#partecipantiCollapse"
+                    aria-expanded="false"
+                    aria-controls="partecipantiCollapse">
                 <strong>Partecipanti:</strong>
-                <br>ORGANIZZATORE: <a href="profile.php?id=${post['creatore']['id']}">${post['creatore']['nome']} ${post['creatore']['cognome']}</a>
-                ${getMembers(post)}
-            </p>
+            </button>
+            <div class="collapse" id="partecipantiCollapse">
+                <div class="card card-body p-2">
+                    ${getMembers(post, id_utente)}
+                </div>
+            </div>
         </div>
     </div>
     <div class="row mb-4">
@@ -36,7 +51,7 @@ function createPost(post, utentePartecipa){
             <div class="card">
                 <div class="card-body p-2"
                     style="max-height: 200px; overflow-y: auto;">
-                    ${getComments(post)}
+                    ${getComments(post, id_utente)}
                 </div>
             </div>
 
@@ -45,7 +60,7 @@ function createPost(post, utentePartecipa){
         </div>
     </div>
 
-    ${getButtonToPartecipate(utentePartecipa)}
+    ${getButtonToPartecipate(utentePartecipa, id_utente, post['creatore']['id'])}
     `;
     return result;
 }
@@ -63,7 +78,18 @@ function getButtonForComment() {
     }
 }
 
-function getButtonToPartecipate(utentePartecipa) {
+function getButtonToPartecipate(utentePartecipa, id_utente, id_creatore) {
+    if (id_creatore == id_utente) {
+        return `
+            <div class="row">
+                <div class="col-12 d-grid">
+                    <button class="btn btn-warning btn-lg fw-bold" id="elimina" >
+                        ELIMINA POST
+                    </button>
+                </div>
+            </div>
+        `;
+    }
     if (utentePartecipa) {
         return `
             <div class="row">
@@ -86,23 +112,37 @@ function getButtonToPartecipate(utentePartecipa) {
     `;
 }
 
-function getMembers(post) {
-    let result = ``;
+function getMembers(post, id_utente) {
+    let result = `<ul class="list-unstyled mb-0">`;
     for (let i=0; i < post['partecipanti'].length; i++) {
+        let redirect;
+        if (id_utente == post['partecipanti'][i]['id']) {
+            redirect = "my-profile.php";
+        } else {
+            redirect = `profile.php?id=${post['partecipanti'][i]['id']}`;
+        }
         let partecipant = `
-            <br><a href="profile.php?id=${post['partecipanti'][i]['id']}">${post['partecipanti'][i]['nome']} ${post['partecipanti'][i]['cognome']}</a>
+            <li>
+                <a href="${redirect}">${post['partecipanti'][i]['nome']} ${post['partecipanti'][i]['cognome']}</a>
+            </li>
         `
         result += partecipant;
     }
     return result;
 }
 
-function getComments(post) {
+function getComments(post, id_utente) {
     let result = "";
     for (let i=0; i < post['commenti'].length; i++) {
+        let redirect;
+        if (id_utente == post['commenti'][i]['id_utente']) {
+            redirect = "my-profile.php";
+        } else {
+            redirect = `profile.php?id=${post['commenti'][i]['id_utente']}`;
+        }
         let comment = `
             <div class="border-bottom pb-2 mb-2">
-                <strong><a href="profile.php?id=${post['commenti'][i]['id_utente']}">${post['commenti'][i]['username']}</a></strong>
+                <strong><a href="${redirect}">${post['commenti'][i]['username']}</a></strong>
                 <p class="mb-0 text-muted">${post['commenti'][i]['testo']}</p>
             </div>
         `
@@ -134,7 +174,7 @@ async function getPostData() {
         }
         console.log(json);
         userId = json['id_utente'];
-        const post = createPost(json['post'], json['utentePartecipa']);
+        const post = createPost(json['post'], json['utentePartecipa'], json['id_utente']);
         const main = document.querySelector("main");
         main.innerHTML += post;
         if (json['utentePartecipa']) {
