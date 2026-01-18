@@ -79,7 +79,7 @@ body main{
     background-color: var(--second-color);
 }
 
-body main>div>p{
+bodys main>div>p, main>p{
     text-align: center;
     font-family: "BBH Bartle", sans-serif;
     font-weight: 300;
@@ -95,10 +95,6 @@ body main form ul{
 
 button.important-button{
     background-color: var(--first-color);
-}
-
-body main div div>a{
-    
 }
 
 body main article{

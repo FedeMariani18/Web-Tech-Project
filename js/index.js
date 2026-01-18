@@ -23,6 +23,30 @@ function createPost(posts){
     return result;
 }
 
+function createUser(users){
+    let result = "";
+
+    for(let i=0; i < users.length; i++){
+        let postHTML = `
+        <div class="col-10 col-lg-4 p-3 p-md-4">
+                <a class="link-underline link-underline-opacity-0 text-reset" href="profile.php?id=${users[i]["id"]}">
+                    <article class="row rounded-5 border border-black border-1">
+                        <img class="col-5 img-fluid rounded-start-5 p-0" src="${users[i]["foto"]}" alt="immagine del annuncio">
+                        <div class="col-7">
+                            <div class="">
+                                <h5 class="card-title">${users[i]["username"]}</h5>
+                                <p class="card-text">${users[i]["nome"]} ${users[i]["cognome"]}</p>
+                            </div>
+                        </div>
+                    </article>
+                </a>
+            </div>
+        `;
+        result += postHTML;
+    }
+    return result;
+}
+
 async function getPostData() {
     const url = 'api-post.php';
     try {
@@ -31,10 +55,10 @@ async function getPostData() {
             throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        console.log(json);
-        const profile = document.getElementById("profile");
-        const profileImg = document.getElementById("profileImg");
+        
         if (json['utenteLoggato']) {
+            const profile = document.getElementById("profile");
+            const profileImg = document.getElementById("profileImg");
             profile.href = "my-profile.php";
             profileImg.src = json['fotoProfilo'];
         } else {
@@ -44,9 +68,11 @@ async function getPostData() {
             notification.style.display = "none";
             profile.href = "login.php";
         }
-        const posts = createPost(json['post']);
+
+        const postsHTML = createPost(json['post']);
         const container = document.getElementById("posts-container");
-        container.innerHTML += posts;
+        container.innerHTML = postsHTML;
+
     } catch (error) {
         console.log(error.message);
     }
@@ -69,9 +95,27 @@ async function search(query) {
         const json = await response.json();
 
         if(json["searchsuccess"]){
-            const postsHTML = createPost(json['results']);
-            const container = document.getElementById("posts-container");
-            container.innerHTML = postsHTML;
+            // USERS
+            const userContainer = document.getElementById("users-container");
+            const userTitle = document.getElementById("userTitle");
+
+            if (json['users'] && json['users'].length > 0) {
+                userTitle.textContent = "Utenti trovati:";
+                userContainer.innerHTML = createUser(json['users']);
+            } else {
+                userTitle.textContent = "Nessun utente trovato";
+            }
+
+            // POSTS
+            const postContainer = document.getElementById("posts-container");
+            const postTitle = document.getElementById("postTitle");
+
+            if (json['posts'] && json['posts'].length > 0) {
+                postTitle.textContent = "Post trovati:";
+                postContainer.innerHTML = createPost(json['posts']);
+            } else {
+                postTitle.textContent = "Nessun post trovato";
+            }
         }
         else{
             showErrorToast(json['error']);
