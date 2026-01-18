@@ -64,9 +64,12 @@ async function getPostData() {
         } else {
             const like = document.getElementById("like");
             const notification = document.getElementById("notification");
+            const create = document.getElementById("createPost");
             like.style.display = "none";
             notification.style.display = "none";
             profile.href = "login.php";
+            create.style.display = "none";
+
         }
 
         const postsHTML = createPost(json['post']);
