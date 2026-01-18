@@ -5,7 +5,7 @@ function createPost(post, utentePartecipa, id_utente){
             <h2 class="fw-bold">${post['titolo']}</h2>
         </div>
     </div>
-    <div class="row mb-4">
+    <div class="row mb-2">
         <div class="col-12 col-md-4 mb-3 mb-md-0">
             <div class="border bg-light d-flex align-items-center justify-content-center"
                 style="height: 200px;">
@@ -20,9 +20,6 @@ function createPost(post, utentePartecipa, id_utente){
     <div class="row mb-3">
         <div class="col-12">
             <p class="mb-1">
-                <strong>Numero partecipanti iscritti:</strong> ${post['numero_partecipanti']}
-            </p>  
-            <p class="mb-1">
                 <strong>ORGANIZZATORE:</strong>
                 ${getCreator(post, id_utente)}
             </p>
@@ -33,7 +30,7 @@ function createPost(post, utentePartecipa, id_utente){
                     data-bs-target="#partecipantiCollapse"
                     aria-expanded="false"
                     aria-controls="partecipantiCollapse">
-                <strong>Partecipanti:</strong>
+                <strong>Partecipanti: ${post['numero_partecipanti']}/${post['posti_disponibili']}</strong>
             </button>
             <div class="collapse" id="partecipantiCollapse">
                 <div class="card card-body p-2">
@@ -191,24 +188,30 @@ async function getPostData() {
         main.innerHTML += post;
         if (json['utentePartecipa']) {
             const btn2 = document.getElementById("disiscriviti");
-            btn2.addEventListener("click", () => {
-                removeParticipation();
-        });
+            if (btn2) {
+                btn2.addEventListener("click", () => {
+                    removeParticipation();
+                });
+            }
         } else {
             const btn1 = document.getElementById("partecipa");
-            btn1.addEventListener("click", () => {
-                if (json['utenteLoggato']) {
-                    insertNewPartecipation();
-                } else {
-                    window.location.replace("login.php");
-                }
-        });
+            if (btn1) {
+                btn1.addEventListener("click", () => {
+                    if (json['utenteLoggato']) {
+                        insertNewPartecipation(json['post']['creatore']['id']);
+                    } else {
+                        window.location.replace("login.php");
+                    }
+                });
+            } 
         }
         const btn3 = document.getElementById("invia");
-            btn3.addEventListener("click", () => {
-                const testo = document.querySelector("#commento").value;
-                sendComment(testo);
-        });
+            if (btn3) {
+                btn3.addEventListener("click", () => {
+                    const testo = document.querySelector("#commento").value;
+                    sendComment(testo, json['post']['creatore']['id']);
+                });
+            }
     } catch (error) {
         console.log(error.message);
     }
@@ -217,12 +220,13 @@ async function getPostData() {
 getPostData();
 let userId;
 
-async function sendComment(testo) {
+async function sendComment(testo, id_creatore) {
     const url = 'api-post.php';
     const formData = new FormData();
     formData.append('id_utente', userId);
     formData.append('id_post', postId);
     formData.append('testo', testo);
+    formData.append('creatore', id_creatore);
     try {
         const response = await fetch(url, {
             method: "POST",                   
@@ -246,12 +250,13 @@ async function sendComment(testo) {
     }
 }
 
-async function insertNewPartecipation() {
+async function insertNewPartecipation(id_creatore) {
     const url = 'api-post.php';
     const formData = new FormData();
     formData.append('id_utente', userId);
     formData.append('id_post', postId);
     formData.append('partecipazione', "true");
+    formData.append('creatore', id_creatore);
     try {
         const response = await fetch(url, {
             method: "POST",                   
