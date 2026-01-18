@@ -4,6 +4,10 @@ function isUserLoggedIn(){
     return !empty($_SESSION['id']);
 }
 
+function getMyUserId(){   
+    return isUserLoggedIn()? $_SESSION['id'] : null;
+}
+
 function registerLoggedUser($user){
     $_SESSION["id"] = $user["id"];
     $_SESSION["username"] = $user["username"];

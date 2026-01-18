@@ -64,7 +64,7 @@ function getAdminButton(user) {
     if (user['ruolo'] == "ADMIN") {
         return `
             <div class="col-12 col-md-6 mb-4 mt-3">
-                <button class="w-100 btn btn-light border rounded-4 shadow-sm">
+                <button class="w-100 btn btn-light border rounded-4 shadow-sm" onclick="window.location.href='admin.php'">
                     OPERAZIONI ADMIN
                 </button>
             </div>

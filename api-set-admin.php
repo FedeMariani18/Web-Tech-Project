@@ -1,7 +1,7 @@
 <?php
 require_once 'bootstrap.php';
 
-$result["user-modificato"] = false;
+$result["usermodificato"] = false;
 $modify_result = $dbh->modifyAdminById($_POST['id']);
 
 if($modify_result === null){
