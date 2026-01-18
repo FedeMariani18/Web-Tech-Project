@@ -24,9 +24,7 @@ function createPost(post, utentePartecipa, id_utente){
             </p>  
             <p class="mb-1">
                 <strong>ORGANIZZATORE:</strong>
-                <a href="profile.php?id=${post['creatore']['id']}">
-                    ${post['creatore']['nome']} ${post['creatore']['cognome']}
-                </a>
+                ${getCreator(post, id_utente)}
             </p>
             
             <button class="btn btn-sm btn-outline-secondary mb-2"
@@ -63,6 +61,20 @@ function createPost(post, utentePartecipa, id_utente){
     ${getButtonToPartecipate(utentePartecipa, id_utente, post['creatore']['id'])}
     `;
     return result;
+}
+
+function getCreator(post, id_utente) {
+    let redirect;
+    if (id_utente == post['creatore']['id']) {
+        redirect = "my-profile.php";
+    } else {
+        redirect = `profile.php?id=${post['creatore']['id']}`;
+    }
+    return `
+        <a href="${redirect}" class="link-secondary text-decoration-none">
+            ${post['creatore']['nome']} ${post['creatore']['cognome']}
+        </a>
+    `;
 }
 
 function getButtonForComment() {
@@ -123,7 +135,7 @@ function getMembers(post, id_utente) {
         }
         let partecipant = `
             <li>
-                <a href="${redirect}">${post['partecipanti'][i]['nome']} ${post['partecipanti'][i]['cognome']}</a>
+                <a href="${redirect}" class="link-secondary text-decoration-none" >${post['partecipanti'][i]['nome']} ${post['partecipanti'][i]['cognome']}</a>
             </li>
         `
         result += partecipant;
@@ -142,7 +154,7 @@ function getComments(post, id_utente) {
         }
         let comment = `
             <div class="border-bottom pb-2 mb-2">
-                <strong><a href="${redirect}">${post['commenti'][i]['username']}</a></strong>
+                <strong><a href="${redirect}" class="link-secondary text-decoration-none">${post['commenti'][i]['username']}</a></strong>
                 <p class="mb-0 text-muted">${post['commenti'][i]['testo']}</p>
             </div>
         `
