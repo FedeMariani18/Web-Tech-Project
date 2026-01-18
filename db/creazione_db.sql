@@ -17,7 +17,8 @@ CREATE TABLE UTENTE (
     numero_telefono VARCHAR(20),
     mail VARCHAR(100) UNIQUE,
     foto VARCHAR(255) DEFAULT 'user_icon.png',
-    ruolo ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER'
+    ruolo ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
+    bannato BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 -- TABELLA POST
