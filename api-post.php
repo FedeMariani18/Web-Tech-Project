@@ -86,7 +86,7 @@ if (isset($_GET['id'])) {
         $post["commenti"][$i]['username'] = $user['username'];
         $post["commenti"][$i]['id_utente'] = $user['id'];
     }
-     $response['post'] = $post;
+    $response['post'] = $post;
 } else {
     $post = $dbh->getActivePosts();
     for($i = 0; $i < count($post); $i++){

@@ -37,7 +37,7 @@ function saveImg($foto, $user){
         $fotoPath = $uploadDir . $nomeFile;
         
         // Salva il file
-        if (!move_uploaded_file($foto['tmp_name'], $fotoName)) {
+        if (!move_uploaded_file($foto['tmp_name'], $fotoPath)) {
             $result["errorecreazione"] = "Errore durante il salvataggio della foto";
             header('Content-Type: application/json');
             echo json_encode($result);

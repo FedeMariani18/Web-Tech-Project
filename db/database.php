@@ -227,9 +227,12 @@
                 SELECT p.id, p.titolo, p.descrizione, p.foto, c.nome_categoria
                 FROM post p
                 JOIN categoria c ON p.id_categoria = c.id
-                WHERE p.titolo LIKE ?
-                OR p.descrizione LIKE ?
-                OR c.nome_categoria LIKE ?
+                WHERE (
+                    p.titolo LIKE ?
+                    OR p.descrizione LIKE ?
+                    OR c.nome_categoria LIKE ?
+                )
+                AND p.data_ora >= NOW()
             ";
 
             $stmt = $this->db->prepare($sql);
