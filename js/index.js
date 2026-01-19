@@ -23,13 +23,20 @@ function createPost(posts){
     return result;
 }
 
-function createUser(users){
+function createUser(users, id_user_logged){
     let result = "";
 
     for(let i=0; i < users.length; i++){
+        let redirect = "";
+        if(users[i]["id"] === id_user_logged){
+            redirect = "my-profile.php";
+        } else {
+            redirect = `profile.php?id=${users[i]["id"]}`;
+        }
+        
         let postHTML = `
         <div class="col-10 col-lg-4 p-3 p-md-4">
-                <a class="link-underline link-underline-opacity-0 text-reset" href="profile.php?id=${users[i]["id"]}">
+                <a class="link-underline link-underline-opacity-0 text-reset" href="${redirect}">
                     <article class="row rounded-5 border border-black border-1">
                         <img class="col-5 img-fluid rounded-start-5 p-0" src="${users[i]["foto"]}" alt="immagine del annuncio">
                         <div class="col-7">
@@ -104,7 +111,7 @@ async function search(query) {
 
             if (json['users'] && json['users'].length > 0) {
                 userTitle.textContent = "Utenti trovati:";
-                userContainer.innerHTML = createUser(json['users']);
+                userContainer.innerHTML = createUser(json['users'], json['id_utente']);
             } else {
                 userContainer.innerHTML = "";
                 userTitle.textContent = "Nessun utente trovato";

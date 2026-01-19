@@ -2,12 +2,12 @@
     require_once 'bootstrap.php';
     $response = [
         'searchsuccess' => false,
+        'id_utente' => isset($_SESSION['id']) ? $_SESSION['id'] : null,
         'error' => "",
         'posts' => [],
         'users' => []
     ];
 
-    error_log("QUERY ARRIVATA: " . $_GET['query']);
     $searchedPost = $dbh->searchPosts($_GET['query']);
     $searchedUser = $dbh->searchUsers($_GET['query']);
 
