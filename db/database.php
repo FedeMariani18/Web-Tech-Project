@@ -419,5 +419,14 @@
             $stmt->bind_param("i", $id);
             return $stmt->execute();
         }
+
+        public function removeComment($idCommento) {
+            $stmt = $this->db->prepare(
+                "DELETE FROM COMMENTO 
+                WHERE id = ?"
+            );
+            $stmt->bind_param("i", $idCommento);
+            return $stmt->execute();
+        }
     }
 ?>

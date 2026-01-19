@@ -35,6 +35,29 @@ $templateParams["js"] = array("js/post.js");
         <main class="container my-4">
 
         </main>
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Elimina</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    Sei sicuro di voler eliminare?  
+                    <br>
+                    <small class="text-muted">Questa azione non può essere annullata.</small>
+                </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">
+                            Annulla
+                        </button>
+                        <button class="btn btn-danger" id="confirmDeleteBtn">
+                            Elimina
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     <?php
         if(isset($templateParams["js"])):

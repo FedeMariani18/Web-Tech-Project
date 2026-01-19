@@ -1,6 +1,17 @@
 <?php
 require_once 'bootstrap.php';
 
+if (isset($_POST['eliminaCommento'])) {
+    $response = "";
+    $result = $dbh->removeComment($_POST['idCommento']);
+    if(!$result){
+        $response = "errore";
+    }
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
+}
+
 if (isset($_POST['eliminaPost'])) {
     $response = "ok";
     if (!isset($_SESSION['id'])) {
@@ -112,7 +123,8 @@ $response = [
     'fotoProfilo' => null,
     'utentePartecipa' => null,
     'id_utente' => null,
-    'likeUtente' => null
+    'likeUtente' => null,
+    'admin' => null
 ];
 
 if (isUserLoggedIn()) {
@@ -126,6 +138,7 @@ if (isset($_GET['id'])) {
     if (isUserLoggedIn()) {
         $response['utentePartecipa'] = $dbh->isUserAPartecipant($_SESSION['id'], $id);
         $response['likeUtente'] = $dbh->hasUserLikedPost($_SESSION['id'], $id);
+        $response['admin'] = $dbh->getUserFromId($_SESSION['id'])['ruolo'] == 'ADMIN';
     }
     $post = $dbh->getPost($id);
     if (!$post) {
