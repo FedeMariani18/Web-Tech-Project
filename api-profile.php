@@ -9,7 +9,15 @@ if (isUserLoggedIn() || isset($_GET['id'])) {
     } else {
         $id = $_SESSION['id'];
     }
+
+    if(isUserLoggedIn()) {
+        $isAdmin = $dbh->getUserFromId($_SESSION['id'])['ruolo'] == 'ADMIN';
+    } else {
+        $isAdmin = false;
+    }   
+    
     $user = $dbh->getUserFromId($id);
+    $user['visitorIsAdmin'] = $isAdmin;
     $user['foto'] = UPLOAD_DIR_PROFILE.$user['foto'];
     $user['postAttivi'] = $dbh->getActivePostsFromUser($id);
     $user['postACuiPartecipa'] = $dbh->getPostWhereUserIsAParticipant($id);

@@ -14,6 +14,8 @@ $templateParams["js"] = array("js/profile.js");
           rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
           crossorigin="anonymous">
+        
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- for special font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,21 +40,60 @@ $templateParams["js"] = array("js/profile.js");
         </div>
     </div>
 
-    <div class="container-fluid">
-        <nav class="d-flex justify-content-center gap-2 profile-icon-nav align-items-center">
-            <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg"/></a>
-        </nav>
+
+    <div class="d-flex justify-content-center mt-3">
+
+        <figure class="position-relative m-0 text-center">
+
+            <button class="btn btn-danger btn-sm position-absolute top-0 end-0 translate-middle rounded-circle p-2 align-items-center justify-content-center" 
+                    id="deleteBtn"
+                    data-bs-toggle="modal"
+                    data-bs-target="#confirmDeleteModal">
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+
+            <img src="resources/user_icon.png"
+                id="profileImg"
+                class="rounded-circle border"
+                width="120">
+
+            <figcaption id="username" class="mt-2">Username</figcaption>
+
+        </figure>
+
     </div>
 
-    <div class="row justify-content-center">
-        <h1 class="text-center" id="username" >Username</h1>
-    </div>
+
 
 </header>
 
 <main class="container-fluid">
     
 </main>
+
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Elimina foto profilo</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        Sei sicuro di voler eliminare la foto profilo?  
+        Questa azione non può essere annullata.
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" id="confirmDeleteBtn" class="btn btn-danger">Elimina</button>
+      </div>
+
+    </div>
+  </div>
+</div>
 <?php
     if(isset($templateParams["js"])):
         foreach($templateParams["js"] as $script):
@@ -60,5 +101,9 @@ $templateParams["js"] = array("js/profile.js");
         endforeach;
     endif;
 ?>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 </html>

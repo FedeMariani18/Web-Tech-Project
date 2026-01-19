@@ -79,7 +79,7 @@ body main{
     background-color: var(--second-color);
 }
 
-bodys main>div>p, main>p{
+body main>div>p, main>p, header figure figcaption{
     text-align: center;
     font-family: "BBH Bartle", sans-serif;
     font-weight: 300;
@@ -173,6 +173,14 @@ body footer div button{
 }
 
 .hidden {
+    display: none;
+}
+
+#deleteBtn {
+    width: 32px;
+    height: 32px;
+    padding: 0 !important;
+    border-radius: 50% !important;
     display: none;
 }
 
