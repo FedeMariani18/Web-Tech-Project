@@ -139,12 +139,14 @@ async function search(query) {
 
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector("#searchForm");
+    const label = document.querySelector("#search");
     if(form) {
         console.log("Search form found");
         form.addEventListener("submit", function (event) {
             event.preventDefault();
-            const searchQuery = document.querySelector("#search").value;
+            const searchQuery = label.value;
             search(searchQuery);
+            label.value = "";
         });
     }
 });
