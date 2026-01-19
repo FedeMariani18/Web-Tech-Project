@@ -64,14 +64,14 @@ $templateParams["js"] = array("js/create-account.js");
                     </li>
                     <li class="mb-3">
                         <label class="form-label" for="mail">Mail:</label>
-                        <input class="form-control" type="email" id="mail" name="mail" placeholder="mail@gmail.com"/>
+                        <input class="form-control" type="email" id="mail" name="mail" placeholder="mail@gmail.com" required/>
                     </li>
                     <li class="mb-3">
                         <label class="form-label" for="password">Password:</label>
                         <button class="btn btn-outline-secondary mb-1" type="button" id="togglePassword">
                             <span id="eyeIcon">Mostra</span>
                         </button>
-                        <input class="form-control" type="password" id="password" name="password" placeholder="Password"/>
+                        <input class="form-control" type="password" id="password" name="password" placeholder="Password" required/>
                     </li>
                     <li class="mb-3">
                         <div class="row justify-content-center">
