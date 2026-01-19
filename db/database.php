@@ -397,5 +397,15 @@
             $result = $stmt->get_result();
             return $result->fetch_all(MYSQLI_ASSOC);
         }
+
+        public function modifyUtente($id, $username, $password_hash, $nome, $cognome, $numero_telefono, $mail, $foto) {
+            $stmt = $this->db->prepare(
+                "UPDATE UTENTE 
+                SET username = ?, password_hash = ?, nome = ?, cognome = ?, numero_telefono = ?, mail = ?, foto = ?
+                WHERE id = ?"
+            );
+            $stmt->bind_param("ssssssss", $username, $password_hash, $nome, $cognome, $numero_telefono, $mail, $foto, $id);
+            return $stmt->execute();
+        }
     }
 ?>
