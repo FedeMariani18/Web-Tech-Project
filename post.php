@@ -26,7 +26,7 @@ $templateParams["js"] = array("js/post.js");
                     <nav class="d-flex justify-content-end gap-2">
                         <a href="like-page.php" id="like"><img src="resources/heart.png" alt="icon del cuore"/></a>
                         <a href="notification-page.php" id="notification"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
-                        <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg"/></a>
+                        <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg" class="rounded-circle border"/></a>
                     </nav>
                 </div>
             </div>
@@ -35,6 +35,29 @@ $templateParams["js"] = array("js/post.js");
         <main class="container my-4">
 
         </main>
+        <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Elimina</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    Sei sicuro di voler eliminare?  
+                    <br>
+                    <small class="text-muted">Questa azione non può essere annullata.</small>
+                </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">
+                            Annulla
+                        </button>
+                        <button class="btn btn-danger" id="confirmDeleteBtn">
+                            Elimina
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     <?php
         if(isset($templateParams["js"])):

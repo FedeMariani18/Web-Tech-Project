@@ -1,5 +1,3 @@
-console.log("Script api-create-post.js caricato");
-
 async function createPost(titolo, descrizione, dataOra, nPartecipanti, indirizzo, citta, comune, provincia, categoria, foto) {
     const url = 'api-create-post.php';
     try {

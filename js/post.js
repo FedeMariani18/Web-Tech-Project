@@ -1,4 +1,4 @@
-function createPost(post, utentePartecipa, id_utente, likeUtente){
+function createPost(post, utentePartecipa, id_utente, likeUtente, admin){
     const result = `
     <div class="row mb-3">
         <div class="col-12">
@@ -46,7 +46,7 @@ function createPost(post, utentePartecipa, id_utente, likeUtente){
             <div class="card">
                 <div class="card-body p-2"
                     style="max-height: 200px; overflow-y: auto;">
-                    ${getComments(post, id_utente)}
+                    ${getComments(post, id_utente, admin)}
                 </div>
             </div>
 
@@ -155,25 +155,46 @@ function getMembers(post, id_utente) {
     return result;
 }
 
-function getComments(post, id_utente) {
+function getComments(post, id_utente, admin) {
     let result = "";
-    for (let i=0; i < post['commenti'].length; i++) {
+
+    for (let i = 0; i < post['commenti'].length; i++) {
+        const commento = post['commenti'][i];
         let redirect;
-        if (id_utente == post['commenti'][i]['id_utente']) {
+        if (id_utente == commento['id_utente']) {
             redirect = "my-profile.php";
         } else {
-            redirect = `profile.php?id=${post['commenti'][i]['id_utente']}`;
+            redirect = `profile.php?id=${commento['id_utente']}`;
         }
-        let comment = `
-            <div class="border-bottom pb-2 mb-2">
-                <strong><a href="${redirect}" class="link-secondary text-decoration-none">${post['commenti'][i]['username']}</a></strong>
-                <p class="mb-0 text-muted">${post['commenti'][i]['testo']}</p>
+        let deleteBtn = "";
+        if (admin || id_utente == commento['id_utente']) {
+            deleteBtn = `
+                <button 
+                    class="btn btn-danger btn-sm rounded-circle ms-2 delete-comment"
+                    data-id="${commento['id']}"
+                    title="Elimina commento">
+                    ✕
+                </button>
+            `;
+        }
+        result += `
+            <div class="border-bottom pb-2 mb-2 d-flex justify-content-between align-items-start">
+                <div>
+                    <strong>
+                        <a href="${redirect}" class="link-secondary text-decoration-none">
+                            ${commento['username']}
+                        </a>
+                    </strong>
+                    <p class="mb-0 text-muted">${commento['testo']}</p>
+                </div>
+                ${deleteBtn}
             </div>
-        `
-        result += comment;
+        `;
     }
+
     return result;
 }
+
 
 
 async function getPostData() {
@@ -188,7 +209,7 @@ async function getPostData() {
         const profileImg = document.getElementById("profileImg");
         console.log(json);
         userId = json['id_utente'];
-        const post = createPost(json['post'], json['utentePartecipa'], json['id_utente'], json['likeUtente']);
+        const post = createPost(json['post'], json['utentePartecipa'], json['id_utente'], json['likeUtente'], json['admin']);
         const main = document.querySelector("main");
         main.innerHTML += post;
         if (json['utenteLoggato']) {
@@ -256,6 +277,57 @@ async function getPostData() {
 
 getPostData();
 let userId;
+let idCommento = null;
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("delete-comment")) {
+        idCommento = e.target.dataset.id;
+
+        const modal = new bootstrap.Modal(
+            document.getElementById("confirmDeleteModal")
+        );
+        modal.show()
+    }
+});
+const confirmBtn = document.getElementById("confirmDeleteBtn");
+if (confirmBtn) {
+    confirmBtn.addEventListener("click", function () {
+        if (idCommento) {
+        removeComment(idCommento);
+        idCommento = null;
+    }
+    const modalEl = document.getElementById("confirmDeleteModal");
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    modal.hide();
+    });
+}
+
+async function removeComment(idCommento) {
+    const url = 'api-post.php';
+    const formData = new FormData();
+    formData.append('idCommento', idCommento);
+    formData.append('eliminaCommento', "true");
+    try {
+        const response = await fetch(url, {
+            method: "POST",                   
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+
+        if(json == "errore"){
+            alert("Errore nell'eliminazione del commento");
+        } else {
+            window.location.reload();
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 async function removePost() {
     const url = 'api-post.php';
@@ -276,7 +348,7 @@ async function removePost() {
         console.log(json);
 
         if(json == "errore"){
-            document.querySelector("p").innerText = "Errore nell'eliminazione del post";
+            alert("Errore nell'eliminazione del post");
         } else {
             window.location.replace("index.php");
         }
@@ -306,7 +378,7 @@ async function addLike(id_creatore) {
         console.log(json);
 
         if(json == "errore"){
-            document.querySelector("p").innerText = "Il like non è stato inviato correttamente";
+            alert("Errore nell'invio del like");
         } else {
             window.location.reload();
         }
@@ -336,7 +408,7 @@ async function removeLike(id_creatore) {
         console.log(json);
 
         if(json == "errore"){
-            document.querySelector("p").innerText = "Il like non è stato rimosso correttamente";
+            alert("Errore nell'eliminazione del like");
         } else {
             window.location.reload();
         }
@@ -366,7 +438,7 @@ async function sendComment(testo, id_creatore) {
         console.log(json);
 
         if(json == "errore"){
-            document.querySelector("p").innerText = "Il commento non è stato inviato correttamente";
+            alert("Errore nell'invio del commento");
         } else {
             window.location.reload();
         }
@@ -396,7 +468,7 @@ async function insertNewPartecipation(id_creatore) {
         console.log(json);
 
         if(!json["iscrizioneRiuscita"]){
-            document.querySelector("p").innerText = json["errore"];
+            alert(json['errore']);
         }
         if (json["iscrizioneRiuscita"]) {
             window.location.reload();
@@ -426,7 +498,7 @@ async function removeParticipation() {
         console.log(json);
 
         if(!json["disiscrizioneRiuscita"]){
-            document.querySelector("p").innerText = json["errore"];
+           alert(json['errore']);
         }
         if (json["disiscrizioneRiuscita"]) {
             window.location.reload();

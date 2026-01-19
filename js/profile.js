@@ -83,6 +83,8 @@ function getActivePost(user) {
     return result;
 }
 
+
+//#region Main
 async function getUserData() {
     const url = 'api-profile.php?id=' + userId;
     try {
@@ -98,16 +100,22 @@ async function getUserData() {
         
         //Hidden button if the user is not logged in
         const profile = document.getElementById("my-profile");
+        const deleteBtn = document.getElementById("deleteBtn");
+        console.log(json.utenteLoggato, json.visitorIsAdmin);
         if (json['utenteLoggato']) {
             const profileImg = document.getElementById("my-profileImg");
             profile.href = "my-profile.php";
             profileImg.src = json['fotoProfilo'];
+            if(json['visitorIsAdmin']){
+                deleteBtn.style.display = "block";
+            }
         } else {
             const like = document.getElementById("like");
             const notification = document.getElementById("notification");
             like.style.display = "none";
             notification.style.display = "none";
             profile.href = "login.php";
+            deleteBtn.style.display = "none";
         }
 
         //Populate user data
@@ -120,6 +128,43 @@ async function getUserData() {
         console.log(error.message);
     }
 }
+//#endregion
+
+//#region Delete profile photo
+
+async function deleteProfilePhoto(userId) {
+    const url = 'api-delete-profile-photo.php?id=' + userId;
+    try {
+        const response = await fetch(url);
+
+        if(!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+
+        if(json['deletesuccess']) {
+            //Reload the page to reflect changes
+            window.location.reload();
+        } else {
+            console.log("Error deleting profile photo: " + json['error']);
+        }
+
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const confirmBtn = document.getElementById("confirmDeleteBtn");
+
+    confirmBtn.addEventListener("click", () => {
+
+        deleteProfilePhoto(userId);
+    });
+});
+//#endregion
 
 const userId = new URLSearchParams(window.location.search).get("id");
 

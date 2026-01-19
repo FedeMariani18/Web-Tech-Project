@@ -33,7 +33,7 @@ $templateParams["js"] = array("js/like.js");
                 <nav class="d-flex justify-content-center gap-2 profile-icon-nav align-items-center">
                     <a href="notification-page.php" id="notification"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
                     <a href="like-page.php" id="like"><img src="resources/heart.png" alt="icon del cuore"/></a>
-                    <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg"/></a>
+                    <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg" class="rounded-circle border"/></a>
                 </nav>
             </div>
         </header>

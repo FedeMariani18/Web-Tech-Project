@@ -409,5 +409,24 @@
             $stmt->bind_param("ssssssss", $username, $password_hash, $nome, $cognome, $numero_telefono, $mail, $foto, $id);
             return $stmt->execute();
         }
+
+        public function deleteProfilePhoto($id) {
+            $stmt = $this->db->prepare(
+                "UPDATE UTENTE 
+                SET foto = 'default_profile.png'
+                WHERE id = ?"
+            );
+            $stmt->bind_param("i", $id);
+            return $stmt->execute();
+        }
+
+        public function removeComment($idCommento) {
+            $stmt = $this->db->prepare(
+                "DELETE FROM COMMENTO 
+                WHERE id = ?"
+            );
+            $stmt->bind_param("i", $idCommento);
+            return $stmt->execute();
+        }
     }
 ?>
