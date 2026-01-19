@@ -270,7 +270,7 @@ async function getPostData() {
         const btn5 = document.getElementById("elimina");
         if (btn5) {
             btn5.addEventListener("click", () => {
-                removePost();
+                removePost(json['post']['creatore']['id']);
             });
         }
     } catch (error) {
@@ -332,10 +332,11 @@ async function removeComment(idCommento) {
     }
 }
 
-async function removePost() {
+async function removePost(id_creatore) {
     const url = 'api-post.php';
     const formData = new FormData();
     formData.append('id_post', postId);
+    formData.append('creatore', id_creatore);
     formData.append('eliminaPost', "true");
     try {
         const response = await fetch(url, {
