@@ -4,11 +4,13 @@ init();
 
 async function init() {
     userData = await precompileForm();
-    console.log(userData);  // userData contiene i dati normali, non una Promise
+    console.log("Dati dell'utente " , userData);  // userData contiene i dati normali, non una Promise
 
     form.addEventListener("submit", function(event) {
         event.preventDefault();
+        
         const foto = document.querySelector("#foto").files[0] ?? userData['foto'];
+        const fotoOld = userData['foto'];  // Nome della foto vecchia per poterla cancellare
         const nome = document.querySelector("#nome").value;
         const cognome = document.querySelector("#cognome").value;
         const username = document.querySelector("#username").value;
@@ -16,7 +18,7 @@ async function init() {
         const mail = document.querySelector("#mail").value;
         const password = document.querySelector("#password").value == '' ? null : document.querySelector("#password").value;
         
-        updateAccount(userData['id'], foto, nome, cognome, username, telefono, mail, password);
+        updateAccount(userData['id'], foto, fotoOld, nome, cognome, username, telefono, mail, password);
     });
 }
 
@@ -33,12 +35,15 @@ async function precompileForm(){
         }
 
         userData = await response.json();
-        
+
         document.getElementById("nome").value = userData['nome'];
         document.getElementById("cognome").value = userData['cognome'];
         document.getElementById("username").value = userData['username'];
         document.getElementById("telefono").value = userData['numero_telefono'];
         document.getElementById("mail").value = userData['mail'];
+
+        //sistemo nome foto togliendo il path
+        userData['foto'] = userData['foto'].split('/').pop();
 
         return userData;
     } catch (error) {
@@ -46,15 +51,12 @@ async function precompileForm(){
     }
 }
 
-function logInfo(userData){
-    console.log(userData);
-}
-
-async function updateAccount(id, foto, nome, cognome, username, telefono, mail, password){
-    const url = 'api-modify-profile.php';
+async function updateAccount(id, foto, fotoOld, nome, cognome, username, telefono, mail, password){
+    const url = 'api-edit-profile.php';
     const formData = new FormData();
     formData.append("id", id);
     formData.append("foto", foto);
+    formData.append("fotoOld", fotoOld);  // Passa il nome della foto vecchia
     formData.append("nome", nome);
     formData.append("cognome", cognome);
     formData.append("username", username);

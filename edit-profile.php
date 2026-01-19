@@ -1,6 +1,6 @@
 <?php
 require_once 'bootstrap.php';
-$templateParams["js"] = array("js/modify-profile.js");
+$templateParams["js"] = array("js/edit-profile.js");
 ?>
 
 <!DOCTYPE html>

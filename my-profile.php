@@ -31,7 +31,7 @@ $templateParams["js"] = array("js/my-profile.js");
         <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
         <div class="col-10 col-md-6">
             <nav class="d-flex justify-content-end gap-2">    
-                <a href="modify-profile.php" id="editProfile"><img src="resources/modifying_icon.png" alt="icon modifica"/></a>
+                <a href="edit-profile.php" id="editProfile"><img src="resources/modifying_icon.png" alt="icon modifica"/></a>
                 <a href="" id="logout" onclick="logout();"><img src="resources/logout.webp" alt="icon logout"/></a>
             </nav>
         </div>

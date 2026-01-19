@@ -5,18 +5,25 @@ $result['modificaeseguita'] = false;
 
 // Gestione upload foto
 $fotoName = null;
-if (is_string($_POST['foto'])) {
-    $fotoName = $_POST['foto'];
-} else {
+if(!empty($_FILES['foto']['name'])) {
+    //cancellazione foto precedente se ne è stata caricata una nuova
+    $oldFoto = $_POST['fotoOld'] ?? null;
+    if($oldFoto) {
+        unlink("resources/users/" . $oldFoto);
+    }
+
     $fotoName = saveImg($_FILES['foto'], true);
     if (!$fotoName) {
         $result["errorecreazione"] = "Errore durante il salvataggio della foto";
         header('Content-Type: application/json');
         echo json_encode($result);
         exit;
-    }    
+    } 
+} else {
+    $fotoName = $_POST['fotoOld'] ?? null;
 }
 
+//gestisco la password, se è null non è stata modificata quindi la lascio così com'è
 if(is_null($_POST['password'])){
     $passwordHash = $_POST['password'];
 } else {

@@ -36,7 +36,7 @@ async function createAccount(foto, nome, cognome, username, telefono, mail, pass
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-
+        
         const json = await response.json();
         console.log(json);
         if(json["creazioneeseguita"]){
