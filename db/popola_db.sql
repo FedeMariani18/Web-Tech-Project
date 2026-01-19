@@ -1,41 +1,3 @@
-INSERT INTO UTENTE (username, mail, password_hash, nome, cognome, numero_telefono, foto, ruolo) VALUES
-('mario.rossi', 'mario.rossi@email.it', '1', 'Mario', 'Rossi', '3331234567', 'user_696b6c7242a7f.png', 'USER'),
-('luca.bianchi', 'luca.bianchi@email.it', '2', 'Luca', 'Bianchi', '3339876543', 'user_696b6c7242a7f.png', 'USER'),
-('admin.webtech', 'admin@webtech.it', '3', 'Admin', 'WebTech', '3330001111', 'user_696b6c7242a7f.png', 'ADMIN'),
-('federiani', 'federico.mariani@gmail.com', '$2y$10$g810aQvWGpjXNb55I0.gi.kXLqll2ofI2UdG4RPlkjs9nkib0o5qa', 'Federico', 'Mariani', '3384308412', 'user_696d2f99e8452.png', 'ADMIN');
-
-INSERT INTO TIPO_NOTIFICA (id, tipologia) VALUES
-(1, 'NUOVO_LIKE_A_POST'),
-(2, 'NUOVA_ISCRIZIONE_A_POST'),
-(3, 'NUOVO_COMMENTO_A_POST'),
-(4, 'POST_ELIMINATO'),
-(5, 'UTENTE_DISISCRITTO_DA_TUO_POST');
-
-INSERT INTO CATEGORIA (id, nome_categoria) VALUES
-(1, 'festa'),
-(2, 'studio'),
-(3, 'sport');
-
-INSERT INTO POST (id, titolo, descrizione, data_ora, posti_disponibili, indirizzo, citta, comune, provincia, id_categoria, foto, id_creatore) VALUES
-(1, 'Festa universitaria', 'grande festa yuhhuuu', '2026-02-3 21:00:00', 50, 'Via ciccia 546', 'Milano', 'Milano', 'Milano', 1, 'img_prova.jpeg', 1),
-(2, 'Gruppo studio', 'grande studio nooooo', '2026-02-20 14:30:00', 20, 'Via Floppy 123', 'Torino', 'Torino', 'Torino', 2, 'img_prova.jpeg', 2),
-(3, 'Partita di beach volley', 'grande partita yuuhhuuuu', '2026-01-31 10:00:00', 15, 'Via Business 798', 'Roma', 'Roma', 'Roma', 3, 'img_prova.jpeg', 2);
-
-INSERT INTO ISCRIZIONE_POST (id_post, id_iscritto) VALUES
-(2, 1);
-
-INSERT INTO COMMENTO (id, testo, id_utente, id_post) VALUES
-(1, "Bellissimo evento, evvai!!!", 1, 2);
-
-INSERT INTO LIKE_POST (id_post, id_utente) VALUES
-(2, 1);
-
-INSERT INTO NOTIFICA (id, id_tipo_notifica, id_destinatario, data_ora, id_mittente, id_post, letto) 
-VALUES (1, 2, 2, '2026-01-20 21:00:00', 1, 2, 0);
-
-
--- nuovo db
-
 INSERT INTO UTENTE (id, username, password_hash, nome, cognome, numero_telefono, mail, foto, ruolo, bannato) VALUES
 (1, 'federiani', '$2y$10$6n05D.ZIau7a4e6qVslwLu418KPoTa2IP0nVQB5L/MIqC2Seu0oPa', 'Federico', 'Mariani', '3384308484', 'federico@gmail.com', 'user_696e5b6947d31.png', 'USER', 0),
 (2, 'mario.rossi', '$2y$10$qgVX/exy5N4iQH48YOhVyOHRMo6f54OhVHEouKjmn33zGnIqxps.W', 'Mario', 'Rossi', '3384308888', 'mario@gmail.com', 'user_696e5bc831c73.png', 'USER', 0),
@@ -63,78 +25,82 @@ INSERT INTO TIPO_NOTIFICA (id, tipologia) VALUES
 (5, 'UTENTE_DISISCRITTO_DA_TUO_POST');
 
 INSERT INTO POST
-(titolo, descrizione, data_ora, posti_disponibili, indirizzo, citta, comune, provincia, id_categoria, foto, id_creatore)
+(id, titolo, descrizione, data_ora, posti_disponibili, indirizzo, citta, comune, provincia, id_categoria, foto, id_creatore)
 VALUES
 -- FESTE (1)
-('Festa matricole università',
+(1, 'Festa matricole università',
  'Festa dedicata alle matricole per conoscersi, socializzare e iniziare la vita universitaria con musica, drink economici e un ambiente accogliente e informale.',
  '2026-02-01 21:30:00', 50, 'Via Università 5', 'Roma', 'Roma', 'RM', 1, 'festa_matricole.jpg', 1),
 
-('Aperitivo universitario',
+(2, 'Aperitivo universitario',
  'Aperitivo tra studenti di diverse facoltà per rilassarsi dopo le lezioni, scambiare due chiacchiere e creare nuove amicizie in un locale vicino al campus.',
  '2026-02-03 19:00:00', 30, 'Via dei Giovani 18', 'Milano', 'Milano', 'MI', 1, 'aperitivo.png', 4),
 
-('Festa in casa post-esami',
+(3, 'Festa in casa post-esami',
  'Serata informale organizzata da studenti dopo la sessione, con musica, giochi e voglia di divertirsi dopo settimane intense di studio.',
  '2026-02-06 22:00:00', 25, 'Via Leopardi 22', 'Torino', 'Torino', 'TO', 1, 'post_esami.jpg', 7),
 
-('Karaoke night studenti',
+(4, 'Karaoke night studenti',
  'Serata karaoke aperta a tutti gli universitari, ideale per divertirsi, cantare senza giudizio e passare del tempo insieme fuori dalle aule.',
  '2026-02-10 21:00:00', 40, 'Via Centrale 9', 'Padova', 'Padova', 'PD', 1, 'karaoke.jpg', 10),
 
-('Party Erasmus',
+(5, 'Party Erasmus',
  'Festa internazionale con studenti Erasmus e italiani, musica da tutto il mondo e ottima occasione per praticare lingue e conoscere nuove culture.',
  '2026-02-14 22:30:00', 60, 'Via Europa 3', 'Bologna', 'Bologna', 'BO', 1, 'erasmus_party.png', 12),
 
 -- STUDIO (2)
-('Studio di gruppo Analisi 1',
+(6, 'Studio di gruppo Analisi 1',
  'Gruppo di studio per studenti del primo anno, utile per chiarire dubbi, svolgere esercizi e prepararsi insieme all’esame di analisi matematica.',
  '2026-02-02 15:00:00', 6, 'Biblioteca Centrale', 'Pisa', 'Pisa', 'PI', 2, 'analisi1.jpg', 2),
 
-('Ripasso Economia Aziendale',
+(7, 'Ripasso Economia Aziendale',
  'Incontro di studio collaborativo per ripassare concetti chiave di economia aziendale, confrontarsi sugli appunti e prepararsi all’esame scritto.',
  '2026-02-04 16:00:00', 8, 'Aula Studio Sud', 'Napoli', 'Napoli', 'NA', 2, 'economia.png', 3),
 
-('Preparazione esame Diritto',
+(8, 'Preparazione esame Diritto',
  'Sessione di studio focalizzata sugli argomenti principali di diritto, con confronto tra studenti e spiegazioni reciproche degli istituti giuridici.',
  '2026-02-07 14:00:00', 7, 'Biblioteca Giuridica', 'Roma', 'Roma', 'RM', 2, 'diritto.jpg', 5),
 
-('Gruppo studio Informatica',
+(9, 'Gruppo studio Informatica',
  'Incontro tra studenti di informatica per ripassare algoritmi, strutture dati e prepararsi agli esami condividendo esercizi e soluzioni.',
  '2026-02-09 15:30:00', 10, 'Aula Studio Tech', 'Milano', 'Milano', 'MI', 2, 'informatica.png', 8),
 
-('Studio tesi triennale',
+(10, 'Studio tesi triennale',
  'Incontro tra laureandi per confrontarsi sulla stesura della tesi, organizzare il lavoro e scambiarsi consigli utili su fonti e metodologia.',
  '2026-02-12 17:00:00', 5, 'Biblioteca Umanistica', 'Firenze', 'Firenze', 'FI', 2, 'tesi.jpg', 11),
 
-('Ripasso Fisica generale',
+(11, 'Ripasso Fisica generale',
  'Sessione di studio per studenti di ingegneria e scienze, concentrata su esercizi e teoria di fisica generale in vista dell’esame.',
  '2026-02-15 15:00:00', 9, 'Aula Studio Ingegneria', 'Trento', 'Trento', 'TN', 2, 'fisica.png', 6),
 
 -- SPORT (3)
-('Calcetto universitario',
+(12, 'Calcetto universitario',
  'Partita di calcetto tra studenti universitari di livello amatoriale, ideale per fare sport, divertirsi e conoscere nuove persone.',
  '2026-02-03 18:30:00', 10, 'Centro Sportivo Uni', 'Roma', 'Roma', 'RM', 3, 'calcetto.jpg', 4),
 
-('Pallavolo mista',
+(13, 'Pallavolo mista',
  'Allenamento e partita amichevole di pallavolo mista aperta a studenti di tutte le facoltà, senza necessità di esperienza.',
  '2026-02-05 19:00:00', 12, 'Palestra Universitaria', 'Bologna', 'Bologna', 'BO', 3, 'pallavolo.png', 9),
 
-('Corsa al parco',
+(14, 'Corsa al parco',
  'Allenamento di corsa leggera al parco per studenti universitari, adatto a tutti i livelli e perfetto per scaricare lo stress.',
  '2026-02-08 17:30:00', 15, 'Parco Cittadino', 'Firenze', 'Firenze', 'FI', 3, 'corsa.jpg', 1),
 
-('Allenamento palestra',
+(15, 'Allenamento palestra',
  'Sessione di allenamento in palestra tra studenti per motivarsi a vicenda e mantenersi in forma durante il periodo universitario.',
  '2026-02-11 18:00:00', 6, 'Palestra Campus', 'Milano', 'Milano', 'MI', 3, 'palestra.png', 7),
 
-('Basket tra studenti',
+(16, 'Basket tra studenti',
  'Partita amichevole di basket tra universitari, ideale per divertirsi, fare movimento e socializzare fuori dalle lezioni.',
  '2026-02-13 20:00:00', 10, 'Campo Basket Uni', 'Torino', 'Torino', 'TO', 3, 'basket.jpg', 10),
 
-('Yoga per studenti',
+(17, 'Yoga per studenti',
  'Lezione di yoga rilassante dedicata agli studenti universitari, perfetta per migliorare concentrazione e benessere fisico.',
- '2026-02-16 17:00:00', 12, 'Sala Polifunzionale', 'Padova', 'Padova', 'PD', 3, 'yoga.png', 12);
+ '2026-02-16 17:00:00', 12, 'Sala Polifunzionale', 'Padova', 'Padova', 'PD', 3, 'yoga.png', 12),
+
+(18, 'Evento specializzato networking',
+ 'Evento dedicato al networking tra studenti e professionisti, con tavoli tematici e opportunità di conoscere persone del settore.',
+ '2026-02-18 18:30:00', 50, 'Centro Conferenze', 'Milano', 'Milano', 'MI', 1, 'networking.jpg', 5);
 
 INSERT INTO COMMENTO (testo, id_utente, id_post) VALUES
 -- POST 1
