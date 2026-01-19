@@ -234,9 +234,11 @@
 
         public function searchPosts($query) {
             $sql = "
-                SELECT p.id, p.titolo, p.descrizione, p.foto, c.nome_categoria
+                SELECT p.id, p.titolo, p.descrizione, p.foto, c.nome_categoria, 
+                p.data_ora, u.username AS creatore
                 FROM post p
-                JOIN categoria c ON p.id_categoria = c.id
+                JOIN categoria c ON p.id_categoria = c.id 
+                JOIN utente u ON p.id_creatore = u.id 
                 WHERE (
                     p.titolo LIKE ?
                     OR p.descrizione LIKE ?

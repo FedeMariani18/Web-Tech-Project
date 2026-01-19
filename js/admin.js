@@ -327,14 +327,14 @@ function insertUserProfilePhoto(foto){
 
 //#region SEARCH
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOM fully loaded and parsed");
     const searchForm = document.getElementById("searchForm2");
+    const label = document.getElementById("search");
     if(searchForm) {
-        console.log("Search form found");
         searchForm.addEventListener("submit", function(event) {
             event.preventDefault();
-            const query = document.getElementById("search").value;
+            const query = label.value;
             search(query);
+            label.value = "";
         });
     }
 });
@@ -349,11 +349,9 @@ async function search(query) {
 
         const json = await response.json();
 
-        if(json["searchsuccess"]){
-
-            const container = document.querySelector("main");
-
-            if(localStorage.getItem('selectedTab') === 'utenti'){
+        const container = document.querySelector("main");
+        if(localStorage.getItem('selectedTab') === 'utenti'){
+            if(json["searchsuccess"]){
                 if (json['users'] && json['users'].length > 0) {
                     const users = createUserRow(json['users']);
                     container.innerHTML = users;
@@ -361,16 +359,19 @@ async function search(query) {
                     container.innerHTML = `<p class="no-results">Nessun utente trovato.</p>`;
                 }
             } else {
+                container.innerHTML = `<p class="no-results">Nessun utente trovato.</p>`;
+            }
+        } else {
+            if(json["searchsuccess"]){
                 if (json['posts'] && json['posts'].length > 0) {
                     const posts = createPostRow(json['posts']);
                     container.innerHTML = posts;
                 } else {
                     container.innerHTML = `<p class="no-results">Nessun post trovato.</p>`;
                 }
-            }
-        }
-        else{
-            showErrorToast(json['error']);
+            } else {
+                container.innerHTML = `<p class="no-results">Nessun post trovato.</p>`;
+            }    
         }
     } catch (error) {
         console.log(error.message);

@@ -5,13 +5,21 @@
 
     // Gestione upload foto
     $fotoName = null;
-    if (isset($_FILES['foto'])) {
+    if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $fotoName = saveImg($_FILES['foto'], false);
-        if (!$fotoName) {
-            $result["errorcreation"] = "Errore durante il salvataggio della foto";
-            header('Content-Type: application/json');
-            echo json_encode($result);
-            exit;
+    } else {
+        switch ($_POST['categoria']) {
+            case 1:
+                $fotoName = "img_prova.jpeg";
+                break;
+            case 2:
+                $fotoName = "img_prova.jpeg";
+                break;
+            case 3:
+                $fotoName = "img_prova.jpeg";
+                break;
+            default:
+                $fotoName = "img_prova.jpeg";
         }
     }
 
