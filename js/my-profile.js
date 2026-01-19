@@ -153,4 +153,25 @@ async function getUserData() {
     }
 }
 
+async function logout(){
+    const url = 'api-logout.php';
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = await response.json();
+        console.log(json);
+
+        if(json['logouteseguito'] === true){
+            window.location.href = "index.php";
+        } else {
+            console.log(json['errorelogout']);
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 getUserData();
