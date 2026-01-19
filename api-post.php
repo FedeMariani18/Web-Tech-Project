@@ -25,6 +25,13 @@ if (isset($_POST['eliminaPost'])) {
             if(!$result){
                 $response = "errore";
             }
+            $result = $dbh->getMembersFromPost($_POST['id_post']);
+            for ($i = 0; $i < count($result); $i++) {
+                $resultNotifica = $dbh->insertNewNotification(4, $result[$i]['id'], date("Y-m-d H:i:s"), $_POST['creatore'], $_POST['id_post'], 0);
+                if(!$resultNotifica) {
+                    $response = "Errore nell'invio della notifica.";
+                }
+            }
         }
     }
     header('Content-Type: application/json');
@@ -108,6 +115,7 @@ if (isset($_POST['id_utente']) && isset($_POST['id_post']) && !isset($_POST['tes
         if($result){
             $response["disiscrizioneRiuscita"] = true;
             $_SESSION["flash_message"] = "Disiscrizione avvenuta con successo.";
+            $result = $dbh->insertNewNotification(5, $_POST['creatore'], date("Y-m-d H:i:s"), $_POST['id_utente'], $_POST['id_post'], 0);
         } else{
             $response["errore"] = "Errore nela disiscrizione.";
         }

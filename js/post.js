@@ -55,7 +55,7 @@ function createPost(post, utentePartecipa, id_utente, likeUtente, admin){
         </div>
     </div>
 
-    ${getButtonToPartecipate(utentePartecipa, id_utente, post['creatore']['id'])}
+    ${getButtonToPartecipate(utentePartecipa, id_utente, post['creatore']['id'], post['numero_partecipanti'], post['posti_disponibili'])}
     `;
     return result;
 }
@@ -102,7 +102,7 @@ function getButtonForComment() {
     }
 }
 
-function getButtonToPartecipate(utentePartecipa, id_utente, id_creatore) {
+function getButtonToPartecipate(utentePartecipa, id_utente, id_creatore, partecipanti, posti) {
     if (id_creatore == id_utente) {
         return `
             <div class="row">
@@ -124,6 +124,9 @@ function getButtonToPartecipate(utentePartecipa, id_utente, id_creatore) {
                 </div>
             </div>
         `;
+    }
+    if (posti <= partecipanti) {
+        return "";
     }
     return `
         <div class="row">
@@ -242,7 +245,7 @@ async function getPostData() {
             const btn2 = document.getElementById("disiscriviti");
             if (btn2) {
                 btn2.addEventListener("click", () => {
-                    removeParticipation();
+                    removeParticipation(json['post']['creatore']['id']);
                 });
             }
         } else {
@@ -478,11 +481,12 @@ async function insertNewPartecipation(id_creatore) {
     }
 }
 
-async function removeParticipation() {
+async function removeParticipation(id_creatore) {
     const url = 'api-post.php';
     const formData = new FormData();
     formData.append('id_utente', userId);
     formData.append('id_post', postId);
+    formData.append('creatore', id_creatore);
     formData.append('partecipazione', "false");
     try {
         const response = await fetch(url, {
