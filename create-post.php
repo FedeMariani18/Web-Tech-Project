@@ -47,7 +47,7 @@
                     </li>
                     <li class="mb-3">
                         <label class="form-label" for="nPartecipanti">Posti disponibili:</label>
-                        <input class="form-control" type="number" id="nPartecipanti" name="nPartecipanti"/>
+                        <input class="form-control" type="number" id="nPartecipanti" name="nPartecipanti" required/>
                     </li>
                     <li class="mb-3">
                         <fieldset>
@@ -55,28 +55,28 @@
                         
                             <div class="row g-3 mb-2">
                                 <div class="col">
-                                    <input type="text" class="form-control" id="via" name="via" placeholder="Via San Migniato">
+                                    <input type="text" class="form-control" id="via" name="via" placeholder="Via San Migniato" required>
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control" id="civico" name="civico" placeholder="Civico">
+                                    <input type="text" class="form-control" id="civico" name="civico" placeholder="Civico" required>
                                 </div>
                             </div>
                             <div class="row g-3">
                                 <div class="col">
-                                    <input type="text" class="form-control" id="citta" name="citta" placeholder="Città">
+                                    <input type="text" class="form-control" id="citta" name="citta" placeholder="Città" required>
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control" id="comune" name="comune" placeholder="Comune">
+                                    <input type="text" class="form-control" id="comune" name="comune" placeholder="Comune" required>
                                 </div>
                                 <div class="col-3">
-                                    <input type="text" class="form-control" id="provincia" name="provincia" placeholder="Provincia">
+                                    <input type="text" class="form-control" id="provincia" name="provincia" placeholder="Provincia" required>
                                 </div>
                             </div>
                         </fieldset>
                     </li>
                     <li class="mb-3">
                         <label class="form-label" for="categoria">Categoria:</label>
-                        <select class="form-select" name="categoria" id="categoria">
+                        <select class="form-select" name="categoria" id="categoria" required>
                             <option value="">-------</option>
                             <option value="1">Sport</option>
                             <option value="2">Studio</option>
