@@ -6,6 +6,18 @@ async function init() {
     userData = await precompileForm();
     console.log("Dati dell'utente " , userData);  // userData contiene i dati normali, non una Promise
 
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    togglePassword.addEventListener("click", () => {
+        const isHidden = passwordInput.type === "password";
+
+        passwordInput.type = isHidden ? "text" : "password";
+        eyeIcon.textContent = isHidden ? "Nascondi" : "Mostra";
+        passwordInput.focus();
+    });
+
     form.addEventListener("submit", function(event) {
         event.preventDefault();
         

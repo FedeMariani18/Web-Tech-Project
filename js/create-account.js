@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         passwordInput.type = isHidden ? "text" : "password";
         eyeIcon.textContent = isHidden ? "Nascondi" : "Mostra";
+        passwordInput.focus();
     });
 
     
