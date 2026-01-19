@@ -1,5 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector("main form");
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    togglePassword.addEventListener("click", () => {
+        const isHidden = passwordInput.type === "password";
+
+        passwordInput.type = isHidden ? "text" : "password";
+        eyeIcon.textContent = isHidden ? "Nascondi" : "Mostra";
+    });
+
     
     form.addEventListener("submit", function(event) {
         event.preventDefault();

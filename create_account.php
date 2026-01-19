@@ -24,7 +24,7 @@ $templateParams["js"] = array("js/create-account.js");
     
     <body>
         <header class="p-2">
-            <h1 class="m-0" style="text-align: center;">CREA ACCOUONT</h1>
+            <h1 class="m-0" style="text-align: center;">CREA ACCOUNT</h1>
         </header>
         <main>
             <form class="p-3" method="POST">
@@ -69,7 +69,7 @@ $templateParams["js"] = array("js/create-account.js");
                     <li class="mb-3">
                         <label class="form-label" for="password">Password:</label>
                         <button class="btn btn-outline-secondary mb-1" type="button" id="togglePassword">
-                        <span id="eyeIcon">Mostra</span>
+                            <span id="eyeIcon">Mostra</span>
                         </button>
                         <input class="form-control" type="password" id="password" name="password" placeholder="Password"/>
                     </li>
