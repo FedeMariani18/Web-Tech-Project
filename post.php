@@ -26,7 +26,7 @@ $templateParams["js"] = array("js/post.js");
                     <nav class="d-flex justify-content-end gap-2">
                         <a href="like-page.php" id="like"><img src="resources/heart.png" alt="icon del cuore"/></a>
                         <a href="notification-page.php" id="notification"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
-                        <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg"/></a>
+                        <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg" class="rounded-circle border"/></a>
                     </nav>
                 </div>
             </div>
