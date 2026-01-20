@@ -8,11 +8,9 @@ function createPost(posts){
                     <article class="row rounded-5 border border-black border-1">
                         <img class="col-5 img-fluid rounded-start-5 p-0" src="${posts[i]["foto"]}" alt="immagine del annuncio">
                         <div class="col-7">
-                            <div class="">
                                 <h5 class="card-title">${posts[i]["titolo"]}</h5>
                                 <p class="card-text">${posts[i]["descrizione"]}</p>
                                 <p class="card-text"><small class="text-body-secondary">#${posts[i]["nome_categoria"]}</small></p>
-                            </div>
                         </div>
                     </article>
                 </a>

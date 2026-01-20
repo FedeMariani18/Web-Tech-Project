@@ -44,7 +44,7 @@ $templateParams["js"] = array("js/index.js");
 
         <!-- MAIN -->
         <main class="container-fluid">
-            <p>Cerca l'avventura giusta per te</p>
+            <p class="mt-3">Cerca l'avventura giusta per te</p>
             <p class="m-0" id='userTitle'></p>
             <div class="row justify-content-center m-0" id="users-container">
             </div>
