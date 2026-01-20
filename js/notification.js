@@ -38,6 +38,14 @@ function getNotificationData(notification) {
             data['image'] = "comment";
             data['testo'] = " ha scritto un nuovo commento sotto al tuo post ";
             break;
+        case "UTENTE_DISISCRITTO_DA_TUO_POST":
+            data['image'] = "partecipation";
+            data['testo'] = " non partecipa più al tuo post ";
+            break;
+        case "POST_ELIMINATO":
+            data['image'] = "partecipation";
+            data['testo'] = "Un post a cui partecipavi è stato eliminato, post: ";
+            break;
         default:
             break;
     }
