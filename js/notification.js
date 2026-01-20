@@ -44,7 +44,7 @@ function getNotificationData(notification) {
             break;
         case "POST_ELIMINATO":
             data['image'] = "partecipation";
-            data['testo'] = "Un post a cui partecipavi è stato eliminato, post: ";
+            data['testo'] = " Un post a cui partecipavi è stato eliminato, post: ";
             break;
         default:
             break;

@@ -21,7 +21,7 @@ $templateParams["js"] = array("js/index.js");
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <header class="container-fluid">
+        <header class="container-fluid pb-3">
             <div class="row align-items-center">
                 <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
                 <div class="col-10 col-md-6">
@@ -34,9 +34,13 @@ $templateParams["js"] = array("js/index.js");
             </div>
             
             <form class="container-fluid" role="search" id="searchForm">
-                <div class="row justify-content-center p-2">
+                <div class="row justify-content-center">
                     <input class="col-6 rounded-5" id="search" type="search" placeholder="Search" aria-label="Search"/>
-                    <button class="col-2 rounded-5 m-1" type="submit"><img src="resources/magnifying_glass_icon.png" alt="icona della lente d'ingrandimento"></button>
+                    <div class="col-2">
+                        <div class="row justify-content-center">
+                            <button class="col-10 rounded-5" type="submit"><img src="resources/magnifying_glass_icon.png" alt="icona della lente d'ingrandimento"></button>
+                        </div>
+                    </div>
                 </div>
             </form>
             

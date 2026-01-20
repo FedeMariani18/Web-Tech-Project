@@ -18,10 +18,12 @@ header{
     background-color: var(--first-color);
 }
 
-header h1{
+header h1 a{
     font-size: clamp(1rem, 5vw, 2rem);
     font-family: "BBH Bartle", sans-serif;
     color: var(--third-color);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 header nav img{
@@ -53,20 +55,37 @@ nav.profile-icon-nav img[src="resources/user_icon.png"]{
     transition: transform 0.2s ease;
 }
 
-header form button{
-    background-color: var(--second-color);
-    border-color: black;
-    color: black;
-
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+header form > .row {
+    height: 40px;
+    align-items: center;
 }
 
-header form button img{
+header form div div {
+    height: 100%;
+}
+
+header form input,
+header form button {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+header form button {
+    background-color: var(--second-color);
+    
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+header form button img {
     width: 15px;
     height: 15px;
 }
 
-header form button:hover, body footer div button:hover, body main article:hover {
+header h1 a:hover,
+header form button:hover, 
+body footer div button:hover, 
+body main article:hover {
     transform: scale(1.05);
     box-shadow: 3px 3px rgb(0 0 0 / 40%);
 }
@@ -105,6 +124,11 @@ body main article{
     height: 100%;
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body main article img{
+    max-height: 200px;
+    object-fit: cover;
 }
 
 body+nav{

@@ -5,26 +5,20 @@ function createPost(posts){
         return `Non hai nessun annuncio preferito.`;
     }
     for(let i=0; i < posts.length; i++){
+        let data = new Date(posts[i]["data_ora"]);
         let postHTML = `
-        <a href="post.php?id=${posts[i]['id']}" class="text-decoration-none text-dark">
-        <div class="post card mb-3">
-            <div class="row g-0 align-items-center">
-                <div class="col-4">
-                    <img src="${posts[i]['foto']}" 
-                         class="img-fluid rounded-start"
-                         alt="immagine annuncio">
-                </div>
-                <div class="col-8">
-                    <div class="card-body py-2">
-                        <h6 class="card-title mb-1">${posts[i]['titolo']}</h6>
-                        <p class="card-text small text-muted mb-0">
-                            ${posts[i]['descrizione']}
-                        </p>
+        <div class="col-10 col-lg-3 p-3 p-md-4">
+            <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="post.php?id=${posts[i]["id"]}">
+                <article class="row rounded-5 border border-black border-1 ">
+                    <img class="img-fluid p-0" src="${posts[i]["foto"]}" alt="immagine del annuncio">
+                    <div class="">
+                        <h4 class="card-title m-0">${posts[i]["titolo"]}</h4>
+                        <p class="card-text m-0 text-align-start">${data.toLocaleString()}</p>
+                        <p class="card-text text-secondary m-0 text-align-start">#${posts[i]["nome_categoria"]}</p>
                     </div>
-                </div>
-            </div>
+                </article>
+            </a>
         </div>
-        </a>
         `;
         result += postHTML;
     }
@@ -51,7 +45,7 @@ async function getPostData() {
             profileImg.src = json['fotoProfilo'];
         }
         const posts = createPost(json['likes']);
-        const main = document.querySelector("main");
+        const main = document.getElementById("posts-container");
         main.innerHTML += posts;
     } catch (error) {
         console.log(error.message);

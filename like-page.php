@@ -33,9 +33,11 @@ $templateParams["js"] = array("js/like.js");
             </div>
         </header>
 
-        <main class="container-fluid secondary-subtle py-3">
+        <main class="container-fluid">
             <h5 class="mb-3">Annunci preferiti:</h5>
-            
+            <div class="row justify-content-center m-0" id="posts-container">
+                <!-- il metodo getPostData() in index.js prende il div con id posts-container e ci aggiunge dentro i post. -->
+            </div>
         </main>
         <?php
         if(isset($templateParams["js"])):

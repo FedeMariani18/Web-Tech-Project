@@ -2,19 +2,21 @@ function createPost(posts){
     let result = "";
 
     for(let i=0; i < posts.length; i++){
+        let data = new Date(posts[i]["data_ora"]);
+
         let postHTML = `
-        <div class="col-10 col-lg-4 p-3 p-md-4">
-                <a class="link-underline link-underline-opacity-0 text-reset" href="post.php?id=${posts[i]["id"]}">
-                    <article class="row rounded-5 border border-black border-1">
-                        <img class="col-5 img-fluid rounded-start-5 p-0" src="${posts[i]["foto"]}" alt="immagine del annuncio">
-                        <div class="col-7">
-                                <h5 class="card-title">${posts[i]["titolo"]}</h5>
-                                <p class="card-text">${posts[i]["descrizione"]}</p>
-                                <p class="card-text"><small class="text-body-secondary">#${posts[i]["nome_categoria"]}</small></p>
-                        </div>
-                    </article>
-                </a>
-            </div>
+        <div class="col-10 col-lg-3 p-3 p-md-4">
+            <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="post.php?id=${posts[i]["id"]}">
+                <article class="row rounded-5 border border-black border-1 ">
+                    <img class="img-fluid p-0" src="${posts[i]["foto"]}" alt="immagine del annuncio">
+                    <div class="">
+                        <h4 class="card-title m-0">${posts[i]["titolo"]}</h4>
+                        <p class="card-text m-0 text-align-start">${data.toLocaleString()}</p>
+                        <p class="card-text text-secondary m-0 text-align-start">#${posts[i]["nome_categoria"]}</p>
+                    </div>
+                </article>
+            </a>
+        </div>
         `;
         result += postHTML;
     }
@@ -34,19 +36,18 @@ function createUser(users, id_user_logged){
         
         let postHTML = `
         <div class="col-10 col-lg-4 p-3 p-md-4">
-                <a class="link-underline link-underline-opacity-0 text-reset" href="${redirect}">
-                    <article class="row rounded-5 border border-black border-1">
-                        <img class="col-5 img-fluid rounded-start-5 p-0" src="${users[i]["foto"]}" alt="immagine del annuncio">
-                        <div class="col-7">
-                            <div class="">
-                                <h5 class="card-title">${users[i]["username"]}</h5>
-                                <p class="card-text">${users[i]["nome"]} ${users[i]["cognome"]}</p>
-                            </div>
+            <a class="link-underline link-underline-opacity-0 text-reset" href="${redirect}">
+                <article class="row rounded-5 border border-black border-1">
+                    <img class="col-5 img-fluid rounded-start-5 p-0" src="${users[i]["foto"]}" alt="immagine del annuncio">
+                    <div class="col-7">
+                        <div class="">
+                            <h5 class="card-title">${users[i]["username"]}</h5>
+                            <p class="card-text">${users[i]["nome"]} ${users[i]["cognome"]}</p>
                         </div>
-                    </article>
-                </a>
-            </div>
-        `;
+                    </div>
+                </article>
+            </a>
+        </div>`;
         result += postHTML;
     }
     return result;
