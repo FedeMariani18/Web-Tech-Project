@@ -61,12 +61,20 @@ async function getPostData() {
             throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        
+        const profile = document.getElementById("profile");
+
         if (json['utenteLoggato']) {
-            const profile = document.getElementById("profile");
-            const profileImg = document.getElementById("profileImg");
+            const icon = document.getElementById("profileIcon");
+            if(icon){
+                const img = document.createElement("img");
+                img.src = json['fotoProfilo'];
+                img.id = "profileImg";
+                img.alt = "Foto profilo utente";
+                img.className = "rounded-circle border profile-hover";
+
+                icon.replaceWith(img);
+            }
             profile.href = "my-profile.php";
-            profileImg.src = json['fotoProfilo'];
         } else {
             const like = document.getElementById("like");
             const notification = document.getElementById("notification");
@@ -75,7 +83,6 @@ async function getPostData() {
             notification.style.display = "none";
             profile.href = "login.php";
             create.style.display = "none";
-
         }
 
         const postsHTML = createPost(json['post']);

@@ -26,33 +26,47 @@ header h1 a{
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-header nav img{
-    width: 50px;
-    height: 50px;
+/* Photo and Icon Nav  */
 
-    transition: transform 0.2s ease;
-}
-
-header nav img:hover{
-    transform: scale(1.1);
-}
-
-nav.profile-icon-nav img{
+.nav-item-box {
     width: 100px;
     height: 100px;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: transform 0.2s ease;
 }
 
-nav.profile-icon-nav img:hover{
+.nav-item-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.nav-item-box i {
+    font-size: 50px; /* regolalo finché visivamente combacia */
+    line-height: 1;
+}
+
+.nav-item-box:hover {
     transform: scale(1.7);
 }
 
-nav.profile-icon-nav img[src="resources/user_icon.png"]{
-    width: 150px;
-    height: 150px;
+.index-nav-small .nav-item-box {
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+}
 
-    transition: transform 0.2s ease;
+.index-nav-small .nav-item-box i {
+    font-size: 35px !important;
+}
+
+.index-nav-small .nav-item-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 header form > .row {

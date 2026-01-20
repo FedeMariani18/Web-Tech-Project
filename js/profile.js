@@ -101,11 +101,19 @@ async function getUserData() {
         //Hidden button if the user is not logged in
         const profile = document.getElementById("my-profile");
         const deleteBtn = document.getElementById("deleteBtn");
-        console.log(json.utenteLoggato, json.visitorIsAdmin);
+
         if (json['utenteLoggato']) {
-            const profileImg = document.getElementById("my-profileImg");
+            const icon = document.getElementById("profileIcon");
+            if(icon){
+                const img = document.createElement("img");
+                img.src = json['fotoProfilo'];
+                img.id = "my-profile-img";
+                img.alt = "Foto profilo utente";
+                img.className = "rounded-circle border profile-hover";
+
+                icon.replaceWith(img);
+            }
             profile.href = "my-profile.php";
-            profileImg.src = json['fotoProfilo'];
             if(json['visitorIsAdmin']){
                 deleteBtn.style.display = "block";
             }

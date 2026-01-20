@@ -40,6 +40,8 @@ async function getPostData() {
         console.log(json);
         const profile = document.getElementById("profile");
         const profileImg = document.getElementById("profileImg");
+        const username = document.getElementById("username");
+        username.innerText = json['username'];
         if (json['utenteLoggato']) {
             profile.href = "my-profile.php";
             profileImg.src = json['fotoProfilo'];

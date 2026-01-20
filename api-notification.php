@@ -6,12 +6,14 @@ header('Content-Type: application/json');
 $response = [
     'utenteLoggato' => isUserLoggedIn(),
     'fotoProfilo' => null,
-    'notifications' => null
+    'notifications' => null,
+    'username' => null
 ];
 
 if (isUserLoggedIn()) {
     $response['fotoProfilo'] = $dbh->getUserFromId($_SESSION['id'])['foto'];
     $response['fotoProfilo'] = UPLOAD_DIR_PROFILE.$response['fotoProfilo'];
+    $response['username'] = $dbh->getUserFromId($_SESSION['id'])['username'];
 }
 
 if (isset($_SESSION['id'])) {

@@ -10,6 +10,7 @@ $templateParams["js"] = array("js/notification.js");
         <link rel="stylesheet" type="text/css" href="./css/style.css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- for special font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,13 +24,21 @@ $templateParams["js"] = array("js/notification.js");
             <div class="row align-items-center">
                 <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
             </div>
-
             <div class="container-fluid">
                 <nav class="d-flex justify-content-center gap-2 profile-icon-nav align-items-center">
-                    <a href="like-page.php" id="like"><img src="resources/heart.png" alt="icon del cuore"/></a>
-                    <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg" class="rounded-circle  border border-dark"/></a>
-                    <a href="notification-page.php" id="notification"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
+                    <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
+                        <i id="like" class="bi bi-heart text-black" aria-hidden="true"></i>
+                    </a>
+                    <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
+                        <i id="notification" class="bi bi-bell text-black" aria-hidden="true"></i>
+                    </a>
+                    <a href="" id="profile" aria-label="Icona profilo" class="nav-item-box">
+                        <img src="" alt="icona dell'utente" id="profileImg" class="rounded-circle border profile-hover"/>
+                    </a>
                 </nav>
+            </div>
+            <div class="row justify-content-center">
+                <h1 class="text-center" id="username" >Username</h1>
             </div>
         </header>
 

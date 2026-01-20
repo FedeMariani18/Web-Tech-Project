@@ -12,6 +12,7 @@ $templateParams["js"] = array("js/index.js");
         <link rel="stylesheet" type="text/css" href="./css/style.css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
         <!-- for special font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,10 +26,16 @@ $templateParams["js"] = array("js/index.js");
             <div class="row align-items-center">
                 <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
                 <div class="col-10 col-md-6">
-                    <nav class="d-flex justify-content-end gap-2">
-                        <a href="like-page.php" id="like"><img src="resources/heart.png" alt="icon del cuore"/></a>
-                        <a href="notification-page.php" id="notification"><img src="resources/notification.png" alt="icona delle notifiche"/></a>
-                        <a href="" id="profile"><img src="resources/user_icon.png" alt="icona dell'utente" id="profileImg" class="rounded-circle border"/></a>
+                    <nav class="d-flex justify-content-end gap-2 index-nav-small">
+                        <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
+                            <i id="like" class="bi bi-heart text-black" aria-hidden="true"></i>
+                        </a>
+                        <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
+                            <i id="notification" class="bi bi-bell text-black" aria-hidden="true"></i>
+                        </a>
+                        <a href="" id="profile" aria-label="Profilo utente" class="nav-item-box">
+                            <i id="profileIcon" class="bi bi-person-circle text-black" aria-hidden="true"></i>
+                        </a>
                     </nav>
                 </div>
             </div>
