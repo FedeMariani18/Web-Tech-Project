@@ -43,7 +43,7 @@
         }
 
         public function getMembersFromPost($id) {
-            $stmt = $this->db->prepare("SELECT u.nome, u.cognome, u.id
+            $stmt = $this->db->prepare("SELECT u.nome, u.cognome, u.id, u.foto
                 FROM ISCRIZIONE_POST ip JOIN UTENTE u ON ip.id_iscritto = u.id
                 WHERE ip.id_post = ?
                 ");
@@ -79,7 +79,7 @@
 
         public function getUserFromComment($id) {
             $stmt = $this->db->prepare(
-                "SELECT u.username, u.id
+                "SELECT u.username, u.id, u.foto
                 FROM UTENTE u JOIN COMMENTO c ON u.id = c.id_utente
                 WHERE c.id = ?"
             );

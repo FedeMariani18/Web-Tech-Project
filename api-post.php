@@ -159,6 +159,10 @@ if (isset($_GET['id'])) {
     error_log("foto = " . $post['foto']);
 
     $post['partecipanti'] = $dbh->getMembersFromPost($id);
+    for($i = 0; $i < count($post['partecipanti']); $i++){
+        //sistemo il percorso della foto
+        $post['partecipanti'][$i]['foto'] = UPLOAD_DIR_PROFILE . $post['partecipanti'][$i]['foto'];
+    }
     $post['numero_partecipanti'] = $dbh->getNumberOfMembersFromPost($id);
     $post['commenti'] = $dbh->getCommentsFromPost($id);
     $post['creatore'] = $dbh->getCreatorFromPost($id);
@@ -166,6 +170,7 @@ if (isset($_GET['id'])) {
         $user = $dbh->getUserFromComment($post["commenti"][$i]['id']);
         $post["commenti"][$i]['username'] = $user['username'];
         $post["commenti"][$i]['id_utente'] = $user['id'];
+        $post["commenti"][$i]['foto_utente'] = UPLOAD_DIR_PROFILE . $user['foto'];
     }
     $response['post'] = $post;
 } else {

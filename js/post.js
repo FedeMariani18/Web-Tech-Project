@@ -1,30 +1,31 @@
 function createPost(post, utentePartecipa, id_utente, likeUtente, admin){
+    let date = new Date(post['data_ora']);
+
     const result = `
     <div class="row mb-3">
-        <div class="col-12">
-            <h2 class="fw-bold">${post['titolo']} ${getLikeButton(likeUtente, post, id_utente)}</h2>
-        </div>
+        <h2 class="fw-bold">${post['titolo']} ${getLikeButton(likeUtente, post, id_utente)}</h2>
     </div>
     <div class="row mb-2">
-        <div class="col-12 col-md-4 mb-3 mb-md-0">
-            <div class="border bg-light d-flex align-items-center justify-content-center"
-                style="height: 200px;">
-            <img src="${post['foto']}" alt="Immagine del post" class="img-fluid h-100" style="object-fit: cover;">
-            </div>
-        </div>
-        <div class="col-12 col-md-8">
-            <h5>Descrizione</h5>
+        <img class="col-12 rounded-5 col-md-6 mb-2 post-img" src="${post['foto']}" alt="Immagine del post"">
+        <div class="col-12 col-md-6 fs-4">
+            <h5 class="fs-3"><strong>Descrizione:</strong></h5>
             <p class="text-muted">${post['descrizione']}</p>
+            <p class="mb-1 fs-4 mb-3">
+                <strong>Data:</strong>
+                <label class="text-muted">${date.toLocaleDateString()}</label></br>
+                <strong>Ora:</strong>
+                <label class="text-muted">${date.toLocaleTimeString()}</label>
+            </p>
+            <p class="mb-1 fs-4 mb-3">
+                <strong>Organizzatore:</strong>
+                <label class="text-muted">${getCreator(post, id_utente)}</label>
+            </p>
+            ${getButtonToPartecipate(utentePartecipa, id_utente, post['creatore']['id'], post['numero_partecipanti'], post['posti_disponibili'])}
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-12">
-            <p class="mb-1">
-                <strong>ORGANIZZATORE:</strong>
-                ${getCreator(post, id_utente)}
-            </p>
-            
-            <button class="btn btn-sm btn-outline-secondary mb-2"
+            <button class="btn btn-md btn-outline-secondary mb-2"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#partecipantiCollapse"
@@ -32,10 +33,8 @@ function createPost(post, utentePartecipa, id_utente, likeUtente, admin){
                     aria-controls="partecipantiCollapse">
                 <strong>Partecipanti: ${post['numero_partecipanti']}/${post['posti_disponibili']}</strong>
             </button>
-            <div class="collapse" id="partecipantiCollapse">
-                <div class="card card-body p-2">
-                    ${getMembers(post, id_utente)}
-                </div>
+            <div class="collapse col-6" max-height=200px id="partecipantiCollapse">
+                ${getMembers(post, id_utente)}
             </div>
         </div>
     </div>
@@ -45,13 +44,12 @@ function createPost(post, utentePartecipa, id_utente, likeUtente, admin){
 
             <div class="card">
                 <div class="card-body p-2"
-                    style="max-height: 200px; overflow-y: auto;">
+                    style="max-height: 400px; overflow-y: auto;">
                     ${getComments(post, id_utente, admin)}
                 </div>
             </div>
 
             
-            ${getButtonForComment()}
         </div>
     </div>
 
@@ -83,7 +81,7 @@ function getCreator(post, id_utente) {
         redirect = `profile.php?id=${post['creatore']['id']}`;
     }
     return `
-        <a href="${redirect}" class="link-secondary text-decoration-none">
+        <a href="${redirect}" class="link-dark text-decoration-none">
             ${post['creatore']['nome']} ${post['creatore']['cognome']}
         </a>
     `;
@@ -92,10 +90,12 @@ function getCreator(post, id_utente) {
 function getButtonForComment() {
     if (userId != null) {
         return `
+        <form>
             <div class="input-group mt-2">
                 <input type="text" class="form-control" placeholder="Scrivi qui il tuo commento" id="commento">
-                <button class="btn btn-outline-secondary" id="invia">Invia</button>
+                <button class="btn btn-secondary btn-lg w-3" type="submit" id="invia">Invia</button>
             </div>
+        </form>
         `;
     } else {
         return "";
@@ -140,7 +140,7 @@ function getButtonToPartecipate(utentePartecipa, id_utente, id_creatore, parteci
 }
 
 function getMembers(post, id_utente) {
-    let result = `<ul class="list-unstyled mb-0">`;
+    let result = `<ul class="list-group mb-0">`;
     for (let i=0; i < post['partecipanti'].length; i++) {
         let redirect;
         if (id_utente == post['partecipanti'][i]['id']) {
@@ -149,10 +149,14 @@ function getMembers(post, id_utente) {
             redirect = `profile.php?id=${post['partecipanti'][i]['id']}`;
         }
         let partecipant = `
-            <li>
-                <a href="${redirect}" class="link-secondary text-decoration-none" >${post['partecipanti'][i]['nome']} ${post['partecipanti'][i]['cognome']}</a>
+            <li class="list-group-item">
+                <a href="${redirect}" class="link-secondary text-decoration-none" >
+                    <img src="${post['partecipanti'][i]['foto']}" alt="Foto profilo" class="rounded-circle me-2" width="30" height="30">
+                    ${post['partecipanti'][i]['nome']} ${post['partecipanti'][i]['cognome']}
+                </a>
             </li>
         `
+
         result += partecipant;
     }
     return result;
@@ -185,6 +189,7 @@ function getComments(post, id_utente, admin) {
                 <div>
                     <strong>
                         <a href="${redirect}" class="link-secondary text-decoration-none">
+                            <img src="${commento['foto_utente']}" alt="Foto profilo" class="rounded-circle me-2 border border-2" width="25" height="25">
                             ${commento['username']}
                         </a>
                     </strong>

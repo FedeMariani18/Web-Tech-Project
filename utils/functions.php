@@ -21,23 +21,23 @@ function saveImg($foto, $user){
 
         if($user){
             // Crea cartella se non esiste
-            $uploadDir = 'resources/users/';
+            $uploadDir = UPLOAD_DIR_PROFILE;
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             } 
-
+            // Genera nome file univoco
             $nomeFile = uniqid('user_') . '.' . $estensione;
         } else {
             // Crea cartella se non esiste
-            $uploadDir = 'resources/posts/';
+            $uploadDir = UPLOAD_DIR_POST;
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
-
+            // Genera nome file univoco
             $nomeFile = uniqid('post_') . '.' . $estensione;
         }
         
-        // Genera nome file univoco
+        //crea file path intero
         $fotoPath = $uploadDir . $nomeFile;
         
         // Salva il file

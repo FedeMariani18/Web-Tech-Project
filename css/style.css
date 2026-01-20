@@ -131,6 +131,24 @@ body main article img{
     object-fit: cover;
 }
 
+body main div div p:last-child label:hover{
+    text-decoration: underline;
+}
+
+.post-img{
+    max-height: 400px;
+    object-fit: cover;
+}
+
+body main .collapse{
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+body main .collapse ul li:hover{
+    text-decoration: underline;
+} 
+
 body+nav{
     background-color: var(--second-color) !important;
 }

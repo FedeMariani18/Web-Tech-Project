@@ -33,7 +33,7 @@ async function login(username, password) {
 
         const json = await response.json();
         if(json["logineseguito"]){
-            goToUserProfile();
+            window.location.replace("index.php");
         } else{
             //visualizza errore login
             document.querySelector("form > p").innerText = json["errorelogin"];
@@ -70,9 +70,4 @@ function generaLoginForm(loginerror = null) {
         </ul>
     </form>`;
     return form;
-}
-
-
-function goToUserProfile(){
-    window.location.replace("my-profile.php");
 }

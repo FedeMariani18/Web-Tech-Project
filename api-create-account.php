@@ -6,9 +6,9 @@ $result["creazioneeseguita"] = false;
 // Gestione upload foto
 $fotoName = null;
 if (isset($_FILES['foto'])&& $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-        $fotoName = saveImg($_FILES['foto'], false);
-    } else {
-        $fotoName = "default_profile.png"; // immagine di default
+    $fotoName = saveImg($_FILES['foto'], true);
+} else {    
+    $fotoName = "default_profile.png"; // immagine di default
 }
 
 //crea l'utente nel database

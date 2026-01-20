@@ -8,8 +8,8 @@ $fotoName = null;
 if(!empty($_FILES['foto']['name'])) {
     //cancellazione foto precedente se ne è stata caricata una nuova
     $oldFoto = $_POST['fotoOld'] ?? null;
-    if($oldFoto) {
-        unlink("resources/users/" . $oldFoto);
+    if($oldFoto && (UPLOAD_DIR_PROFILE . $oldFoto) != (UPLOAD_DIR_PROFILE . "default_profile.png")) {
+        unlink(UPLOAD_DIR_PROFILE . $oldFoto);
     }
 
     $fotoName = saveImg($_FILES['foto'], true);
