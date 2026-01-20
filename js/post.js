@@ -20,7 +20,6 @@ function createPost(post, utentePartecipa, id_utente, likeUtente, admin){
                 <strong>Organizzatore:</strong>
                 <label class="text-muted">${getCreator(post, id_utente)}</label>
             </p>
-            ${getButtonToPartecipate(utentePartecipa, id_utente, post['creatore']['id'], post['numero_partecipanti'], post['posti_disponibili'])}
         </div>
     </div>
     <div class="row mb-3">
@@ -48,7 +47,7 @@ function createPost(post, utentePartecipa, id_utente, likeUtente, admin){
                     ${getComments(post, id_utente, admin)}
                 </div>
             </div>
-
+            ${getButtonForComment()}
             
         </div>
     </div>
