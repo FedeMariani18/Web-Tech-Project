@@ -211,7 +211,7 @@ INSERT INTO ISCRIZIONE_POST (id_post, id_iscritto) VALUES
 -- POST 8
 (8, 1), (8, 7), (8, 10),
 -- POST 9
-(9, 8), (9, 9), (9, 10), (9, 2),
+(9, 9), (9, 10), (9, 2),
 -- POST 10
 (10, 3), (10, 11), (10, 4),
 -- POST 11
