@@ -19,7 +19,7 @@ $templateParams["js"] = array("js/like.js");
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <header class="container-fluid">
+        <header class="container-fluid pt-2 pb-3">
             <div class="row align-items-center">
                 <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
             </div>
@@ -37,7 +37,7 @@ $templateParams["js"] = array("js/like.js");
                 </nav>
             </div>
             <div class="row justify-content-center">
-                <h1 class="text-center" id="username" >Username</h1>
+                <h1 class="text-center" id="username"></h1>
             </div>
         </header>
 

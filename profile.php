@@ -63,7 +63,7 @@ $templateParams["js"] = array("js/profile.js");
                 width="120"
                 alt="icona dell'utente">
 
-            <figcaption id="username" class="mt-2">Username</figcaption>
+            <figcaption id="username" class="mt-2"></figcaption>
 
         </figure>
 

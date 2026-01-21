@@ -1,5 +1,5 @@
 INSERT INTO UTENTE (id, username, password_hash, nome, cognome, numero_telefono, mail, foto, ruolo, bannato) VALUES
-(1, 'federiani', '$2y$10$6n05D.ZIau7a4e6qVslwLu418KPoTa2IP0nVQB5L/MIqC2Seu0oPa', 'Federico', 'Mariani', '3384308484', 'federico@gmail.com', 'user_696e5c296423e.png', 'USER', 0),
+(1, 'federiani', '$2y$10$6n05D.ZIau7a4e6qVslwLu418KPoTa2IP0nVQB5L/MIqC2Seu0oPa', 'Federico', 'Mariani', '3384308484', 'federico@gmail.com', 'user_696e5c296423e.png', 'ADMIN', 0),
 (2, 'mario.rossi', '$2y$10$qgVX/exy5N4iQH48YOhVyOHRMo6f54OhVHEouKjmn33zGnIqxps.W', 'Mario', 'Rossi', '3384308888', 'mario@gmail.com', 'user_696e5bc831c73.png', 'USER', 0),
 (3, 'ilCIle', '$2y$10$MU1zOKtNSy9I6POF4QnmtOENrhypGqyS93quH96cSPMHD7MMOHrdm', 'Alan', 'Barzanti', '3384308888', 'alan@gmail.com', 'user_696e5be14d27a.png', 'USER', 0),
 (4, 'gian', '$2y$10$V3tkAqBF5lGgMhufhZQ/B.9PQnSOUxWZKbRw6j09thdFsYrtboSOm', 'Gianmarco', 'Bianchi', '3384308484', 'gian@gmail.com', 'user_696e5c01aafb0.png', 'USER', 0),

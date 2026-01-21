@@ -22,25 +22,25 @@ $templateParams["js"] = array("js/index.js");
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <header class="container-fluid pb-3">
+        <header class="container-fluid pt-2 pb-3">
             <div class="row align-items-center">
                 <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
                 <div class="col-10 col-md-6">
-                    <nav class="d-flex justify-content-end gap-2">
-                        <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box hidden-element">
+                    <nav class="d-flex justify-content-end gap-2 index-nav-small">
+                        <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box hidden-element me-4">
                             <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
                         </a>
-                        <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box hidden-element">
+                        <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box hidden-element me-4">
                             <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
                         </a>
-                        <a href="login.php" id="profile" aria-label="Profilo utente" class="nav-item-box">
+                        <a href="login.php" id="profile" aria-label="Profilo utente" class="nav-item-box me-3">
                             <span id="profileIcon" class="bi bi-person-circle text-black" aria-hidden="true"></span>
                         </a>
                     </nav>
                 </div>
             </div>
             
-            <form class="container-fluid" role="search" id="searchForm">
+            <form class="container-fluid mt-4" role="search" id="searchForm">
                 <div class="row justify-content-center">
                     <label for="search" class="visually-hidden">Search</label>
                     <input class="col-6 rounded-5" id="search" type="search" placeholder="Search" aria-label="Search"/>
