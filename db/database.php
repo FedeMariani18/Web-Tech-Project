@@ -142,7 +142,15 @@
                 VALUES (?, ?, ?, ?, ?, ?, ?)"
             );
             $stmt->bind_param("sssssss", $username, $password_hash, $nome, $cognome, $numero_telefono, $mail, $foto);
-            return $stmt->execute();
+            try {
+                $stmt->execute();
+                return true;
+            } catch (PDOException $e) {
+                if ($e->errorInfo[1] == 1062) { // duplicate key MySQL
+                    return false;
+                }
+                throw $e; // altri errori → veri errori server
+            }
         }
 
         public function getUtenti(){

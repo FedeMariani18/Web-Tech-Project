@@ -15,7 +15,7 @@ CREATE TABLE UTENTE (
     nome VARCHAR(50),
     cognome VARCHAR(50),
     numero_telefono VARCHAR(20),
-    mail VARCHAR(100) UNIQUE,
+    mail VARCHAR(100),
     foto VARCHAR(255) DEFAULT 'user_icon.png',
     ruolo ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
     bannato BOOLEAN NOT NULL DEFAULT FALSE

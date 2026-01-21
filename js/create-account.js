@@ -45,11 +45,12 @@ async function createAccount(foto, nome, cognome, username, telefono, mail, pass
             body: formData
         });
 
+        const json = await response.json();
+
         if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+            document.querySelector("form > p").innerText = json["errorecreazione"];
         }
         
-        const json = await response.json();
         console.log(json);
         if(json["creazioneeseguita"]){
             goToLogin();
