@@ -36,7 +36,7 @@ async function login(username, password) {
             window.location.replace("index.php");
         } else{
             //visualizza errore login
-            document.querySelector("form > p").innerText = json["errorelogin"];
+            showBanner("Errore nel login: " + json["errorelogin"]);
         }
 
     } catch (error) {
@@ -70,4 +70,15 @@ function generaLoginForm(loginerror = null) {
         </ul>
     </form>`;
     return form;
+}
+
+function showBanner(message) {
+    const banner = document.createElement('div');
+    banner.className = 'popup success';
+    banner.textContent = message;
+    document.body.appendChild(banner);
+    
+    setTimeout(() => {
+        banner.remove();
+    }, 3000);
 }

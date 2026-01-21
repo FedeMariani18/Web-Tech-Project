@@ -88,7 +88,7 @@ async function getPostData() {
         container.innerHTML = postsHTML;
 
     } catch (error) {
-        console.log(error.message);
+        showBanner("Errore nel caricamento dei post: " + error.message);
     }
 }
 
@@ -117,7 +117,6 @@ async function search(query) {
                 userTitle.textContent = "Utenti trovati:";
                 userContainer.innerHTML = createUser(json['users'], json['id_utente']);
             } else {
-                console.log("No users found");
                 userContainer.innerHTML = "";
                 userTitle.textContent = "Nessun utente trovato";
             }
@@ -130,7 +129,6 @@ async function search(query) {
                 postTitle.textContent = "Post trovati:";
                 postContainer.innerHTML = createPost(json['posts']);
             } else {
-                console.log("No posts found");
                 postContainer.innerHTML = "";
                 postTitle.textContent = "Nessun post trovato";
             }
@@ -146,7 +144,7 @@ async function search(query) {
             postTitle.textContent = "Nessun post trovato";
         }
     } catch (error) {
-        console.log(error.message);
+        showBanner("Errore nella ricerca: " + error.message);
     }
 }
 
@@ -163,15 +161,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-function showErrorToast(message) {
-    const toast = document.querySelector("#toast-error");
-    toast.textContent = message;
-
-    toast.classList.remove("hidden");
-    toast.classList.add("show");
-
+function showBanner(message) {
+    const banner = document.createElement('div');
+    banner.className = 'popup success';
+    banner.textContent = message;
+    document.body.appendChild(banner);
+    
     setTimeout(() => {
-        toast.classList.remove("show");
-        setTimeout(() => toast.classList.add("hidden"), 300);
-    }, 2500);
+        banner.remove();
+    }, 3000);
 }
