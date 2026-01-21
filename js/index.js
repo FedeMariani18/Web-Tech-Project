@@ -34,7 +34,7 @@ function createUser(users, id_user_logged){
         }
 
         let postHTML = `
-        <div class="col-10 col-lg-3 p-3 p-md-4">
+        <div class="col-10 col-md-5 col-lg-4 col-xl-3 p-3 p-md-4">
             <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="${redirect}">
                 <article class="row rounded-5 border border-black border-1 ">
                     <img class="img-fluid p-0" src="${users[i]["foto"]}" alt="immagine del annuncio">

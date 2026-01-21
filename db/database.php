@@ -256,15 +256,18 @@
         public function searchPosts($query) {
             $sql = "
                 SELECT p.id, p.titolo, p.descrizione, p.foto, c.nome_categoria, 
-                p.data_ora, u.username AS creatore
+                p.data_ora, p.posti_disponibili, u.username AS creatore, COUNT(ip.id_iscritto) AS numero_iscritti
                 FROM post p
                 JOIN categoria c ON p.id_categoria = c.id 
                 JOIN utente u ON p.id_creatore = u.id 
+                LEFT JOIN ISCRIZIONE_POST ip ON ip.id_post = p.id
                 WHERE (
                     p.titolo LIKE ?
                     OR p.descrizione LIKE ?
                     OR c.nome_categoria LIKE ?
                 )
+                GROUP BY p.id, p.titolo, p.descrizione, p.foto, c.nome_categoria, 
+                p.data_ora, u.username
                 AND p.data_ora >= NOW()
             ";
 

@@ -343,7 +343,7 @@ async function removeComment(idCommento) {
         if(json == "errore"){
             alert("Errore nell'eliminazione del commento");
         } else {
-            window.location.reload();
+            getPostData();
         }
     } catch (error) {
         console.log(error.message);
@@ -353,7 +353,7 @@ async function removeComment(idCommento) {
 async function removePost(id_creatore) {
     const url = 'api-post.php';
     const formData = new FormData();
-    formData.append('id_post', postId);
+        
     formData.append('creatore', id_creatore);
     formData.append('eliminaPost', "true");
     try {
@@ -402,7 +402,7 @@ async function addLike(id_creatore) {
         if(json == "errore"){
             alert("Errore nell'invio del like");
         } else {
-            window.location.reload();
+            getPostData();
         }
     } catch (error) {
         console.log(error.message);
@@ -432,7 +432,7 @@ async function removeLike(id_creatore) {
         if(json == "errore"){
             alert("Errore nell'eliminazione del like");
         } else {
-            window.location.reload();
+            getPostData();
         }
     } catch (error) {
         console.log(error.message);
