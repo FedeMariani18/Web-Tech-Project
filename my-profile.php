@@ -26,19 +26,19 @@ $templateParams["js"] = array("js/my-profile.js");
 
 <body>
 
-<header class="container-fluid">
+<header class="container-fluid pt-2 pb-3">
 
     <div class="row align-items-center">
         <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
         <div class="col-10 col-md-6">
-            <nav class="d-flex justify-content-end gap-2">    
-                <a href="index.php" id="home" aria-label="Icona Home" class="nav-item-box">
+            <nav class="d-flex justify-content-end gap-2 index-nav-small">    
+                <a href="index.php" id="home" aria-label="Icona Home" class="nav-item-box me-4">
                     <span class="bi bi-house text-black" aria-hidden="true"></span>
                 </a>
-                <a href="edit-profile.php" id="editProfile" aria-label="Icona modifica" class="nav-item-box">
+                <a href="edit-profile.php" id="editProfile" aria-label="Icona modifica" class="nav-item-box me-4">
                     <span class="bi bi-pencil-square text-black" aria-hidden="true"></span>
                 </a>
-                <a href="" id="logout" onclick="logout();" aria-label="Icona logout" class="nav-item-box">
+                <a href="" id="logout" onclick="logout();" aria-label="Icona logout" class="nav-item-box me-3">
                     <span class="bi bi-box-arrow-right text-black" aria-hidden="true"></span>
                 </a>
             </nav>
@@ -60,7 +60,7 @@ $templateParams["js"] = array("js/my-profile.js");
     </div>
 
     <div class="row justify-content-center">
-        <h1 class="text-center" id="username" >Username</h1>
+        <h1 class="text-center" id="username"></h1>
     </div>
 
 </header>
