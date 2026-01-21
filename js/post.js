@@ -358,6 +358,7 @@ async function removePost(id_creatore) {
     const url = 'api-post.php';
     const formData = new FormData();
         
+    formData.append('id_post', postId);
     formData.append('creatore', id_creatore);
     formData.append('eliminaPost', "true");
     try {
