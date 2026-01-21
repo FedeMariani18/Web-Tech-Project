@@ -46,7 +46,9 @@ $templateParams["js"] = array("js/index.js");
                     <input class="col-6 rounded-5" id="search" type="search" placeholder="Search" aria-label="Search"/>
                     <div class="col-2">
                         <div class="row justify-content-center">
-                            <button class="col-10 rounded-5" type="submit"><img src="resources/magnifying_glass_icon.png" alt="icona della lente d'ingrandimento"></button>
+                            <button class="col-10 rounded-5" type="submit" aria-label="Pulsante di ricerca">
+                                <span id="searchIcon" class="bi bi-search text-black"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -68,7 +70,9 @@ $templateParams["js"] = array("js/index.js");
 
         <nav>
             <button class="position-fixed bottom-0 start-50 mb-4 rounded-circle hidden-element" type="button" id="createPost">
-                <a href="create-post.php"><img class=""  src="resources/sum_icon.webp" alt="icon del più"/></a>
+                <a href="create-post.php" id="createPostLink" aria-label="Crea un nuovo post">
+                    <span class="bi bi-plus-lg text-black fs-1"></span>
+                </a>
             </button>
         </nav>
         
