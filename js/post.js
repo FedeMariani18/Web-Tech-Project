@@ -14,7 +14,7 @@ function createPost(post, utentePartecipa, id_utente, likeUtente, admin){
                 <strong>Data:</strong>
                 <label class="text-muted">${date.toLocaleDateString()}</label></br>
                 <strong>Ora:</strong>
-                <label class="text-muted">${date.toLocaleTimeString()}</label>
+                <label class="text-muted">${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</label>
             </p>
             <p class="mb-1 fs-4 mb-3">
                 <strong>Organizzatore:</strong>
@@ -221,6 +221,7 @@ async function getPostData() {
         userId = json['id_utente'];
         const post = createPost(json['post'], json['utentePartecipa'], json['id_utente'], json['likeUtente'], json['admin']);
         const main = document.querySelector("main");
+        main.innerHTML = ''
         main.innerHTML += post;
         if (json['utenteLoggato']) {
             const icon = document.getElementById("profileIcon");
@@ -297,6 +298,7 @@ async function getPostData() {
 getPostData();
 let userId;
 let idCommento = null;
+
 document.addEventListener("click", function (e) {
     if (e.target.classList.contains("delete-comment")) {
         idCommento = e.target.dataset.id;
@@ -491,7 +493,9 @@ async function insertNewPartecipation(id_creatore) {
             alert(json['errore']);
         }
         if (json["iscrizioneRiuscita"]) {
-            window.location.reload();
+            getPostData();
+            showBanner("Avvenuta iscrizione!");
+            setTimeout(3000);
         }
     } catch (error) {
         console.log(error.message);
@@ -522,9 +526,22 @@ async function removeParticipation(id_creatore) {
            alert(json['errore']);
         }
         if (json["disiscrizioneRiuscita"]) {
-            window.location.reload();
+            getPostData();
+            showBanner("Avvenuta disiscrizione!");
+            setTimeout(3000);
         }
     } catch (error) {
         console.log(error.message);
     }
+}
+
+function showBanner(message) {
+    const banner = document.createElement('div');
+    banner.className = 'popup success';
+    banner.textContent = message;
+    document.body.appendChild(banner);
+    
+    setTimeout(() => {
+        banner.remove();
+    }, 3000);
 }

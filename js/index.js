@@ -11,7 +11,7 @@ function createPost(posts){
                     <img class="img-fluid p-0" src="${posts[i]["foto"]}" alt="immagine del annuncio">
                     <div class="">
                         <h4 class="card-title m-0">${posts[i]["titolo"]}</h4>
-                        <p class="card-text m-0">${date.toLocaleDateString()} - ${date.getHours()}:${date.getMinutes()}</p>
+                        <p class="card-text m-0">${date.toLocaleDateString()} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</p>
                         <p class="card-text text-secondary m-0">partecipanti: ${posts[i]["numero_iscritti"]}/${posts[i]["posti_disponibili"]}</p>
                         
                     </div>
