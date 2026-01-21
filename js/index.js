@@ -7,7 +7,7 @@ function createPost(posts){
         let postHTML = `
         <div class="col-10 col-md-5 col-lg-4 col-xl-3 p-3 p-md-4">
             <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="post.php?id=${posts[i]["id"]}">
-                <article class="row rounded-5 border border-black border-1 ">
+                <article class="row rounded-5 border border-black border-0 ">
                     <img class="img-fluid p-0" src="${posts[i]["foto"]}" alt="immagine del annuncio">
                     <h4 class="card-title m-0 text-truncate">${posts[i]["titolo"]}</h4>
                     <p class="card-text m-0">${date.toLocaleDateString()} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</p>

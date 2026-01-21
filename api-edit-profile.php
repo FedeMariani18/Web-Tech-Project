@@ -24,10 +24,10 @@ if(!empty($_FILES['foto']['name'])) {
 }
 
 //gestisco la password, se è null non è stata modificata quindi la lascio così com'è
-if(is_null($_POST['password'])){
-    $passwordHash = $_POST['password'];
-} else {
+if(isset($_POST['password']) && !empty($_POST['password'])){
     $passwordHash = password_hash($_POST["password"], PASSWORD_DEFAULT);
+} else {
+    $passwordHash = $_POST['passwordOld'] ?? null;  // Mantieni la vecchia
 }
 
 $create_result = $dbh->modifyUtente($_POST["id"], $_POST["username"], $passwordHash, $_POST["nome"], $_POST["cognome"], $_POST["telefono"], $_POST["mail"], $fotoName);

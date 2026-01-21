@@ -158,7 +158,9 @@
                     p.id,
                     p.foto,
                     p.titolo,
-                    p.descrizione
+                    p.descrizione,
+                    p.posti_disponibili,
+                    p.data_ora
                 FROM POST p
                 JOIN LIKE_POST lp 
                     ON p.id = lp.id_post
@@ -231,12 +233,16 @@
             $stmt = $this->db->prepare("
                 SELECT p.id, p.foto, p.titolo, p.descrizione, p.data_ora, p.posti_disponibili, 
                 p.provincia, p.comune, p.indirizzo, 
-                c.nome_categoria, u.username
-                FROM POST p, CATEGORIA c, UTENTE u
-                WHERE u.id = ? AND
-                p.id_categoria = c.id
-                AND p.id_creatore = u.id
+                c.nome_categoria, u.username, COUNT(ip.id_iscritto) AS numero_iscritti
+                FROM POST p
+                JOIN CATEGORIA c ON p.id_categoria = c.id
+                JOIN UTENTE u ON p.id_creatore = u.id
+                LEFT JOIN ISCRIZIONE_POST ip ON ip.id_post = p.id
+                WHERE u.id = ? 
                 AND p.data_ora >= NOW()
+                GROUP BY p.id, p.foto, p.titolo, p.descrizione, p.data_ora, p.posti_disponibili, 
+                p.provincia, p.comune, p.indirizzo, 
+                c.nome_categoria, u.username
                 ORDER BY p.data_ora ASC
             ");
             $stmt->bind_param("i", $id);
@@ -407,13 +413,17 @@
             $stmt = $this->db->prepare("
                 SELECT p.id, p.foto, p.titolo, p.descrizione, p.data_ora, p.posti_disponibili, 
                 p.provincia, p.comune, p.indirizzo, 
-                c.nome_categoria, u.username
+                c.nome_categoria, u.username, COUNT(ip2.id_iscritto) AS numero_iscritti
                 FROM POST p
                 JOIN ISCRIZIONE_POST ip ON ip.id_post = p.id
                 JOIN CATEGORIA c ON p.id_categoria = c.id
                 JOIN UTENTE u ON p.id_creatore = u.id
+                LEFT JOIN ISCRIZIONE_POST ip2 ON ip2.id_post = p.id
                 WHERE ip.id_iscritto = ?
                 AND p.data_ora >= NOW()
+                GROUP BY p.id, p.foto, p.titolo, p.descrizione, p.data_ora, p.posti_disponibili, 
+                p.provincia, p.comune, p.indirizzo, 
+                c.nome_categoria, u.username
                 ORDER BY p.data_ora ASC
             ");
 

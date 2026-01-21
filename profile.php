@@ -73,7 +73,6 @@ $templateParams["js"] = array("js/profile.js");
 </header>
 
 <main class="container-fluid">
-    
 </main>
 
 <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-hidden="true">

@@ -109,14 +109,14 @@ function getActivePost(user) {
         return `Non hai nessun post attivo`;
     }
     for(let i=0; i < user['postAttivi'].length; i++){
-        let date = new Date(user['postACuiPartecipa'][i]["data_ora"]);
+        let date = new Date(user['postAttivi'][i]["data_ora"]);
         let postHTML = `
         <div class="col-10 col-lg-3 p-3 p-md-4">
-            <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="post.php?id=${user['postACuiPartecipa'][i]["id"]}">
+            <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="post.php?id=${user['postAttivi'][i]["id"]}">
                 <article class="row rounded-5 border border-black border-1 ">
-                    <img class="img-fluid p-0" src="${user['postACuiPartecipa'][i]["foto"]}" alt="immagine del annuncio">
+                    <img class="img-fluid p-0" src="${user['postAttivi'][i]["foto"]}" alt="immagine del annuncio">
                     <div class="">
-                        <h4 class="card-title m-0">${user['postACuiPartecipa'][i]["titolo"]}</h4>
+                        <h4 class="card-title m-0">${user['postAttivi'][i]["titolo"]}</h4>
                         <p class="card-text m-0">${date.toLocaleDateString()} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</p>    
                     </div>
                 </article>

@@ -66,11 +66,15 @@ function getLikeButton(likeUtente, post, id_utente) {
     }
     if (likeUtente) {
         return `
-            <button class="btn btn-sm btn-outline-secondary mb-2" type="button" id="togliLike"><strong>Togli like</strong></button>
+            <button class="btn btn-sm btn-outline-secondary mb-2" type="button" id="togliLike">
+                <i id="like" class="bi bi-heart-fill text-black" aria-hidden="true"></i>
+            </button>
         `;
     } else {
         return `
-            <button class="btn btn-sm btn-outline-secondary mb-2" type="button" id="mettiLike"><strong>Metti like</strong></button>
+            <button class="btn btn-sm btn-outline-secondary mb-2" type="button" id="mettiLike">
+                <i id="like" class="bi bi-heart text-black" aria-hidden="true"></i>
+            </button>
         `;
     }
 }

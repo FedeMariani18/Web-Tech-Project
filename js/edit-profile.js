@@ -28,8 +28,9 @@ async function init() {
         const username = document.querySelector("#username").value;
         const telefono = document.querySelector("#telefono").value;
         const mail = document.querySelector("#mail").value;
-        const password = document.querySelector("#password").value == '' ? null : document.querySelector("#password").value;
+        const password = document.querySelector("#password").value;
         
+
         updateAccount(userData['id'], foto, fotoOld, nome, cognome, username, telefono, mail, password);
     });
 }
@@ -74,7 +75,10 @@ async function updateAccount(id, foto, fotoOld, nome, cognome, username, telefon
     formData.append("username", username);
     formData.append("telefono", telefono);
     formData.append("mail", mail);
-    formData.append("password", password);
+    formData.append("passwordOld", userData['password_hash']);
+    if(password !== '') {
+        formData.append("password", password);
+    }
 
     try {
         const response = await fetch(url, {
