@@ -25,7 +25,7 @@
                 <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
                 <div class="col-10 col-md-6">
                     <nav class="d-flex justify-content-end gap-2">
-                        <nav class="d-flex justify-content-end gap-2">
+                        <nav class="d-flex justify-content-end gap-2 index-nav-small">
                         <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
                             <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
                         </a>

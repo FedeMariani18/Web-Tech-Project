@@ -75,9 +75,6 @@ $templateParams["js"] = array("js/index.js");
                 </a>
             </button>
         </nav>
-        
-        <!-- TOAST DI ERRORE -->
-        <div id="toast-error" class="toast-error hidden"></div>
 
         <?php
             if(isset($templateParams["js"])):
