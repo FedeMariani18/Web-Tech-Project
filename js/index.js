@@ -117,8 +117,9 @@ async function search(query) {
                 userTitle.textContent = "Utenti trovati:";
                 userContainer.innerHTML = createUser(json['users'], json['id_utente']);
             } else {
+                console.log("No users found");
                 userContainer.innerHTML = "";
-                userTitle.textContent = "";
+                userTitle.textContent = "Nessun utente trovato";
             }
 
             // POSTS
@@ -129,12 +130,20 @@ async function search(query) {
                 postTitle.textContent = "Post trovati:";
                 postContainer.innerHTML = createPost(json['posts']);
             } else {
+                console.log("No posts found");
                 postContainer.innerHTML = "";
-                postTitle.textContent = "";
+                postTitle.textContent = "Nessun post trovato";
             }
         }
         else{
-            showErrorToast(json['error']);
+            const userContainer = document.getElementById("users-container");
+            const userTitle = document.getElementById("userTitle");
+            userContainer.innerHTML = "";
+            userTitle.textContent = "Nessun utente trovato";
+            const postContainer = document.getElementById("posts-container");
+            const postTitle = document.getElementById("postTitle");
+            postContainer.innerHTML = "";
+            postTitle.textContent = "Nessun post trovato";
         }
     } catch (error) {
         console.log(error.message);
