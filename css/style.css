@@ -14,6 +14,7 @@ h1, body{
 
 header{
     position: sticky;
+    z-index: 10;
     top: 0;
     background-color: var(--first-color);
 }
@@ -128,6 +129,10 @@ body main form ul{
 
 button.important-button{
     background-color: var(--first-color);
+}
+
+body main #posts-container{
+    overflow: hidden;
 }
 
 body main article{
