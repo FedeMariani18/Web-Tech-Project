@@ -32,13 +32,13 @@ $templateParams["js"] = array("js/profile.js");
         <div class="col-10 col-md-6">
             <nav class="d-flex justify-content-end gap-2 index-nav-small">
                 <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
-                    <i id="like" class="bi bi-heart text-black" aria-hidden="true"></i>
+                    <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
                 </a>
                 <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
-                    <i id="notification" class="bi bi-bell text-black" aria-hidden="true"></i>
+                    <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
                 </a>
                 <a href="" id="my-profile" aria-label="Profilo utente" class="nav-item-box">
-                    <i id="profileIcon" class="bi bi-person-circle text-black" aria-hidden="true"></i>
+                    <span id="profileIcon" class="bi bi-person-circle text-black" aria-hidden="true"></span>
                 </a>
             </nav>
         </div>
@@ -53,14 +53,15 @@ $templateParams["js"] = array("js/profile.js");
                     id="deleteBtn"
                     data-bs-toggle="modal"
                     data-bs-target="#confirmDeleteModal">
-                <i class="bi bi-x-lg"></i>
+                <soan class="bi bi-x-lg"></span>
             </button>
 
 
-            <img src="resources/user_icon.png"
+            <img src=""
                 id="profileImg"
                 class="rounded-circle border"
-                width="120">
+                width="120"
+                alt="icona dell'utente">
 
             <figcaption id="username" class="mt-2">Username</figcaption>
 
@@ -81,7 +82,7 @@ $templateParams["js"] = array("js/profile.js");
     <div class="modal-content">
 
       <div class="modal-header bg-danger text-white">
-        <h5 class="modal-title">Elimina foto profilo</h5>
+        <h2 class="modal-title h5" role="heading" aria-level="2">Elimina foto profilo</h2>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
       </div>
 

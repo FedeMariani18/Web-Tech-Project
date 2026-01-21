@@ -55,20 +55,25 @@
                         
                             <div class="row g-3 mb-2">
                                 <div class="col">
+                                    <label for="via" class="visually-hidden">Via</label>
                                     <input type="text" class="form-control" id="via" name="via" placeholder="Via San Migniato" required>
                                 </div>
                                 <div class="col-3">
+                                    <label for="civico" class="visually-hidden">Civico</label>
                                     <input type="text" class="form-control" id="civico" name="civico" placeholder="Civico" required>
                                 </div>
                             </div>
                             <div class="row g-3">
                                 <div class="col">
+                                    <label for="citta" class="visually-hidden">Città</label>
                                     <input type="text" class="form-control" id="citta" name="citta" placeholder="Città" required>
                                 </div>
                                 <div class="col">
+                                    <label for="comune" class="visually-hidden">Comune</label>
                                     <input type="text" class="form-control" id="comune" name="comune" placeholder="Comune" required>
                                 </div>
                                 <div class="col-3">
+                                    <label for="provincia" class="visually-hidden">Provincia</label>
                                     <input type="text" class="form-control" id="provincia" name="provincia" placeholder="Provincia" required>
                                 </div>
                             </div>

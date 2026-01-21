@@ -236,8 +236,8 @@ async function getPostData() {
             }
             profile.href = "my-profile.php";
         } else {
-            const like = document.getElementById("like");
-            const notification = document.getElementById("notification");
+            const like = document.getElementById("likeIcon");
+            const notification = document.getElementById("notificationIcon");
             like.style.display = "none";
             notification.style.display = "none";
             profile.href = "login.php";
