@@ -174,7 +174,9 @@ if (isset($_GET['id'])) {
     }
     $response['post'] = $post;
 } else {
-    $post = $dbh->getActivePosts();
+    // $post = $dbh->getActivePosts();
+    $post = $dbh->getActivePostsWithParticipantCount();
+
     for($i = 0; $i < count($post); $i++){
         $post[$i]["foto"] = UPLOAD_DIR_POST.$post[$i]["foto"];
     }

@@ -104,6 +104,11 @@ body main article:hover {
     box-shadow: 3px 3px rgb(0 0 0 / 40%);
 }
 
+body header a i{
+    border: 1;
+    border-color: black;
+}
+
 body{
     background-color: var(--second-color) !important;
 }

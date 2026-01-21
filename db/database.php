@@ -34,6 +34,27 @@
             return $result->fetch_all(MYSQLI_ASSOC);
         }
 
+        public function getActivePostsWithParticipantCount() {
+            $stmt = $this->db->prepare("
+                SELECT p.id, p.foto, p.titolo, p.descrizione, p.data_ora, 
+                    p.posti_disponibili, p.provincia, p.comune, p.indirizzo, 
+                    c.nome_categoria, u.username AS creatore, COUNT(ip.id_iscritto) AS numero_iscritti
+                FROM POST p
+                JOIN CATEGORIA c ON p.id_categoria = c.id
+                JOIN UTENTE u ON p.id_creatore = u.id
+                LEFT JOIN ISCRIZIONE_POST ip ON ip.id_post = p.id
+                WHERE p.data_ora >= NOW()
+                GROUP BY p.id, p.foto, p.titolo, p.descrizione, p.data_ora, 
+                    p.posti_disponibili, p.provincia, p.comune, p.indirizzo, 
+                    c.nome_categoria, u.username
+                ORDER BY p.data_ora ASC;
+            ");
+
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+
         public function getPost($id) {
             $stmt = $this->db->prepare("SELECT p.*,c.nome_categoria FROM POST p JOIN CATEGORIA c ON c.id = p.id_categoria WHERE p.id = ?");
             $stmt->bind_param("i", $id);

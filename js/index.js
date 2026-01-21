@@ -2,7 +2,7 @@ function createPost(posts){
     let result = "";
 
     for(let i=0; i < posts.length; i++){
-        let data = new Date(posts[i]["data_ora"]);
+        let date = new Date(posts[i]["data_ora"]);
 
         let postHTML = `
         <div class="col-10 col-lg-3 p-3 p-md-4">
@@ -11,8 +11,9 @@ function createPost(posts){
                     <img class="img-fluid p-0" src="${posts[i]["foto"]}" alt="immagine del annuncio">
                     <div class="">
                         <h4 class="card-title m-0">${posts[i]["titolo"]}</h4>
-                        <p class="card-text m-0 text-align-start">${data.toLocaleString()}</p>
-                        <p class="card-text text-secondary m-0 text-align-start">#${posts[i]["nome_categoria"]}</p>
+                        <p class="card-text m-0">${date.toLocaleDateString()} - ${date.getHours()}:${date.getMinutes()}</p>
+                        <p class="card-text text-secondary m-0">partecipanti: ${posts[i]["numero_iscritti"]}/${posts[i]["posti_disponibili"]}</p>
+                        
                     </div>
                 </article>
             </a>
