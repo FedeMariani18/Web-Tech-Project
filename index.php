@@ -27,13 +27,13 @@ $templateParams["js"] = array("js/index.js");
                 <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
                 <div class="col-10 col-md-6">
                     <nav class="d-flex justify-content-end gap-2">
-                        <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
+                        <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box hidden-element">
                             <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
                         </a>
-                        <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
+                        <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box hidden-element">
                             <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
                         </a>
-                        <a href="" id="profile" aria-label="Profilo utente" class="nav-item-box">
+                        <a href="login.php" id="profile" aria-label="Profilo utente" class="nav-item-box">
                             <span id="profileIcon" class="bi bi-person-circle text-black" aria-hidden="true"></span>
                         </a>
                     </nav>
@@ -67,7 +67,7 @@ $templateParams["js"] = array("js/index.js");
         </main>
 
         <nav>
-            <button class="position-fixed bottom-0 start-50 mb-4 rounded-circle" type="button" id="createPost">
+            <button class="position-fixed bottom-0 start-50 mb-4 rounded-circle hidden-element" type="button" id="createPost">
                 <a href="create-post.php"><img class=""  src="resources/sum_icon.webp" alt="icon del più"/></a>
             </button>
         </nav>

@@ -224,6 +224,11 @@ async function getPostData() {
         main.innerHTML = ''
         main.innerHTML += post;
         if (json['utenteLoggato']) {
+            const like = document.getElementById("like");
+            const notification = document.getElementById("notification");
+            like.style.display = "flex";
+            notification.style.display = "flex";
+
             const icon = document.getElementById("profileIcon");
             if(icon){
                 const img = document.createElement("img");
@@ -235,13 +240,8 @@ async function getPostData() {
                 icon.replaceWith(img);
             }
             profile.href = "my-profile.php";
-        } else {
-            const like = document.getElementById("likeIcon");
-            const notification = document.getElementById("notificationIcon");
-            like.style.display = "none";
-            notification.style.display = "none";
-            profile.href = "login.php";
         }
+
         if (!json['likeUtente']) {
             const btn4 = document.getElementById("mettiLike");
             if (btn4) {
