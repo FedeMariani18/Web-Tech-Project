@@ -33,13 +33,13 @@ $templateParams["js"] = array("js/my-profile.js");
         <div class="col-10 col-md-6">
             <nav class="d-flex justify-content-end gap-2">    
                 <a href="index.php" id="home" aria-label="Icona Home" class="nav-item-box">
-                    <i class="bi bi-house text-black" aria-hidden="true"></i>
+                    <span class="bi bi-house text-black" aria-hidden="true"></span>
                 </a>
                 <a href="edit-profile.php" id="editProfile" aria-label="Icona modifica" class="nav-item-box">
-                    <i class="bi bi-pencil-square text-black" aria-hidden="true"></i>
+                    <span class="bi bi-pencil-square text-black" aria-hidden="true"></span>
                 </a>
                 <a href="" id="logout" onclick="logout();" aria-label="Icona logout" class="nav-item-box">
-                    <i class="bi bi-box-arrow-right text-black" aria-hidden="true"></i>
+                    <span class="bi bi-box-arrow-right text-black" aria-hidden="true"></span>
                 </a>
             </nav>
         </div>
@@ -48,13 +48,13 @@ $templateParams["js"] = array("js/my-profile.js");
     <div class="container-fluid">
         <nav class="d-flex justify-content-center gap-2 profile-icon-nav align-items-center">
             <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
-                <i id="like" class="bi bi-heart text-black" aria-hidden="true"></i>
+                <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
             </a>
             <a href="" id="profile" class="nav-item-box">
                 <img src="" alt="icona dell'utente" id="profileImg" class="rounded-circle border profile-hover"/>
             </a>
             <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
-                <i id="notification" class="bi bi-bell text-black" aria-hidden="true"></i>
+                <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
             </a>
         </nav>
     </div>

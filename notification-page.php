@@ -27,10 +27,10 @@ $templateParams["js"] = array("js/notification.js");
             <div class="container-fluid">
                 <nav class="d-flex justify-content-center gap-2 profile-icon-nav align-items-center">
                     <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
-                        <i id="like" class="bi bi-heart text-black" aria-hidden="true"></i>
+                        <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
                     </a>
                     <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
-                        <i id="notification" class="bi bi-bell text-black" aria-hidden="true"></i>
+                        <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
                     </a>
                     <a href="" id="profile" aria-label="Icona profilo" class="nav-item-box">
                         <img src="" alt="icona dell'utente" id="profileImg" class="rounded-circle border profile-hover"/>
@@ -43,7 +43,7 @@ $templateParams["js"] = array("js/notification.js");
         </header>
 
         <main class="container-fluid secondary-subtle py-3">
-            <h5 class="mb-3 fs-2"><strong>Notifiche:</strong></h5>
+            <h2 class="mb-3 fs-2 h5"><strong>Notifiche:</strong></h2>
         </main>
 
         <?php

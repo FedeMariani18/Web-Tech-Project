@@ -26,15 +26,15 @@ $templateParams["js"] = array("js/index.js");
             <div class="row align-items-center">
                 <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
                 <div class="col-10 col-md-6">
-                    <nav class="d-flex justify-content-end gap-2 index-nav-small">
-                        <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
-                            <i id="like" class="bi bi-heart text-black" aria-hidden="true"></i>
+                    <nav class="d-flex justify-content-end gap-2">
+                        <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box hidden-element">
+                            <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
                         </a>
-                        <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
-                            <i id="notification" class="bi bi-bell text-black" aria-hidden="true"></i>
+                        <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box hidden-element">
+                            <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
                         </a>
-                        <a href="" id="profile" aria-label="Profilo utente" class="nav-item-box">
-                            <i id="profileIcon" class="bi bi-person-circle text-black" aria-hidden="true"></i>
+                        <a href="login.php" id="profile" aria-label="Profilo utente" class="nav-item-box">
+                            <span id="profileIcon" class="bi bi-person-circle text-black" aria-hidden="true"></span>
                         </a>
                     </nav>
                 </div>
@@ -42,10 +42,13 @@ $templateParams["js"] = array("js/index.js");
             
             <form class="container-fluid" role="search" id="searchForm">
                 <div class="row justify-content-center">
+                    <label for="search" class="visually-hidden">Search</label>
                     <input class="col-6 rounded-5" id="search" type="search" placeholder="Search" aria-label="Search"/>
                     <div class="col-2">
                         <div class="row justify-content-center">
-                            <button class="col-10 rounded-5" type="submit"><img src="resources/magnifying_glass_icon.png" alt="icona della lente d'ingrandimento"></button>
+                            <button class="col-10 rounded-5" type="submit" aria-label="Pulsante di ricerca">
+                                <span id="searchIcon" class="bi bi-search text-black"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -66,8 +69,10 @@ $templateParams["js"] = array("js/index.js");
         </main>
 
         <nav>
-            <button class="position-fixed bottom-0 start-50 mb-4 rounded-circle" type="button" id="createPost">
-                <a href="create-post.php"><img class=""  src="resources/sum_icon.webp" alt="icon del più"/></a>
+            <button class="position-fixed bottom-0 start-50 mb-4 rounded-circle hidden-element" type="button" id="createPost">
+                <a href="create-post.php" id="createPostLink" aria-label="Crea un nuovo post">
+                    <span class="bi bi-plus-lg text-black fs-1"></span>
+                </a>
             </button>
         </nav>
         

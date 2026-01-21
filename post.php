@@ -25,14 +25,14 @@ $templateParams["js"] = array("js/post.js");
                 <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
                 <div class="col-10 col-md-6">
                     <nav class="d-flex justify-content-end gap-2 index-nav-small">
-                        <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
-                            <i id="like" class="bi bi-heart text-black" aria-hidden="true"></i>
+                        <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box hidden-element">
+                            <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
                         </a>
-                        <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
-                            <i id="notification" class="bi bi-bell text-black" aria-hidden="true"></i>
+                        <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box hidden-element">
+                            <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
                         </a>
-                        <a href="" id="my-profile" aria-label="Profilo utente" class="nav-item-box">
-                            <i id="profileIcon" class="bi bi-person-circle text-black" aria-hidden="true"></i>
+                        <a href="login.php" id="my-profile" aria-label="Profilo utente" class="nav-item-box">
+                            <span id="profileIcon" class="bi bi-person-circle text-black" aria-hidden="true"></span>
                         </a>
                     </nav>
                 </div>
@@ -46,7 +46,7 @@ $templateParams["js"] = array("js/post.js");
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title">Elimina</h5>
+                    <h2 class="modal-title h2">Elimina</h2>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">

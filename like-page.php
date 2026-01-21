@@ -26,10 +26,10 @@ $templateParams["js"] = array("js/like.js");
             <div class="container-fluid">
                 <nav class="d-flex justify-content-center gap-2 profile-icon-nav align-items-center">
                     <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
-                        <i id="notification" class="bi bi-bell text-black" aria-hidden="true"></i>
+                        <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
                     </a>
                     <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
-                        <i id="like" class="bi bi-heart text-black" aria-hidden="true"></i>
+                        <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
                     </a>
                     <a href="" id="profile" aria-label="Icona profilo" class="nav-item-box">
                         <img src="" alt="icona dell'utente" id="profileImg" class="rounded-circle border profile-hover"/>
@@ -42,7 +42,7 @@ $templateParams["js"] = array("js/like.js");
         </header>
 
         <main class="container-fluid secondary-subtle py-3">
-            <h5 class="mb-3 fs-2"><strong>Annunci preferiti:</strong></h5>
+            <h2 class="mb-3 fs-2 h5"><strong>Annunci preferiti:</strong></h2>
             <div class="row justify-content-center m-0" id="posts-container">
                 <!-- il metodo getPostData() in index.js prende il div con id posts-container e ci aggiunge dentro i post. -->
             </div>
