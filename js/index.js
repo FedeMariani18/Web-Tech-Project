@@ -5,16 +5,14 @@ function createPost(posts){
         let date = new Date(posts[i]["data_ora"]);
 
         let postHTML = `
-        <div class="col-10 col-lg-3 p-3 p-md-4">
+        <div class="col-10 col-md-5 col-lg-4 col-xl-3 p-3 p-md-4">
             <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="post.php?id=${posts[i]["id"]}">
                 <article class="row rounded-5 border border-black border-1 ">
                     <img class="img-fluid p-0" src="${posts[i]["foto"]}" alt="immagine del annuncio">
-                    <div class="">
-                        <h4 class="card-title m-0">${posts[i]["titolo"]}</h4>
-                        <p class="card-text m-0">${date.toLocaleDateString()} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</p>
-                        <p class="card-text text-secondary m-0">partecipanti: ${posts[i]["numero_iscritti"]}/${posts[i]["posti_disponibili"]}</p>
-                        
-                    </div>
+                    <h4 class="card-title m-0 text-truncate">${posts[i]["titolo"]}</h4>
+                    <p class="card-text m-0">${date.toLocaleDateString()} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</p>
+                    <p class="card-text text-secondary m-0">partecipanti: ${posts[i]["numero_iscritti"]}/${posts[i]["posti_disponibili"]}</p>   
+                
                 </article>
             </a>
         </div>
@@ -34,21 +32,20 @@ function createUser(users, id_user_logged){
         } else {
             redirect = `profile.php?id=${users[i]["id"]}`;
         }
-        
+
         let postHTML = `
-        <div class="col-10 col-lg-4 p-3 p-md-4">
-            <a class="link-underline link-underline-opacity-0 text-reset" href="${redirect}">
-                <article class="row rounded-5 border border-black border-1">
-                    <img class="col-5 img-fluid rounded-start-5 p-0" src="${users[i]["foto"]}" alt="immagine del annuncio">
-                    <div class="col-7">
-                        <div class="">
-                            <h5 class="card-title">${users[i]["username"]}</h5>
-                            <p class="card-text">${users[i]["nome"]} ${users[i]["cognome"]}</p>
-                        </div>
+        <div class="col-10 col-lg-3 p-3 p-md-4">
+            <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="${redirect}">
+                <article class="row rounded-5 border border-black border-1 ">
+                    <img class="img-fluid p-0" src="${users[i]["foto"]}" alt="immagine del annuncio">
+                    <div class="">
+                        <h4 class="card-title m-0 text-truncate">${users[i]["username"]}</h4>
+                        <p class="card-text m-0">${users[i]["nome"]} ${users[i]["cognome"]}</p>
                     </div>
                 </article>
             </a>
-        </div>`;
+        </div>
+        `;
         result += postHTML;
     }
     return result;
@@ -121,7 +118,7 @@ async function search(query) {
                 userContainer.innerHTML = createUser(json['users'], json['id_utente']);
             } else {
                 userContainer.innerHTML = "";
-                userTitle.textContent = "Nessun utente trovato";
+                userTitle.textContent = "";
             }
 
             // POSTS
@@ -133,7 +130,7 @@ async function search(query) {
                 postContainer.innerHTML = createPost(json['posts']);
             } else {
                 postContainer.innerHTML = "";
-                postTitle.textContent = "Nessun post trovato";
+                postTitle.textContent = "";
             }
         }
         else{

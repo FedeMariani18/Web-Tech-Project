@@ -49,10 +49,12 @@ function createProfile(user){
             </div>
         </div>
 
-        <div>
-            <h2 class="fs-2 fw-bold" >Post attivi:</h2>
+        <div class="row justify-content-center m-0 w-100">
+            <h2 class="fs-2 fw-bold col-12">Post attivi:</h2>
             ${getActivePost(user)}
-            <h2 class="fs-2 fw-bold" >Post a cui partecipi:</h2>
+        </div>
+        <div class="row justify-content-center m-0 w-100">
+            <h2 class="fs-2 fw-bold col-12">Post a cui partecipi:</h2>
             ${getPost(user)}
         </div>
 
@@ -80,21 +82,21 @@ function getPost(user) {
         return `Non partecipi a nessun evento.`;
     }
     for(let i=0; i < user['postACuiPartecipa'].length; i++){
+        let date = new Date(user['postACuiPartecipa'][i]["data_ora"]);
         let postHTML = `
-        <div class="col-10 col-lg-4 p-3 p-md-4">
-                <a class="link-underline link-underline-opacity-0 text-reset" href="post.php?id=${user['postACuiPartecipa'][i]["id"]}">
-                    <article class="row rounded-5 border border-black border-1">
-                        <img class="col-5 img-fluid rounded-start-5 p-0" src="${user['postACuiPartecipa'][i]["foto"]}" alt="immagine del annuncio">
-                        <div class="col-7">
-                            <div class="">
-                                <h5 class="card-title">${user['postACuiPartecipa'][i]["titolo"]}</h5>
-                                <p class="card-text">${user['postACuiPartecipa'][i]["descrizione"]}</p>
-                                <p class="card-text"><small class="text-body-secondary">#${user['postACuiPartecipa'][i]["nome_categoria"]}</small></p>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-            </div>
+        <div class="col-10 col-lg-3 p-3 p-md-4">
+            <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="post.php?id=${user['postACuiPartecipa'][i]["id"]}">
+                <article class="row rounded-5 border border-black border-1 ">
+                    <img class="img-fluid p-0" src="${user['postACuiPartecipa'][i]["foto"]}" alt="immagine del annuncio">
+                    <div class="">
+                        <h4 class="card-title m-0">${user['postACuiPartecipa'][i]["titolo"]}</h4>
+                        <p class="card-text m-0">${date.toLocaleDateString()} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</p>
+                        <p class="card-text text-secondary m-0">partecipanti: ${user['postACuiPartecipa'][i]["numero_iscritti"]}/${user['postACuiPartecipa'][i]["posti_disponibili"]}</p>
+                        
+                    </div>
+                </article>
+            </a>
+        </div>
         `;
         result += postHTML;
     }
@@ -107,21 +109,19 @@ function getActivePost(user) {
         return `Non hai nessun post attivo`;
     }
     for(let i=0; i < user['postAttivi'].length; i++){
+        let date = new Date(user['postACuiPartecipa'][i]["data_ora"]);
         let postHTML = `
-        <div class="col-10 col-lg-4 p-3 p-md-4">
-                <a class="link-underline link-underline-opacity-0 text-reset" href="post.php?id=${user['postAttivi'][i]["id"]}">
-                    <article class="row rounded-5 border border-black border-1">
-                        <img class="col-5 img-fluid rounded-start-5 p-0" src="${user['postAttivi'][i]["foto"]}" alt="immagine del annuncio">
-                        <div class="col-7">
-                            <div class="">
-                                <h5 class="card-title">${user['postAttivi'][i]["titolo"]}</h5>
-                                <p class="card-text">${user['postAttivi'][i]["descrizione"]}</p>
-                                <p class="card-text"><small class="text-body-secondary">#${user['postAttivi'][i]["nome_categoria"]}</small></p>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-            </div>
+        <div class="col-10 col-lg-3 p-3 p-md-4">
+            <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="post.php?id=${user['postACuiPartecipa'][i]["id"]}">
+                <article class="row rounded-5 border border-black border-1 ">
+                    <img class="img-fluid p-0" src="${user['postACuiPartecipa'][i]["foto"]}" alt="immagine del annuncio">
+                    <div class="">
+                        <h4 class="card-title m-0">${user['postACuiPartecipa'][i]["titolo"]}</h4>
+                        <p class="card-text m-0">${date.toLocaleDateString()} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</p>    
+                    </div>
+                </article>
+            </a>
+        </div>
         `;
         result += postHTML;
     }
@@ -146,7 +146,7 @@ async function getUserData() {
         const username = document.getElementById("username");
         username.innerText = json['username'];
         const profile = createProfile(json);
-        const main = document.querySelector("main");
+        const main = document.querySelector("main div");
         main.innerHTML += profile;
     } catch (error) {
         console.log(error.message);

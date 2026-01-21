@@ -32,6 +32,9 @@ $templateParams["js"] = array("js/my-profile.js");
         <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
         <div class="col-10 col-md-6">
             <nav class="d-flex justify-content-end gap-2">    
+                <a href="index.php" id="home" aria-label="Icona Home" class="nav-item-box">
+                    <i class="bi bi-house text-black" aria-hidden="true"></i>
+                </a>
                 <a href="edit-profile.php" id="editProfile" aria-label="Icona modifica" class="nav-item-box">
                     <i class="bi bi-pencil-square text-black" aria-hidden="true"></i>
                 </a>
@@ -63,7 +66,9 @@ $templateParams["js"] = array("js/my-profile.js");
 </header>
 
 <main class="container-fluid">
-    
+    <div class="row justify-content-center m-0" id="posts-container">
+
+    </div>
 </main>
 <?php
     if(isset($templateParams["js"])):

@@ -55,11 +55,11 @@ $templateParams["js"] = array("js/index.js");
 
         <!-- MAIN -->
         <main class="container-fluid">
-            <p class="mt-3">Cerca l'avventura giusta per te</p>
-            <p class="m-0" id='userTitle'></p>
+            <p class="mt-3 mb-0">Cerca l'avventura giusta per te</p>
+            <strong><label class="m-0 fs-2" id='userTitle'></label></strong>
             <div class="row justify-content-center m-0" id="users-container">
             </div>
-            <p class="m-0" id='postTitle'></p>
+            <strong><label class="m-0 fs-2" id='postTitle'></label></strong>
             <div class="row justify-content-center m-0" id="posts-container">
                 <!-- il metodo getPostData() in index.js prende il div con id posts-container e ci aggiunge dentro i post. -->
             </div>

@@ -26,7 +26,7 @@
             <h1 class="m-0" style="text-align: center;">CREA ANNUNCIO</h1>
         </header>
         <main>
-            <form class="p-3" method="POST" id="postForm">
+            <form class="container-fluid" method="POST" id="postForm">
                 <p></p>
                 <ul class="list-group row justify-content-center">
                     <li class="mb-3 col-md-6">
@@ -87,12 +87,17 @@
                         <label class="form-label" for="foto">Aggiungi una foto:</label>
                         <input class="form-control" type="file" id="foto" name="foto" accept=".jpg, .jpeg, .png">
                     </li>
+                    <li class="mb-3">
+                        <div class="row">
+                            <div class="col-10 offset-1 d-grid">
+                                <button class="btn btn-lg fw-bold" id="posta" type="submit" style="background-color: #ffd966;">
+                                    POSTA
+                                </button>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
-                <!--<footer class="container-fluid">-->
-                    <div class="row justify-content-center p-3">
-                        <button class="col-4 button border border-black rounded-3" type="submit">POSTA</button>
-                    </div>
-                <!-- </footer> -->
+                
             </form>
         </main>
         <?php
