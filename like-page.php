@@ -28,11 +28,11 @@ $templateParams["js"] = array("js/like.js");
                     <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
                         <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
                     </a>
-                    <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
-                        <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
-                    </a>
                     <a href="" id="profile" aria-label="Icona profilo" class="nav-item-box">
                         <img src="" alt="icona dell'utente" id="profileImg" class="rounded-circle border profile-hover"/>
+                    </a>
+                    <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
+                        <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
                     </a>
                 </nav>
             </div>
