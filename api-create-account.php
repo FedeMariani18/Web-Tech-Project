@@ -11,7 +11,7 @@ $result = ["creazioneeseguita" => false];
 try {
     // Gestione foto
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-        $fotoName = saveImg($_FILES['foto'], true);
+        $fotoName = getImgUniqName($_FILES['foto'], true);
     } else {
         $fotoName = "default_profile.png";
     }
@@ -42,6 +42,7 @@ try {
     }
 
     $result["creazioneeseguita"] = true;
+    saveImg($_FILES['foto'], true, $fotoName);
     echo json_encode($result);
 
 } catch (Throwable $e) {

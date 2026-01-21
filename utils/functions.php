@@ -15,26 +15,36 @@ function registerLoggedUser($user){
     $_SESSION["cognome"] = $user["cognome"];
 }
 
-function saveImg($foto, $user){
+function getImgUniqName($foto, $user){
     if (isset($foto) && $foto['error'] === UPLOAD_ERR_OK) {
         $estensione = pathinfo($foto['name'], PATHINFO_EXTENSION);
 
         if($user){
-            // Crea cartella se non esiste
+            // Genera nome file univoco
+            $nomeFile = uniqid('user_') . '.' . $estensione;
+        } else {
+            // Genera nome file univoco
+            $nomeFile = uniqid('post_') . '.' . $estensione;
+        }
+
+        return $nomeFile;
+    }
+}
+
+function saveImg($foto, $user, $nomeFile){
+    if (isset($foto) && $foto['error'] === UPLOAD_ERR_OK) {
+        
+        // Crea cartella se non esiste
+        if($user){
             $uploadDir = UPLOAD_DIR_PROFILE;
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             } 
-            // Genera nome file univoco
-            $nomeFile = uniqid('user_') . '.' . $estensione;
         } else {
-            // Crea cartella se non esiste
             $uploadDir = UPLOAD_DIR_POST;
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
-            // Genera nome file univoco
-            $nomeFile = uniqid('post_') . '.' . $estensione;
         }
         
         //crea file path intero

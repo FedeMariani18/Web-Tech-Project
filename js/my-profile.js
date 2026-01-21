@@ -165,7 +165,7 @@ async function logout(){
         console.log(json);
 
         if(json['logouteseguito'] === true){
-            window.location.href = "index.php";
+            window.location.replace("index.php");
         } else {
             console.log(json['errorelogout']);
         }

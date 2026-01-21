@@ -56,6 +56,14 @@ $templateParams["js"] = array("js/index.js");
             
         </header>
 
+        <nav>
+            <button class="position-fixed bottom-0 start-50 mb-4 rounded-circle hidden-element" type="button" id="createPost">
+                <a href="create-post.php" id="createPostLink" aria-label="Crea un nuovo post">
+                    <span class="bi bi-plus-lg text-black fs-1"></span>
+                </a>
+            </button>
+        </nav>
+
         <!-- MAIN -->
         <main class="container-fluid">
             <p class="mt-3 mb-0">Cerca l'avventura giusta per te</p>
@@ -67,14 +75,6 @@ $templateParams["js"] = array("js/index.js");
                 <!-- il metodo getPostData() in index.js prende il div con id posts-container e ci aggiunge dentro i post. -->
             </div>
         </main>
-
-        <nav>
-            <button class="position-fixed bottom-0 start-50 mb-4 rounded-circle hidden-element" type="button" id="createPost">
-                <a href="create-post.php" id="createPostLink" aria-label="Crea un nuovo post">
-                    <span class="bi bi-plus-lg text-black fs-1"></span>
-                </a>
-            </button>
-        </nav>
 
         <?php
             if(isset($templateParams["js"])):
