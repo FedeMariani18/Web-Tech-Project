@@ -188,7 +188,7 @@
                 LEFT JOIN POST p 
                     ON n.id_post = p.id
                 WHERE n.id_destinatario = ?
-                ORDER BY n.data_ora DESC;
+                ORDER BY n.data_ora;
             ");
             $stmt->bind_param("i", $id);
             $stmt->execute();

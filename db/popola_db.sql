@@ -1,10 +1,10 @@
 INSERT INTO UTENTE (id, username, password_hash, nome, cognome, numero_telefono, mail, foto, ruolo, bannato) VALUES
-(1, 'federiani', '$2y$10$6n05D.ZIau7a4e6qVslwLu418KPoTa2IP0nVQB5L/MIqC2Seu0oPa', 'Federico', 'Mariani', '3384308484', 'federico@gmail.com', 'user_696e5b6947d31.png', 'USER', 0),
+(1, 'federiani', '$2y$10$6n05D.ZIau7a4e6qVslwLu418KPoTa2IP0nVQB5L/MIqC2Seu0oPa', 'Federico', 'Mariani', '3384308484', 'federico@gmail.com', 'user_696e5c296423e.png', 'USER', 0),
 (2, 'mario.rossi', '$2y$10$qgVX/exy5N4iQH48YOhVyOHRMo6f54OhVHEouKjmn33zGnIqxps.W', 'Mario', 'Rossi', '3384308888', 'mario@gmail.com', 'user_696e5bc831c73.png', 'USER', 0),
 (3, 'ilCIle', '$2y$10$MU1zOKtNSy9I6POF4QnmtOENrhypGqyS93quH96cSPMHD7MMOHrdm', 'Alan', 'Barzanti', '3384308888', 'alan@gmail.com', 'user_696e5be14d27a.png', 'USER', 0),
 (4, 'gian', '$2y$10$V3tkAqBF5lGgMhufhZQ/B.9PQnSOUxWZKbRw6j09thdFsYrtboSOm', 'Gianmarco', 'Bianchi', '3384308484', 'gian@gmail.com', 'user_696e5c01aafb0.png', 'USER', 0),
 (5, 'marcomonda', '$2y$10$di6kM9zQxxKHd/Vhjahz0OoydGXo6lzH1uIjCq7m1aBaJTGOlj8.C', 'Marco', 'Mondardini', '3384308888', 'marco@gmail.com', 'user_696e5c296423e.png', 'USER', 0),
-(6, 'samuello', '$2y$10$WwQ8.saNsRdBzrCx9U15hOrLcHVW5Pjrb9CiAxUYpTFUvhOOVWMwC', 'Samuele', 'Rossi', '3384308888', 'samuele@gmail.com', NULL, 'USER', 0),
+(6, 'samuello', '$2y$10$WwQ8.saNsRdBzrCx9U15hOrLcHVW5Pjrb9CiAxUYpTFUvhOOVWMwC', 'Samuele', 'Rossi', '3384308888', 'samuele@gmail.com', 'user_696e5c296423e.png', 'USER', 0),
 (7, 'francy', '$2y$10$wChuU7NEsytw4Fdjdp7n4Oc2eKOctSqx6noITUG6.SKpFur2CqRA6', 'Francesco', 'Casanova', '123445678909', 'fra@gmail.com', 'user_696e5c5fe461f.png', 'USER', 0),
 (8, 'boscos', '$2y$10$SFzuF9PU1k/x7nMqwCv.buTT94YPp.PDykaxHubSbwQZfR4BY7jMy', 'Manuel', 'Boschetti', '123445678909', 'basco@gmail.com', 'user_696e5c7c10a1e.png', 'USER', 0),
 (9, 'the_monster', '$2y$10$Jw/j2g8Ei.nxvHemjh8FN.b6mkdgQpVfQJw7eKq9Ew.iZzYvwCHTW', 'Luca', 'Neri', '123445678909', 'luca@gmail.com', 'user_696e5cb2d08c6.png', 'USER', 0),
@@ -316,17 +316,9 @@ VALUES
 (3, 12, '2026-02-03 12:55:00', 3, 14, FALSE),
 
 -- DISISCRIZIONE (4)
-(4, 1, '2026-02-04 13:00:00', 5, 6, FALSE),
-(4, 2, '2026-02-04 13:05:00', 6, 7, TRUE),
-(4, 3, '2026-02-04 13:10:00', 7, 8, FALSE),
-(4, 4, '2026-02-04 13:15:00', 8, 9, TRUE),
-(4, 5, '2026-02-04 13:20:00', 9, 10, FALSE),
-(4, 6, '2026-02-04 13:25:00', 10, 11, TRUE),
-
--- POST ELIMINATO (5)
-(5, 7, '2026-02-05 14:00:00', NULL, 12, FALSE),
-(5, 8, '2026-02-05 14:05:00', NULL, 13, FALSE),
-(5, 9, '2026-02-05 14:10:00', NULL, 14, TRUE),
-(5, 10, '2026-02-05 14:15:00', NULL, 15, FALSE),
-(5, 11, '2026-02-05 14:20:00', NULL, 16, TRUE),
-(5, 12, '2026-02-05 14:25:00', NULL, 17, FALSE);
+(5, 1, '2026-02-04 13:00:00', 5, 6, FALSE),
+(5, 2, '2026-02-04 13:05:00', 6, 7, TRUE),
+(5, 3, '2026-02-04 13:10:00', 7, 8, FALSE),
+(5, 4, '2026-02-04 13:15:00', 8, 9, TRUE),
+(5, 5, '2026-02-04 13:20:00', 9, 10, FALSE),
+(5, 6, '2026-02-04 13:25:00', 10, 11, TRUE),
