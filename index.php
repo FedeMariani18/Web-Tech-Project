@@ -9,7 +9,7 @@ $templateParams["js"] = array("js/index.js");
 <html lang="it" class="m-0">
     <head>
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -19,7 +19,7 @@ $templateParams["js"] = array("js/index.js");
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <header class="container-fluid pt-2 pb-3">
@@ -43,7 +43,7 @@ $templateParams["js"] = array("js/index.js");
             <form class="container-fluid mt-4" role="search" id="searchForm">
                 <div class="row justify-content-center">
                     <label for="search" class="visually-hidden">Search</label>
-                    <input class="col-6 rounded-5" id="search" type="search" placeholder="Search" aria-label="Search"/>
+                    <input class="col-6 rounded-5" id="search" type="search" placeholder="Search" aria-label="Search">
                     <div class="col-2">
                         <div class="row justify-content-center">
                             <button class="col-10 rounded-5" type="submit" aria-label="Pulsante di ricerca">
@@ -75,6 +75,12 @@ $templateParams["js"] = array("js/index.js");
                 <!-- il metodo getPostData() in index.js prende il div con id posts-container e ci aggiunge dentro i post. -->
             </div>
         </main>
+
+        <nav>
+            <a href="create-post.php" id="createPostLink" aria-label="Crea un nuovo post" class="floating-btn hidden-element">
+                <span class="bi bi-plus-circle-fill text-black fs-1"></span>
+            </a>
+        </nav>
 
         <?php
             if(isset($templateParams["js"])):

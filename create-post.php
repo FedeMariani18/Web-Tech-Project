@@ -8,7 +8,7 @@
     <head>
         <title>Crea un annuncio</title>
 
-        <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -17,7 +17,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
     </head>
     
@@ -31,7 +31,7 @@
                 <ul class="list-group row justify-content-center">
                     <li class="mb-3 col-md-6">
                         <label class="form-label" for="titolo">Titolo:</label>
-                        <input class="form-control" type="text" id="titolo" name="titolo" required/>
+                        <input class="form-control" type="text" id="titolo" name="titolo" required>
                     </li>
                     <li class="mb-3">
                         <label class="form-label" for="descrizione">Descrizione:</label>
@@ -39,15 +39,15 @@
                     </li>
                     <li class="mb-3">
                         <label class="form-label" for="data">Data:</label>
-                        <input class="form-control" type="date" id="data" name="data" required/>
+                        <input class="form-control" type="date" id="data" name="data" required>
                     </li>
                     <li class="mb-3">
                         <label class="form-label" for="orario">Ora:</label>
-                        <input class="form-control" type="time" id="orario" name="orario" required/>
+                        <input class="form-control" type="time" id="orario" name="orario" required>
                     </li>
                     <li class="mb-3">
                         <label class="form-label" for="nPartecipanti">Posti disponibili:</label>
-                        <input class="form-control" type="number" id="nPartecipanti" name="nPartecipanti" required/>
+                        <input class="form-control" type="number" id="nPartecipanti" name="nPartecipanti" required>
                     </li>
                     <li class="mb-3">
                         <fieldset>

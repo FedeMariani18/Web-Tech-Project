@@ -8,7 +8,7 @@ $templateParams["js"] = array("js/edit-profile.js");
     <head>
         <title>Modifica account</title>
 
-        <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -17,7 +17,7 @@ $templateParams["js"] = array("js/edit-profile.js");
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="UTF-8">
     </head>
     
@@ -63,14 +63,14 @@ $templateParams["js"] = array("js/edit-profile.js");
                     </li>
                     <li class="mb-3">
                         <label class="form-label" for="mail">Mail:</label>
-                        <input class="form-control" type="email" id="mail" name="mail" placeholder="mail@gmail.com"/>
+                        <input class="form-control" type="email" id="mail" name="mail" placeholder="mail@gmail.com">
                     </li>
                     <li class="mb-3">
                         <label class="form-label" for="password">Scegli una nuova password:</label>
                         <button class="btn btn-outline-secondary mb-1" type="button" id="togglePassword">
                         <span id="eyeIcon">Mostra</span>
                         </button>
-                        <input class="form-control" type="password" id="password" name="password" placeholder="Password"/>
+                        <input class="form-control" type="password" id="password" name="password" placeholder="Password">
                     </li>
                     <li class="mb-3">
                         <div class="row justify-content-center">

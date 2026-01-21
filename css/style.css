@@ -173,21 +173,6 @@ body+nav{
     background-color: var(--second-color) !important;
 }
 
-body nav button{
-    width: 80px;
-    height: 80px;
-
-    background-color: var(--third-color);
-    
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    transform: translateX(-50%);
-}
-
-body nav button:hover {
-    transform: translateX(-50%) scale(1.1);
-    box-shadow: 3px 3px rgb(0 0 0 / 40%);
-}
-
 body nav button img{
     width: 60%;
     height: 60%;
@@ -247,4 +232,36 @@ body footer div button{
 
 .hidden-element{
     display: none;
+}
+
+.floating-btn {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+
+    /* dimensioni del pulsante */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--third-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* ombra per renderlo più evidente */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-btn span {
+    font-size: 48px;       /* ingrandisce l’icona */
+    color: black;
+}
+
+.floating-btn:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 3px 3px rgb(0 0 0 / 40%);
 }

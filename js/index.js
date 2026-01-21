@@ -65,10 +65,10 @@ async function getPostData() {
         if (json['utenteLoggato']) {
             const like = document.getElementById("like");
             const notification = document.getElementById("notification");
-            const create = document.getElementById("createPost");
+            const create = document.getElementById("createPostLink");
             like.style.display = "flex";
             notification.style.display = "flex";
-            create.style.display = "block";
+            create.style.display = "flex";
 
             const icon = document.getElementById("profileIcon");
             if(icon){

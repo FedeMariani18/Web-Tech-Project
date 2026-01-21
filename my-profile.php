@@ -8,7 +8,7 @@ $templateParams["js"] = array("js/my-profile.js");
 <head>
     <title>Profile</title>
 
-    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -21,7 +21,7 @@ $templateParams["js"] = array("js/my-profile.js");
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -51,7 +51,7 @@ $templateParams["js"] = array("js/my-profile.js");
                 <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
             </a>
             <a href="" id="profile" class="nav-item-box">
-                <img src="" alt="icona dell'utente" id="profileImg" class="rounded-circle border profile-hover"/>
+                <img src="resources/users/default_profile.png" alt="icona dell'utente" id="profileImg" class="rounded-circle border profile-hover">
             </a>
             <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
                 <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
