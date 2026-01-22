@@ -48,6 +48,7 @@ async function getLikePostData() {
         const posts = createPost(json['likes']);
         const h2 = document.querySelector("main h2 strong");
         h2.innerText = "Post preferiti:";
+        tab = 'like';
         const main = document.querySelector("main div");
         main.innerHTML = '';
         main.innerHTML += posts;

@@ -76,6 +76,7 @@ async function getNotificationPostData() {
         const notfications = createNotifications(json['notifications']);
         const h2 = document.querySelector("main h2 strong");
         h2.innerText = "Notifiche";
+        tab = 'notification';
         const main = document.getElementById("posts-container");
         main.innerHTML = notfications;
     } catch (error) {

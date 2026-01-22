@@ -26,10 +26,10 @@
                 <div class="col-10 col-md-6">
                     <nav class="d-flex justify-content-end gap-2">
                         <nav class="d-flex justify-content-end gap-2 index-nav-small">
-                        <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
+                        <a href="my-profile.php?tab=like" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
                             <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
                         </a>
-                        <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
+                        <a href="my-profile.php?tab=notification" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
                             <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
                         </a>
                         <a href="" id="profile" aria-label="Icona profilo" class="nav-item-box">

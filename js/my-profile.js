@@ -1,3 +1,12 @@
+const params = new URLSearchParams(window.location.search);
+tab = params.get("tab");
+
+if (tab === "like") {
+    getLikePostData();
+} else if(tab === "notification"){
+    getNotificationPostData();
+
+}
 getUserData();
 
 const btns = document.querySelectorAll("button");
@@ -15,6 +24,7 @@ btns.forEach(btn => {
         }
     });
 });
+
 
 function createProfile(user){
     const result = `
@@ -109,7 +119,7 @@ function getPost(user) {
                     <div class="">
                         <h4 class="card-title m-0">${user['postACuiPartecipa'][i]["titolo"]}</h4>
                         <p class="card-text m-0">${date.toLocaleDateString()} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</p>
-                        <p class="card-text text-secondary m-0">partecipanti: ${user['postACuiPartecipa'][i]["numero_iscritti"]}/${user['postACuiPartecipa'][i]["posti_disponibili"]}</p>
+                        <p class="card-text text-secondary m-0">Partecipanti: ${user['postACuiPartecipa'][i]["numero_iscritti"]}/${user['postACuiPartecipa'][i]["posti_disponibili"]}</p>
                         
                     </div>
                 </article>
@@ -164,8 +174,10 @@ async function getUserData() {
         const username = document.getElementById("username");
         username.innerText = json['username'];
         const profile = createProfile(json);
+        const h2 = document.querySelector("main h2 strong");
+        h2.innerText = "";
         const main = document.querySelector("main div");
-        main.innerHTML += profile;
+        main.innerHTML = profile;
     } catch (error) {
         console.log(error.message);
     }

@@ -1,6 +1,6 @@
 <?php
 require_once 'bootstrap.php';
-$templateParams["js"] = array("js/my-profile.js", "js/like.js", "js/notification.js");
+$templateParams["js"] = array("js/like.js", "js/notification.js", "js/my-profile.js");
 ?>
 
 <!DOCTYPE html>
