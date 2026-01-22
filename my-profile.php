@@ -1,6 +1,6 @@
 <?php
 require_once 'bootstrap.php';
-$templateParams["js"] = array("js/my-profile.js");
+$templateParams["js"] = array("js/my-profile.js", "js/like.js", "js/notification.js");
 ?>
 
 <!DOCTYPE html>
@@ -47,15 +47,15 @@ $templateParams["js"] = array("js/my-profile.js");
 
     <div class="container-fluid">
         <nav class="d-flex justify-content-center gap-2 profile-icon-nav align-items-center">
-            <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
+            <button id="like" aria-label="Icona dei preferiti" class="icon-btn nav-item-box">
                 <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
-            </a>
-            <a href="" id="profile" class="nav-item-box">
+            </button>
+            <button id="profile" class="icon-btn nav-item-box">
                 <img src="resources/users/default_profile.png" alt="icona dell'utente" id="profileImg" class="rounded-circle border profile-hover">
-            </a>
-            <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
+            </button>
+            <button id="notification" aria-label="Icona delle notifiche" class="icon-btn nav-item-box">
                 <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
-            </a>
+            </button>
         </nav>
     </div>
 
@@ -66,10 +66,12 @@ $templateParams["js"] = array("js/my-profile.js");
 </header>
 
 <main class="container-fluid">
+    <h2 class="mb-3 mt-2 fs-2"><strong></strong></h2>
     <div class="row justify-content-center m-0" id="posts-container">
 
     </div>
 </main>
+
 <?php
     if(isset($templateParams["js"])):
         foreach($templateParams["js"] as $script):

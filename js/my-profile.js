@@ -1,3 +1,24 @@
+getUserData();
+
+const btns = document.querySelectorAll("button");
+btns.forEach(btn => {
+    btn.addEventListener("click", function(event) {
+        const container = document.querySelector("main div");
+        container.innerHTML = "";
+        
+        if(event.target.id === "likeIcon" || event.target.id === "like"){
+            console.log("premuto il tasto like");
+            getLikePostData();
+        } else if(event.target.id === "notificationIcon" || event.target.id === "notification") {
+            console.log("premuto il tasto notifica");
+            getNotificationPostData();
+        } else if(event.target.id === "profileImg" || event.target.id === "profile") {
+            console.log("premuto il tasto user");
+            getUserData();
+        }
+    });
+});
+
 function createProfile(user){
     const result = `
     <div class="row justify-content-center m-0">
@@ -173,5 +194,3 @@ async function logout(){
         console.log(error.message);
     }
 }
-
-getUserData();

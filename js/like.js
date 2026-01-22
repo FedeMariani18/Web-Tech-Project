@@ -24,7 +24,7 @@ function createPost(posts){
     return result;
 }
 
-async function getPostData() {
+async function getLikePostData() {
     const url = 'api-like.php';
     try {
         const response = await fetch(url);
@@ -46,11 +46,12 @@ async function getPostData() {
             profileImg.src = json['fotoProfilo'];
         }
         const posts = createPost(json['likes']);
-        const main = document.getElementById("posts-container");
+        const h2 = document.querySelector("main h2 strong");
+        h2.innerText = "Post preferiti:";
+        const main = document.querySelector("main div");
+        main.innerHTML = '';
         main.innerHTML += posts;
     } catch (error) {
         console.log(error.message);
     }
 }
-
-getPostData();

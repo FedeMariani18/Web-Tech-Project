@@ -52,7 +52,7 @@ function getNotificationData(notification) {
     return data;
 }
 
-async function getPostData() {
+async function getNotificationPostData() {
     const url = 'api-notification.php';
     try {
         const response = await fetch(url);
@@ -74,11 +74,11 @@ async function getPostData() {
             profileImg.src = json['fotoProfilo'];
         }
         const notfications = createNotifications(json['notifications']);
-        const main = document.querySelector("main");
-        main.innerHTML += notfications;
+        const h2 = document.querySelector("main h2 strong");
+        h2.innerText = "Notifiche";
+        const main = document.getElementById("posts-container");
+        main.innerHTML = notfications;
     } catch (error) {
         console.log(error.message);
     }
 }
-
-getPostData();
