@@ -60,7 +60,7 @@ $templateParams["js"] = array("js/like.js", "js/notification.js", "js/my-profile
     </div>
 
     <div class="row justify-content-center">
-        <h1 class="text-center" id="username"></h1>
+        <h1 class="text-center text-white" id="username"></h1>
     </div>
 
 </header>

@@ -67,7 +67,7 @@ function getActivePost(user) {
         let postHTML = `
         <div class="col-10 col-md-5 col-lg-4 col-xl-3 p-3 p-md-4">
             <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="post.php?id=${user['postAttivi'][i]["id"]}">
-                <article class="row rounded-5 border border-black border-0 ">
+                <article class="row rounded-5 border border-black border-2">
                     <img class="img-fluid p-0" src="${user['postAttivi'][i]["foto"]}" alt="immagine del annuncio">
                     <h4 class="card-title m-0 text-truncate">${user['postAttivi'][i]["titolo"]}</h4>
                     <p class="card-text m-0">${date.toLocaleDateString()} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</p>

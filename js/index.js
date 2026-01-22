@@ -11,7 +11,7 @@ function createPost(posts){
                     <img class="img-fluid p-0" src="${posts[i]["foto"]}" alt="immagine del annuncio">
                     <h4 class="card-title m-0 text-truncate">${posts[i]["titolo"]}</h4>
                     <p class="card-text m-0">${date.toLocaleDateString()} - ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}</p>
-                    <p class="card-text text-secondary m-0">Partecipanti: ${posts[i]["numero_iscritti"]}/${posts[i]["posti_disponibili"]}</p>   
+                    <p class="card-text text-black m-0">Partecipanti: ${posts[i]["numero_iscritti"]}/${posts[i]["posti_disponibili"]}</p>   
                 
                 </article>
             </a>
@@ -36,7 +36,7 @@ function createUser(users, id_user_logged){
         let postHTML = `
         <div class="col-10 col-md-5 col-lg-4 col-xl-3 p-3 p-md-4">
             <a class="flex-container link-underline link-underline-opacity-0 text-reset" href="${redirect}">
-                <article class="row rounded-5 border border-black border-0">
+                <article class="row rounded-5 border border-black border-2">
                     <img class="img-fluid p-0" src="${users[i]["foto"]}" alt="immagine del annuncio">
                     <div class="">
                         <h4 class="card-title m-0 text-truncate">${users[i]["username"]}</h4>
