@@ -21,18 +21,18 @@ $templateParams["js"] = array("js/like.js");
     <body>
         <header class="container-fluid pt-2 pb-3">
             <div class="row align-items-center">
-                <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
+                <h1 class="col-2 col-md-6"><a href="index.php" style="text-decoration:none;">UNINET</a></h1>
             </div>
             <div class="container-fluid">
                 <nav class="d-flex justify-content-center gap-2 profile-icon-nav align-items-center">
                     <a href="notification-page.php" id="notification" aria-label="Icona delle notifiche" class="nav-item-box">
-                        <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
+                        <span id="notificationIcon" class="bi bi-bell text-white" aria-hidden="true"></span>
                     </a>
                     <a href="" id="profile" aria-label="Icona profilo" class="nav-item-box">
                         <img src="resources/users/default_profile.png" alt="icona dell'utente" id="profileImg" class="rounded-circle border profile-hover">
                     </a>
                     <a href="like-page.php" id="like" aria-label="Icona dei preferiti" class="nav-item-box">
-                        <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
+                        <span id="likeIcon" class="bi bi-heart text-white" aria-hidden="true"></span>
                     </a>
                 </nav>
             </div>
@@ -42,7 +42,7 @@ $templateParams["js"] = array("js/like.js");
         </header>
 
         <main class="container-fluid secondary-subtle py-3">
-            <h2 class="mb-3 fs-2 h5"><strong>Annunci preferiti:</strong></h2>
+            <h2 class="mb-3 fs-2 h5"><strong>Annunci preferiti</strong></h2>
             <div class="row justify-content-center m-0" id="posts-container">
                 <!-- il metodo getPostData() in index.js prende il div con id posts-container e ci aggiunge dentro i post. -->
             </div>

@@ -22,17 +22,17 @@ $templateParams["js"] = array("js/post.js");
     <body>
         <header class="container-fluid">
             <div class="row align-items-center">
-                <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
+                <h1 class="col-2 col-md-6"><a href="index.php" style="text-decoration:none;">UNINET</a></h1>
                 <div class="col-10 col-md-6">
                     <nav class="d-flex justify-content-end gap-2 index-nav-small">
                         <a href="my-profile.php?tab=like" id="like" aria-label="Icona dei preferiti" class="nav-item-box hidden-element">
-                            <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
+                            <span id="likeIcon" class="bi bi-heart text-white" aria-hidden="true"></span>
                         </a>
                         <a href="my-profile.php?tab=notification" id="notification" aria-label="Icona delle notifiche" class="nav-item-box hidden-element">
-                            <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
+                            <span id="notificationIcon" class="bi bi-bell text-white" aria-hidden="true"></span>
                         </a>
                         <a href="login.php" id="my-profile" aria-label="Profilo utente" class="nav-item-box">
-                            <span id="profileIcon" class="bi bi-person-circle text-black" aria-hidden="true"></span>
+                            <span id="profileIcon" class="bi bi-person-circle text-white" aria-hidden="true"></span>
                         </a>
                     </nav>
                 </div>

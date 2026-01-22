@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=BBH+Bartle&display=swap');
 
 :root{
-    --first-color: #ffd966;
-    --second-color: #A8CCC9;
-    --third-color: #DA627D;
-    --background-color: white;
+    --first-color: #F18F01;
+    --second-color:#f7f5f3;/*#6C9A8B;#62929E; */
+    --third-color: #a31b1b;
+    --fourth-color: #111111;
 }
 
 h1, body{
@@ -17,12 +17,13 @@ header{
     z-index: 10;
     top: 0;
     background-color: var(--first-color);
+    border-bottom: black 2px solid;
 }
 
 header h1 a{
     font-size: clamp(1rem, 5vw, 2rem);
     font-family: "BBH Bartle", sans-serif;
-    color: var(--third-color);
+    color: var(--second-color);
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -132,7 +133,7 @@ body main>div>p, main>p, header figure figcaption{
     font-weight: 300;
     font-style: normal;
     font-size: 20px;
-    color: var(--third-color);
+    color: var(--fourth-color);
     
 }
 
@@ -154,7 +155,7 @@ body main article{
     min-height: 320px;
     overflow: hidden;
     height: 100%;
-
+    color: var(--fourth-color);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -183,7 +184,7 @@ body main .collapse ul li:hover{
 } 
 
 body+nav{
-    background-color: var(--second-color) !important;
+    background-color: var(--first-color) !important;
 }
 
 body nav button img{
@@ -192,7 +193,7 @@ body nav button img{
 }
 
 body footer{
-    background-color: var(--first-color);
+    background-color: var(--third-color);
 }
 
 body footer div button{
@@ -253,13 +254,13 @@ body footer div button{
     left: 50%;
     transform: translateX(-50%);
     z-index: 999;
+    border: black 2px solid;
 
     /* dimensioni del pulsante */
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: var(--third-color);
-    display: flex;
+    background-color: var(--first-color);
     justify-content: center;
     align-items: center;
 
@@ -277,4 +278,18 @@ body footer div button{
 .floating-btn:hover {
     transform: translateX(-50%) scale(1.1);
     box-shadow: 3px 3px rgb(0 0 0 / 40%);
+}
+
+input{
+    border: black 2px solid !important;
+}
+
+.admin-button{
+    background-color: var(--third-color) !important;
+    border: black 2px solid !important;
+    color: white !important;
+}
+
+.secondary-button{
+    background-color: #888 !important;
 }
