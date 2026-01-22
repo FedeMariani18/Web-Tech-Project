@@ -1,4 +1,5 @@
 const radio = document.querySelectorAll("input[type='radio']");
+var adminId;
 getAdminData();
 
 //cambia tabella al cambiamento dei radio button
@@ -61,7 +62,11 @@ function handleUserAction(action, userId, row) {
     //inidividua l'azione richiesta
     switch(action) {
         case "visita":
-            window.location.href = `profile.php?id=${userId}`;  //TODO: mettere a posto questa chiamata
+            if(userId == adminId){
+                window.location.href = `my-profile.php`;    
+            } else {
+                window.location.href = `profile.php?id=${userId}`;
+            }
             break;
 
         case "UNBAN":
@@ -130,10 +135,14 @@ function createUserRow(users){
             <td>${users[i]["cognome"]}</td>
             <td>
                 <div>
-                    <button class="btn btn-secondary">visita</button>
+                    <button class="btn btn-secondary">visita</button>`
+        if(users[i]["id"] != adminId) {
+            postHTML += `
                     <button class="btn btn-secondary">${ban}</button>
-                    <button class="btn btn-secondary">${role}</button>
-                </div>
+                    <button class="btn btn-secondary">${role}</button>`;
+        }
+        postHTML +=
+                `</div>
             </td>
         </tr>
         `;
@@ -311,7 +320,7 @@ async function getAdminData(){
             throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        
+        adminId = json['id_utente'];
         insertUserProfilePhoto(json['fotoProfilo']);
     } catch (error) {
         console.log(error.message);
@@ -324,6 +333,7 @@ function insertUserProfilePhoto(foto){
     profile.href = "my-profile.php";
     profileImg.src = foto;    
 }
+//#endregion
 
 //#region SEARCH
 document.addEventListener("DOMContentLoaded", function() {

@@ -5,9 +5,10 @@ if (tab === "like") {
     getLikePostData();
 } else if(tab === "notification"){
     getNotificationPostData();
-
+} else {
+    getUserData();
 }
-getUserData();
+
 
 const btns = document.querySelectorAll("button");
 btns.forEach(btn => {
