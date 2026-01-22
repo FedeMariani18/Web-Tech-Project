@@ -29,17 +29,17 @@ $templateParams["js"] = array("js/like.js", "js/notification.js", "js/my-profile
 <header class="container-fluid pt-2 pb-3">
 
     <div class="row align-items-center">
-        <h1 class="col-2 col-md-6"><a href="index.php" style="color:#DA627D; text-decoration:none;">UNINET</a></h1>
+        <h1 class="col-2 col-md-6"><a href="index.php" style="text-decoration:none;">UNINET</a></h1>
         <div class="col-10 col-md-6">
             <nav class="d-flex justify-content-end gap-2 index-nav-small">    
                 <a href="index.php" id="home" aria-label="Icona Home" class="nav-item-box me-4">
-                    <span class="bi bi-house text-black" aria-hidden="true"></span>
+                    <span class="bi bi-house text-white" aria-hidden="true"></span>
                 </a>
                 <a href="edit-profile.php" id="editProfile" aria-label="Icona modifica" class="nav-item-box me-4">
-                    <span class="bi bi-pencil-square text-black" aria-hidden="true"></span>
+                    <span class="bi bi-pencil-square text-white" aria-hidden="true"></span>
                 </a>
                 <a href="" id="logout" onclick="logout();" aria-label="Icona logout" class="nav-item-box me-3">
-                    <span class="bi bi-box-arrow-right text-black" aria-hidden="true"></span>
+                    <span class="bi bi-box-arrow-right text-white" aria-hidden="true"></span>
                 </a>
             </nav>
         </div>
@@ -48,13 +48,13 @@ $templateParams["js"] = array("js/like.js", "js/notification.js", "js/my-profile
     <div class="container-fluid">
         <nav class="d-flex justify-content-center gap-2 profile-icon-nav align-items-center">
             <button id="like" aria-label="Icona dei preferiti" class="icon-btn nav-item-box">
-                <span id="likeIcon" class="bi bi-heart text-black" aria-hidden="true"></span>
+                <span id="likeIcon" class="bi bi-heart text-white" aria-hidden="true"></span>
             </button>
             <button id="profile" class="icon-btn nav-item-box">
                 <img src="resources/users/default_profile.png" alt="icona dell'utente" id="profileImg" class="rounded-circle border profile-hover">
             </button>
             <button id="notification" aria-label="Icona delle notifiche" class="icon-btn nav-item-box">
-                <span id="notificationIcon" class="bi bi-bell text-black" aria-hidden="true"></span>
+                <span id="notificationIcon" class="bi bi-bell text-white" aria-hidden="true"></span>
             </button>
         </nav>
     </div>

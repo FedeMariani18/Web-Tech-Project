@@ -113,7 +113,7 @@ function getButtonToPartecipate(utentePartecipa, id_utente, id_creatore, parteci
         return `
             <div class="row">
                 <div class="col-12 d-grid">
-                    <button class="btn btn-warning btn-lg fw-bold" id="elimina" >
+                    <button class="btn btn-warning btn-lg fw-bold important-button" id="elimina" >
                         ELIMINA POST
                     </button>
                 </div>

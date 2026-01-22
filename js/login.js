@@ -64,7 +64,7 @@ function generaLoginForm(loginerror = null) {
             </li>
             <li class="mb-3">
                 <div class="row justify-content-center">
-                    <a class="col-8 btn btn-lg border border-black rounded-3" href="create_account.php">Non hai un account?</a>
+                    <a class="col-8 btn btn-lg border border-black rounded-3 secondary-button" href="create_account.php">Non hai un account?</a>
                 </div>
             </li>
         </ul>
