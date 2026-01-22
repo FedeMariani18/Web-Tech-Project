@@ -88,16 +88,14 @@ async function updateAccount(id, foto, fotoOld, nome, cognome, username, telefon
             method: "POST",
             body: formData
         });
-
+        
+        const json = await response.json();
+        
         if (!response.ok) {
-            if (response.status === 401 || response.status === 404) {
-                window.location.href = "404.html";
-                return;
-            }
-            throw new Error(`Response status: ${response.status}`);
+            document.querySelector("form > p").innerText = json["erroremodifica"];
         }
 
-        const json = await response.json();
+        
         console.log(json);
 
         if(json['modificaeseguita']){
