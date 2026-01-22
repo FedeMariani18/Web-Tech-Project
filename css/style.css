@@ -280,7 +280,7 @@ body footer div button{
     box-shadow: 3px 3px rgb(0 0 0 / 40%);
 }
 
-input{
+input, textarea, select {
     border: black 2px solid !important;
 }
 
@@ -292,4 +292,8 @@ input{
 
 .secondary-button{
     background-color: #888 !important;
+}
+
+.profile-img-wrapper {
+    width: 200px; /* stessa larghezza dell'immagine */
 }

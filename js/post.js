@@ -124,7 +124,7 @@ function getButtonToPartecipate(utentePartecipa, id_utente, id_creatore, parteci
         return `
             <div class="row">
                 <div class="col-12 d-grid">
-                    <button class="btn btn-warning btn-lg fw-bold" id="disiscriviti" >
+                    <button class="btn btn-warning btn-lg fw-bold important-button" id="disiscriviti" >
                         DISISCRIVITI
                     </button>
                 </div>
@@ -137,7 +137,7 @@ function getButtonToPartecipate(utentePartecipa, id_utente, id_creatore, parteci
     return `
         <div class="row">
             <div class="col-12 d-grid">
-                <button class="btn btn-warning btn-lg fw-bold" id="partecipa">
+                <button class="btn btn-warning btn-lg fw-bold important-button" id="partecipa">
                     PARTECIPA
                 </button>
             </div>

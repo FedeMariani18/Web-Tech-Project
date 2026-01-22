@@ -47,15 +47,16 @@ $templateParams["js"] = array("js/profile.js");
 
     <div class="d-flex justify-content-center mt-3">
 
-        <figure class="position-relative m-0 text-center">
+        <figure class="m-0 text-center">
+            <div class="profile-img-wrapper position-relative mx-auto">
 
-            <button class="btn btn-danger btn-sm position-absolute top-0 end-0 translate-middle rounded-circle p-2 align-items-center justify-content-center" 
-                    id="deleteBtn"
-                    data-bs-toggle="modal"
-                    data-bs-target="#confirmDeleteModal">
-                <span class="bi bi-x-lg"></span>
-            </button>
-
+                <button class="btn btn-danger btn-sm position-absolute top-0 end-0 translate-middle rounded-circle p-2 align-items-center justify-content-center" 
+                        id="deleteBtn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#confirmDeleteModal">
+                    <span class="bi bi-x-lg"></span>
+                </button>
+            </div>
 
             <img src="resources/users/default_profile.png"
                 id="profileImg"
@@ -63,7 +64,7 @@ $templateParams["js"] = array("js/profile.js");
                 width="120"
                 alt="icona dell'utente">
 
-            <figcaption id="username" class="mt-2"></figcaption>
+            <figcaption id="username" class="mt-2 text-white"></figcaption>
 
         </figure>
 
