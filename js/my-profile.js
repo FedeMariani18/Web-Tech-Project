@@ -7,13 +7,10 @@ btns.forEach(btn => {
         container.innerHTML = "";
         
         if(event.target.id === "likeIcon" || event.target.id === "like"){
-            console.log("premuto il tasto like");
             getLikePostData();
         } else if(event.target.id === "notificationIcon" || event.target.id === "notification") {
-            console.log("premuto il tasto notifica");
             getNotificationPostData();
         } else if(event.target.id === "profileImg" || event.target.id === "profile") {
-            console.log("premuto il tasto user");
             getUserData();
         }
     });
