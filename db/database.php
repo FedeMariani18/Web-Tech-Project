@@ -452,6 +452,16 @@
             return $stmt->execute();
         }
 
+        public function modifyUtenteWithoutPhoto($id, $username, $password_hash, $nome, $cognome, $numero_telefono, $mail) {
+            $stmt = $this->db->prepare(
+                "UPDATE UTENTE 
+                SET username = ?, password_hash = ?, nome = ?, cognome = ?, numero_telefono = ?, mail = ?
+                WHERE id = ?"
+            );
+            $stmt->bind_param("sssssss", $username, $password_hash, $nome, $cognome, $numero_telefono, $mail, $id);
+            return $stmt->execute();
+        }
+
         public function deleteProfilePhoto($id) {
             $stmt = $this->db->prepare(
                 "UPDATE UTENTE 

@@ -29,37 +29,63 @@ function getImgUniqName($foto, $user){
 
         return $nomeFile;
     }
+    return null;
 }
 
-function saveImg($foto, $user, $nomeFile){
-    if (isset($foto) && $foto['error'] === UPLOAD_ERR_OK) {
+// function saveImg($foto, $user, $nomeFile){
+//     if (isset($foto) && $foto['error'] === UPLOAD_ERR_OK) {
         
-        // Crea cartella se non esiste
-        if($user){
-            $uploadDir = UPLOAD_DIR_PROFILE;
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
-            } 
-        } else {
-            $uploadDir = UPLOAD_DIR_POST;
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0755, true);
-            }
-        }
+//         // Crea cartella se non esiste
+//         if($user){
+//             $uploadDir = UPLOAD_DIR_PROFILE;
+//             if (!is_dir($uploadDir)) {
+//                 mkdir($uploadDir, 0755, true);
+//             } 
+//         } else {
+//             $uploadDir = UPLOAD_DIR_POST;
+//             if (!is_dir($uploadDir)) {
+//                 mkdir($uploadDir, 0755, true);
+//             }
+//         }
         
-        //crea file path intero
-        $fotoPath = $uploadDir . $nomeFile;
+//         //crea file path intero
+//         $fotoPath = $uploadDir . $nomeFile;
         
-        // Salva il file
-        if (!move_uploaded_file($foto['tmp_name'], $fotoPath)) {
-            $result["errorecreazione"] = "Errore durante il salvataggio della foto";
-            header('Content-Type: application/json');
-            echo json_encode($result);
-            exit;
-        }
+//         // Salva il file
+//         if (!move_uploaded_file($foto['tmp_name'], $fotoPath)) {
+//             $result["errorecreazione"] = "Errore durante il salvataggio della foto";
+//             header('Content-Type: application/json');
+//             echo json_encode($result);
+//             exit;
+//         }
 
-        return $nomeFile;
+//         return $nomeFile;
+//     }
+// }
+
+function saveImg($foto, $user, $nomeFile) {
+
+    if (empty($nomeFile)) {
+        return false;
     }
+
+    if (!isset($foto) || $foto['error'] !== UPLOAD_ERR_OK) {
+        return false;
+    }
+
+    $uploadDir = $user ? UPLOAD_DIR_PROFILE : UPLOAD_DIR_POST;
+
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0755, true);
+    }
+
+    $fotoPath = $uploadDir . $nomeFile;
+
+    if (!move_uploaded_file($foto['tmp_name'], $fotoPath)) {
+        return false;
+    }
+
+    return $nomeFile;
 }
 
 ?>

@@ -2,6 +2,7 @@
 require_once 'bootstrap.php';
 
 $result['modificaeseguita'] = false;
+$isFotoPresent = true;
 
 // Gestione upload foto
 $fotoName = null;
@@ -12,7 +13,9 @@ if(!empty($_FILES['foto']['name'])) {
         unlink(UPLOAD_DIR_PROFILE . $oldFoto);
     }
 
-    $fotoName = saveImg($_FILES['foto'], true);
+    //salvo la nuova immagine
+    $fotoName = getImgUniqName($_FILES['foto'], true);
+    saveImg($_FILES['foto'], true, $fotoName);
     if (!$fotoName) {
         $result["errorecreazione"] = "Errore durante il salvataggio della foto";
         header('Content-Type: application/json');
@@ -20,7 +23,7 @@ if(!empty($_FILES['foto']['name'])) {
         exit;
     } 
 } else {
-    $fotoName = $_POST['fotoOld'] ?? null;
+    $isFotoPresent = false;
 }
 
 //gestisco la password, se è null non è stata modificata quindi la lascio così com'è
@@ -30,7 +33,11 @@ if(isset($_POST['password']) && !empty($_POST['password'])){
     $passwordHash = $_POST['passwordOld'] ?? null;  // Mantieni la vecchia
 }
 
-$create_result = $dbh->modifyUtente($_POST["id"], $_POST["username"], $passwordHash, $_POST["nome"], $_POST["cognome"], $_POST["telefono"], $_POST["mail"], $fotoName);
+if($isFotoPresent){
+    $create_result = $dbh->modifyUtente($_POST["id"], $_POST["username"], $passwordHash, $_POST["nome"], $_POST["cognome"], $_POST["telefono"], $_POST["mail"], $fotoName);
+} else {
+    $create_result = $dbh->modifyUtenteWithoutPhoto($_POST["id"], $_POST["username"], $passwordHash, $_POST["nome"], $_POST["cognome"], $_POST["telefono"], $_POST["mail"]);
+}
 //controllo risultato della query
 if(!$create_result){
     //Creazione account fallita

@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     form.addEventListener("submit", function(event) {
         event.preventDefault();
         const foto = document.querySelector("#foto").files[0];
+        console.log(foto);
         const nome = document.querySelector("#nome").value;
         const cognome = document.querySelector("#cognome").value;
         const username = document.querySelector("#username").value;

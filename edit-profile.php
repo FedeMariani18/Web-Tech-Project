@@ -31,7 +31,7 @@ $templateParams["js"] = array("js/edit-profile.js");
                 <ul class="list-group row justify-content-center">
                     <li class="mb-3">
                         <label class="form-label" for="foto">Scegli una nuova foto:</label>
-                        <input class="form-control" type="file" id="foto" accept=".jpg, .jpeg, .png">
+                        <input class="form-control" type="file" id="foto" name="foto" accept=".jpg, .jpeg, .png">
                     </li>
                     <li class="mb-3 col-md-6">
                         <div class="row g-3 mb-2">

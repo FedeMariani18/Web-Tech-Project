@@ -21,8 +21,9 @@ async function init() {
     form.addEventListener("submit", function(event) {
         event.preventDefault();
         
-        const foto = document.querySelector("#foto").files[0] ?? userData['foto'];
+        const foto = document.querySelector("#foto").files[0];
         const fotoOld = userData['foto'];  // Nome della foto vecchia per poterla cancellare
+        console.log(fotoOld);
         const nome = document.querySelector("#nome").value;
         const cognome = document.querySelector("#cognome").value;
         const username = document.querySelector("#username").value;
@@ -68,7 +69,9 @@ async function updateAccount(id, foto, fotoOld, nome, cognome, username, telefon
     const url = 'api-edit-profile.php';
     const formData = new FormData();
     formData.append("id", id);
-    formData.append("foto", foto);
+    if(foto != null){
+        formData.append("foto", foto);
+    }
     formData.append("fotoOld", fotoOld);  // Passa il nome della foto vecchia
     formData.append("nome", nome);
     formData.append("cognome", cognome);
@@ -97,7 +100,7 @@ async function updateAccount(id, foto, fotoOld, nome, cognome, username, telefon
         const json = await response.json();
         console.log(json);
 
-        if(json['modificaeseguita'] === true){
+        if(json['modificaeseguita']){
             window.location.href = "my-profile.php";
         } else {
             console.log(json['erroremodifica']);
